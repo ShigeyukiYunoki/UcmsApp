@@ -6,7 +6,7 @@
       <%= gravatar_for @user, 150 %>
       <h3 class="my-3"><%= @user.name %></h3>
 
-      <span><%= link_to "プロフィール", @user %></span>
+      <span><%= link_to "プロフィール", @user, data: {"turbolinks" => false} %></span>
       <span><b>投稿:</b> <%= @user.posts.count %></span>
 
     </section>
@@ -17,7 +17,7 @@
       </div>
       <% if @users.any? %>
         <% @users.each do |user| %>
-          <%= link_to gravatar_for(user, 40), user %>
+          <%= link_to gravatar_for(user, 40), user, data: {"turbolinks" => false} %>
         <% end %>
       <% end %>
     </section>

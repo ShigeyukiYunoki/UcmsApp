@@ -1,12 +1,12 @@
 <% @user ||= current_user %>
 <div class="mx-auto">
-  <a href="<%= following_user_path(@user) %>" class="none-deco">
+  <a href="<%= following_user_path(@user) %>" data-turbolinks="false" class="none-deco">
     <strong id="following" class="mr-3">
       <%= @user.following.count %>
       フォロー
     </strong>
   </a>
-  <a href="<%= followers_user_path(@user) %>" class="none-deco">
+  <a href="<%= followers_user_path(@user) %>" data-turbolinks="false" class="none-deco">
     <strong id="followers">
       <%= @user.followers.count %>
       フォロワー

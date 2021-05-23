@@ -1,7 +1,7 @@
 <% provide(:title, "#{@user.name}'s calendar") %>
 
   <% if @user.id == current_user.id %>
-    <%= link_to "日記をかく", new_post_path, class:"btn btn-outline-info mb-5 btn-block btn-lg"%>
+    <%= link_to "日記をかく", new_post_path, data: {"turbolinks" => false}, class:"btn btn-outline-info mb-5 btn-block btn-lg"%>
   <% end %>
 
   <div class="row">
@@ -28,7 +28,7 @@
                   <td>
                     <%= link_to post.title, post, class: "d-block text-truncate none-deco"%>
                     <div class="mt-2">
-                      <%= link_to "編集", edit_post_path(post), class: "btn btn-sm btn-outline-primary mr-1" %>
+                      <%= link_to "編集", edit_post_path(post), data: {"turbolinks" => false}, class: "btn btn-sm btn-outline-primary mr-1" %>
                       <%= link_to "削除", post, method: :delete,
                       data:{confirm: "本当に削除しますか?"}, class: "btn btn-sm btn-outline-danger" %>
                     </div>
@@ -37,7 +37,7 @@
                   <% else %>
 
                   <td>
-                    <%= link_to post.title, post, class: "d-block text-truncate none-deco" %>
+                    <%= link_to post.title, post, data: {"turbolinks" => false}, class: "d-block text-truncate none-deco" %>
                   </td>
 
                   <% end %>
@@ -59,7 +59,7 @@
         <%= date.day %>
 
         <% allposts.each do |allpost| %>
-          <%= link_to allpost.title, root_path(anchor: "post-#{allpost.id}"), class:"d-block text-truncate none-deco"%>
+          <%= link_to allpost.title, root_path(anchor: "post-#{allpost.id}"), data: {"turbolinks" => false}, class:"d-block text-truncate none-deco"%>
         <% end %>
 
       <% end %>

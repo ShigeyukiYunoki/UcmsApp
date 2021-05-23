@@ -12,14 +12,14 @@
     <h4><%= current_user.email %></h4>
     <h4 class="my-3"><%= current_user.seriousness %></h4>
 
-    <%= link_to "プロフィールの編集", edit_user_path(current_user),class: "btn btn-outline-primary" %>
+    <%= link_to "プロフィールの編集", edit_user_path(current_user), data: {"turbolinks" => false}, class: "btn btn-outline-primary" %>
 
 
     <section class="my-3">
       <%= render 'shared/stats' %>
     </section>
 
-      <%= link_to "日記をかく", new_post_path, class:"btn btn-outline-info mb-5 btn-block btn-lg"%>
+      <%= link_to "日記をかく", new_post_path, data: {"turbolinks" => false}, class:"btn btn-outline-info mb-5 btn-block btn-lg"%>
 
   </aside>
 
@@ -29,12 +29,12 @@
       <div class="col-7">
         <%= link_to "カレンダーでみる",
         "/posts/#{current_user.id}/index?start_date=#{Date.today.strftime("%Y-%m-%d")}&post_index=0",
-        class: "btn btn-success btn-block" %>
+         data: {"turbolinks" => false}, class: "btn btn-success btn-block" %>
       </div>
     </div>
 
     <%= render 'shared/feed' %>
-  </div> 
+  </div>
 
 
 <% else %>

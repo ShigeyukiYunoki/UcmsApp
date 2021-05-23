@@ -1,6 +1,6 @@
 <li class="list-group-item list-group-item-action position-relative py-3 bg-transparent" id="post-<%= post.id %>">
-  <%= link_to gravatar_for(post.user, 50), post.user, class:"float-left pr-3"%>
-  <%= link_to post.user.name, post.user, class:"pr-3" %>
+  <%= link_to gravatar_for(post.user, 50), post.user, data: {"turbolinks" => false}, class:"float-left pr-3"%>
+  <%= link_to post.user.name, post.user, data: {"turbolinks" => false}, class:"pr-3" %>
   <%= post.start_time.strftime("%Y/%m/%d") %>
   <span class="timestamp pl-sm-3 text-nowrap">
     <%= time_ago_in_words(post.created_at) %>前に投稿
@@ -19,7 +19,7 @@
   <% end %>
 
   <% if current_user?(post.user) %>
-    <%= link_to "編集", edit_post_path(post), class: "btn btn-outline-primary" %>
+    <%= link_to "編集", edit_post_path(post), data: {"turbolinks" => false}, class: "btn btn-outline-primary" %>
     <%= link_to "削除", post_path(post), method: "delete",
     data:{confirm: "本当に削除しますか?"}, class: "btn btn-outline-danger" %>
   <% end %>
