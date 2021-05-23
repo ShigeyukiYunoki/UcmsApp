@@ -7,7 +7,8 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
-require('jquery')
+// require('jquery')
+// config/webpack/environment.jsでrequire済のため不要
 require('bootstrap') // views/layouts/_flashにおいてbootstrapを適応させるのに必要だった
 
 // import 'bootstrap'; // webpackは'require'と'import'のどちらでも対応可能なのでこちらでもok
@@ -16,6 +17,9 @@ import '../stylesheets/application';
 // import '../post/today';
 import '../post/image_size';
 import '../js/swiper';
+import '../js/sweetalert';
+// import '../js/timepicker';
+// import '../js/afternotification';
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
