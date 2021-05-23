@@ -1,0 +1,11 @@
+
+<% if object.errors.any? %>
+  <div id="error_explanation">
+    <% object.errors.full_messages.each do |msg| %>
+      <div class="alert alert-danger text-center">
+        <%= msg %>
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+      </div>
+    <% end %>
+  </div>
+<% end %>

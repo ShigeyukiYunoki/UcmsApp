@@ -1,0 +1,73 @@
+  <% provide(:title, @user.name) %>
+  <% if @user.posts.any? %>
+  <div class="row">
+    <aside class="col-md-3 text-center">
+      <section class="mx-auto">
+
+        <%= gravatar_for @user, 150 %>
+        <h3 class="my-3"><%= @user.name %></h3>
+
+      </section>
+
+      <h4><%= @user.email %></h4>
+      <h4 class="my-3"><%= @user.seriousness %></h4>
+
+    <% if @user.id == current_user.id %>
+      <%= link_to "プロフィールの編集", edit_user_path(@user),class: "btn btn-outline-primary mb-3" %>
+    <% end %>
+
+      <section>
+        <%= render 'shared/stats' %>
+      </section>
+
+    </aside>
+
+    <div class="col-md-9">
+      <div class="row my-3 text-center">
+        <h2 class="col-4">投稿(<%= @user.posts.count %>)</h2>
+        <div class="col-7">
+          <%= link_to "カレンダーでみる",
+          "/posts/#{@user.id}/index?start_date=#{Date.today.strftime("%Y-%m-%d")}&post_index=1",
+          class: "btn btn-success btn-block" %>
+        </div>
+      </div>
+
+      <%= render "follow_form" if logged_in? %>
+
+      <div class="d-flex justify-content-center">
+        <%= paginate @posts %>
+      </div>
+
+        <%= render @posts %>
+
+      <div class="d-flex justify-content-center my-3">
+        <%= paginate @posts %>
+      </div>
+
+    </div>
+
+  </div>
+  <% else %>
+    <aside class="text-center">
+    <%= gravatar_for @user, 150 %>
+      <h3 class="my-3"><%= @user.name %></h3>
+
+      <h4><%= @user.email %></h4>
+      <h4 class="my-3"><%= @user.seriousness %></h4>
+
+    <% if @user.id == current_user.id %>
+      <%= link_to "プロフィールの編集", edit_user_path(@user),class: "btn btn-outline-primary mb-3" %>
+    <% end %>
+
+      <section>
+        <%= render 'shared/stats' %>
+      </section>
+
+      <h2 class="my-3">投稿(<%= @user.posts.count %>)</h2>
+
+      <div class="col-5 mx-auto">
+        <%= render "follow_form" if logged_in? %>
+      </div>
+
+    </aside>
+  <% end %>

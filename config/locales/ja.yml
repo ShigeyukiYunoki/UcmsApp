@@ -1,0 +1,14 @@
+ja:
+  activerecord:
+    attributes:
+      post:
+        title: タイトル
+        content: 投稿内容
+        start_time: 日付
+
+      user:
+        name: ユーザー名
+        email: メールアドレス
+        password: パスワード
+        seriousness: 重症度
+        password_confirmation: 確認

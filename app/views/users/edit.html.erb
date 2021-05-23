@@ -1,0 +1,10 @@
+<% provide(:title,"Edit") %>
+<% provide(:button_text, "変更の保存") %>
+
+  <div class="text-center mb-5">
+    <p class="display-4 my-4 text-secondary">ユーザー情報の編集</p>
+      <%= gravatar_for @user,70 %>
+      <a href="https://gravatar.com/emails" target="_blank" rel="noopener" class="none-deco">プロフィール画像の変更</a>
+  </div>
+
+  <%= render 'form' %>

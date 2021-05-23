@@ -1,0 +1,37 @@
+<%= form_with model: @user, local: true do |f| %>
+<%= render 'shared/error_messages', object: f.object %>
+
+<div class="col-3 mx-auto">
+    <div class="form-group">
+      <%= f.label :name, "ユーザー名" %>
+      <%= f.text_field :name, class:"form-control",
+          required: true, autofocus: true %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :email, "メールアドレス" %>
+      <%= f.text_field :email, class:"form-control",
+          required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :seriousness, "重症度" %>
+      <%= f.select :seriousness, [["軽症"],["中等症"],["重症"]], {prompt:"重症度を選択してください"},
+          class:"form-control", required: true %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password, "パスワード" %>
+      <%= f.password_field :password, class:"form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password_confirmation, "パスワードの確認" %>
+      <%= f.password_field :password_confirmation, class:"form-control" %>
+    </div>
+
+    <%= f.submit yield(:button_text), class:"btn btn-lg btn-primary btn-block my-4" %>
+
+  <% end %>
+
+</div>

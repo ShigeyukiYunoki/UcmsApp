@@ -1,0 +1,79 @@
+<header class="nabvar navbar-light sticky-top bg-light navbar-expand-md py-3">
+
+  <div class="container">
+
+      <nav>
+
+        <%= link_to "Ucmsapp", root_path, id:"logo", class:"display-4 font-italic none-deco"%>
+
+        <button class="navbar-toggler float-right m-3" data-toggle="collapse" data-target="#menu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div id="menu" class="collapse navbar-collapse float-md-right">
+
+          <% if logged_in? %>
+          <%# <% if session[:user_id] %>
+          <%# <% @current_user %>
+
+          <ul class="navbar-nav p-md-3 px-3">
+
+            <li class="nav-item">
+              <div class="nav-link">
+                <%= link_to current_user.name, current_user, class:"none-deco"%>
+              </div>
+            </li>
+
+            <li class="nav-item">
+              <div class="nav-link">
+                <%= link_to "Ucmsappとは", about_path, class:"none-deco" %>
+              </div>
+            </li>
+
+            <li class="nav-item">
+              <div class="nav-link">
+                <%= link_to "ユーザー一覧", users_path, class:"none-deco" %>
+              </div>
+            </li>
+
+            <li class="nav-item">
+              <div class="nav-link">
+                <%= link_to "ログアウト", logout_path, method: :delete, class:"none-deco" %>
+              </div>
+            </li>
+
+          </ul>
+
+          <% else %>
+
+          <ul class="navbar-nav p-md-3 px-3">
+
+            <li class="nav-item">
+              <div class="nav-link">
+                <%= link_to "Ucmsappとは", about_path %>
+              </div>
+            </li>
+
+            <li class="nav-item">
+              <div class="nav-link">
+                <%= link_to "ログイン", login_path %>
+              </div>
+            </li>
+
+            <li class="nav-item">
+              <div class="nav-link">
+                <%= link_to "新規登録", new_user_path %>
+              </div>
+            </li>
+
+          </ul>
+
+          <% end %>
+
+        </div>
+
+      </nav>
+
+  </div>
+
+</header>

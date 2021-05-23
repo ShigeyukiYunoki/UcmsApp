@@ -1,0 +1,43 @@
+<% provide(:title, @title) %>
+<div class="row">
+  <aside class="col-md-3 text-center">
+    <section class="mx-auto">
+
+      <%= gravatar_for @user, 150 %>
+      <h3 class="my-3"><%= @user.name %></h3>
+
+      <span><%= link_to "プロフィール", @user %></span>
+      <span><b>投稿:</b> <%= @user.posts.count %></span>
+
+    </section>
+
+    <section class="my-3">
+      <div class="my-3">
+        <%= render 'shared/stats' %>
+      </div>
+      <% if @users.any? %>
+        <% @users.each do |user| %>
+          <%= link_to gravatar_for(user, 40), user %>
+        <% end %>
+      <% end %>
+    </section>
+
+  </aside>
+
+  <div class="col-md-9">
+    <h3><%= @title %></h3>
+    <% if @users.any? %>
+    <div class="d-flex justify-content-center">
+      <%= paginate @users %>
+    </div>
+
+      <%= render @users %>
+
+    <div class="d-flex justify-content-center my-3">
+      <%= paginate @users %>
+    </div>
+    <% end %>
+
+  </div>
+
+</div>

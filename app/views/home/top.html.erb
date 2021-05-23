@@ -1,0 +1,57 @@
+<% if logged_in? %>
+
+<div class="row">
+  <aside class="col-md-3 text-center">
+    <section class="mx-auto">
+
+      <%= gravatar_for current_user, 150 %>
+      <h3 class="my-3"><%= current_user.name %></h3>
+
+    </section>
+
+    <h4><%= current_user.email %></h4>
+    <h4 class="my-3"><%= current_user.seriousness %></h4>
+
+    <%= link_to "プロフィールの編集", edit_user_path(current_user),class: "btn btn-outline-primary" %>
+
+
+    <section class="my-3">
+      <%= render 'shared/stats' %>
+    </section>
+
+      <%= link_to "日記をかく", new_post_path, class:"btn btn-outline-info mb-5 btn-block btn-lg"%>
+
+  </aside>
+
+  <div class="col-md-9">
+    <div class="row my-3 text-center">
+      <h2 class="col-4">投稿(<%= current_user.feed.count %>)</h2>
+      <div class="col-7">
+        <%= link_to "カレンダーでみる",
+        "/posts/#{current_user.id}/index?start_date=#{Date.today.strftime("%Y-%m-%d")}&post_index=0",
+        class: "btn btn-success btn-block" %>
+      </div>
+    </div>
+
+    <%= render 'shared/feed' %>
+  </div> 
+
+
+<% else %>
+
+  <% provide(:title,"Home")%>
+    <div class="text-info text-center">
+
+      <h1 class="display-4 pb-5 cover-heading">潰瘍性大腸炎患者相互支援SNS</h1>
+
+      <p class="lead mt-5 text-monospace" style="padding:120px 0 400px 0">未だ治療法が見つかっていない難病である潰瘍性大腸炎に罹った人達が<br>
+        このSNSで少しでも前向きで生きられるようお互い励ましあえるようにできるように。<br>
+        治療法の発見に希望をもつのはもちろんのこと、この病気と共にでもよりよく生きたいとの願いがあります。
+      </p>
+
+
+      <%# <%= link_to image_tag("kitten.jpg",alt:"kitten", width:"200px"),"#" %>
+
+    </div>
+
+<% end %>

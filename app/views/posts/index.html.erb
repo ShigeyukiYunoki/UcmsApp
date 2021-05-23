@@ -1,0 +1,69 @@
+<% provide(:title, "#{@user.name}'s calendar") %>
+
+  <% if @user.id == current_user.id %>
+    <%= link_to "日記をかく", new_post_path, class:"btn btn-outline-info mb-5 btn-block btn-lg"%>
+  <% end %>
+
+  <div class="row">
+
+    <div class="col-md-4  text-center">
+
+      <table>
+        <tbody>
+
+          <div class="d-inline-block pb-2"><%= paginate @posts, window: 1 %></div>
+
+          <% @posts.each do |post| %>
+
+              <%# <% if @yearmonth == post.start_time.strftime("%Y/%m")%>
+
+                <tr class="table table-borderless align-middle">
+
+                  <td>
+                    <%= post.start_time.strftime("%Y/%m/%d") %>
+                  </td>
+
+                  <% if post.user_id == current_user.id %>
+
+                  <td>
+                    <%= link_to post.title, post, class: "d-block text-truncate none-deco"%>
+                    <div class="mt-2">
+                      <%= link_to "編集", edit_post_path(post), class: "btn btn-sm btn-outline-primary mr-1" %>
+                      <%= link_to "削除", post, method: :delete,
+                      data:{confirm: "本当に削除しますか?"}, class: "btn btn-sm btn-outline-danger" %>
+                    </div>
+                  </td>
+
+                  <% else %>
+
+                  <td>
+                    <%= link_to post.title, post, class: "d-block text-truncate none-deco" %>
+                  </td>
+
+                  <% end %>
+
+                </tr>
+
+              <%# <% end %>
+
+          <% end %>
+
+        </tbody>
+      </table>
+
+    </div>
+
+    <div class="col-md-8 mx-auto">
+
+      <%= month_calendar events: @allposts do |date, allposts| %>
+        <%= date.day %>
+
+        <% allposts.each do |allpost| %>
+          <%= link_to allpost.title, root_path(anchor: "post-#{allpost.id}"), class:"d-block text-truncate none-deco"%>
+        <% end %>
+
+      <% end %>
+
+    </div>
+
+  </div>

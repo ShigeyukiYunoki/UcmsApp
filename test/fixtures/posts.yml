@@ -1,0 +1,72 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+
+cat_video:
+  title: "poor animal"
+  content: "Sad cats are sad: https://youtu.be/PKffm2uI4dk"
+  start_time: <%= 2.hours.ago %>
+  created_at: <%= 2.hours.ago %>
+  user: michael
+
+tau_manifesto:
+  title: "Event"
+  content: "Check out the @tauday site by @mhartl: https://tauday.com"
+  start_time: <%= 5.years.ago %>
+  created_at: <%= 5.years.ago %>
+  user: michael
+
+orange:
+    title: "My sweet time"
+    content: "I just ate an orange!"
+    start_time: <%= 10.weeks.ago %>
+    created_at: <%= 10.weeks.ago %>
+    user: michael
+
+
+most_recent:
+  title: "these days"
+  content: "Writing a short test"
+  start_time: <%= Time.zone.now %>
+  created_at: <%= Time.zone.now %>
+  user: michael
+
+ants:
+  title: "aaaaa"
+  content: "Oh, is that what you want? Because that's how you get ants!"
+  start_time: <%= 2.years.ago %>
+  created_at: <%= 2.years.ago %>
+  user: archer
+
+zone:
+  title: "sssss"
+  content: "Danger zone!"
+  start_time: <%= 3.days.ago %>
+  created_at: <%= 3.days.ago %>
+  user: archer
+
+tone:
+  title: "ddddd"
+  content: "I'm sorry. Your words made sense, but your sarcastic tone did not."
+  start_time: <%= 10.minutes.ago %>
+  created_at: <%= 10.minutes.ago %>
+  user: lana
+
+van:
+  title: "ffffff"
+  content: "Dude, this van's, like, rolling probable cause."
+  start_time: <%= 4.hours.ago %>
+  created_at: <%= 4.hours.ago %>
+  user: lana
+
+<% 30.times do |n| %>
+post_<%= n %>:
+  title:  <%= n %>
+  content: <%= "paragraph #{n}" %>
+  start_time: <%= Date.today + n-1 %>
+  created_at: <%= Time.zone.now %>
+  user: michael
+<% end %>

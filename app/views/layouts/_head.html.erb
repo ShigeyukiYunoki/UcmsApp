@@ -1,0 +1,8 @@
+<%= csrf_meta_tags %>
+<%= csp_meta_tag %>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<%# 下記により'javascript/packs/application.js'から作られたstylesheetsファイルパスetc'posts'などをwebpackerから取得できる %>
+<%# media属性は指定なしの場合,'all'が指定されるので省略可 %>
+<%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+<%# 下記により'javascript/packs/application.js'から作られたjavascriptファイルパスetc'post/today'などをwebpackerから取得できる %>
+<%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
