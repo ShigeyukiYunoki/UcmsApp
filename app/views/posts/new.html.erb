@@ -1,3 +1,4 @@
+<%= javascript_pack_tag 'today' %>
 
   <% provide(:button_text,"投稿")%>
 
@@ -39,7 +40,7 @@
 
 
     <div class="d-flex justify-content-center">
-      <%= f.file_field :image, accept: "image/jpeg, image/gif, image/png", value: @post.image,
+      <%= f.file_field :image, accept: "image/jpeg, image/gif, image/png",
       id:"post_image", class:"my-5" %>
     </div>
 

@@ -13,7 +13,7 @@ require('bootstrap') // views/layouts/_flashにおいてbootstrapを適応させ
 // import 'bootstrap'; // webpackは'require'と'import'のどちらでも対応可能なのでこちらでもok
 
 import '../stylesheets/application';
-import '../post/today';
+// import '../post/today';
 import '../post/image_size';
 import '../js/swiper';
 
