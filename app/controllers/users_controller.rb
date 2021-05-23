@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   before_action :forbid_login_user, only: [:new,:create,:login_form,:login]
   before_action :ensure_correct_user, only: [:edit,:update]
   before_action :admin, only: :destroy
+  before_action :medicine
 
   def index
     @users = User.where(activated: true).page(params[:page]).per(30).order(id: :asc)
@@ -131,6 +132,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @users = @user.followers.page(params[:page])
     render 'show_follow'
+  end
+
+  def medicine
+    took_medicine
   end
 
   private

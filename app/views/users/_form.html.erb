@@ -1,7 +1,7 @@
 <%= form_with model: @user, local: true do |f| %>
 <%= render 'shared/error_messages', object: f.object %>
 
-<div class="col-3 mx-auto">
+<div class="col-sm-5 mx-auto">
     <div class="form-group">
       <%= f.label :name, "ユーザー名" %>
       <%= f.text_field :name, class:"form-control",

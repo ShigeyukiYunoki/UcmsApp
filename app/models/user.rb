@@ -5,6 +5,8 @@ class User < ApplicationRecord
   # def posts
   #   return Post.where(user_id: self.id)
   # end
+  has_many :medicines, dependent: :destroy
+  
   has_many :active_relationships, class_name: "Relationship",
                   foreign_key: "follower_id",
                   dependent: :destroy

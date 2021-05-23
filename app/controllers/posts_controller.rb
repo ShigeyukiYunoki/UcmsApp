@@ -2,6 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user, {only:[:index,:new,:show,:create,:edit,:update,:destroy]}
   before_action :ensure_correct_user, {only:[:edit,:update,:destroy]}
   # before_action :ensure_correct_user_for_new, {only:[:new,:create]}
+  before_action :medicine, only:[:index, :new, :show, :edit]
 
   def index
     @user = User.find(params[:user_id])
@@ -69,6 +70,10 @@ class PostsController < ApplicationController
   #     redirect_to "/posts/#{current_user.id}/index?start_date=#{Date.today.strftime("%Y-%m-%d")}",flash: {danger: "権限がありません"}
   #   end
   # end
+  #before_action
+  def medicine
+    took_medicine
+  end
 
   private
 

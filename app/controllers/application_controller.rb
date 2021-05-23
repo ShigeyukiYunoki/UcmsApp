@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include UsersHelper
+  include MedicinesHelper
 
   def authenticate_user
       unless logged_in?

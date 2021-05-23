@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :password_resets, only: [:edit,:update,:create,:new]
   resources :posts
   resources :relationships, only:[:create,:destroy]
+  resources :medicines, only:[:index,:new,:create,:destroy]
 
   # post "posts/:id/destroy", to: "posts#destroy", as: :destroy_post
   # post "posts/:id/update", to: "posts#update"
