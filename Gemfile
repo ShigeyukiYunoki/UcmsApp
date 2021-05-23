@@ -24,6 +24,18 @@ gem 'faker'
 
 gem 'kaminari'
 
+gem 'gon'
+
+# gem 'onesignal-ruby'
+
+# gem 'rack'
+
+# gem 'rails_same_site_cookie'
+
+# gem 'validates_timeliness'
+
+# gem 'httparty'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
