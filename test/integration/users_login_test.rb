@@ -13,7 +13,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     assert_not is_logged_in?
     assert_template "users/login_form"
     assert_not flash.empty?
-    get root_path
+    get top_path
     assert flash.empty?
   end
 
@@ -46,7 +46,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     post login_path, params:{ session: {email:"",password:""}}
     assert_template "users/login_form"
     assert_not flash.empty?
-    get root_path
+    get top_path
     assert flash.empty?
   end
 

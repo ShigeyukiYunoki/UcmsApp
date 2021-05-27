@@ -67,7 +67,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference 'User.count' do
       delete user_path(@user)
     end
-    assert_redirected_to root_path
+    assert_redirected_to top_path
   end
 
   test "should not be non-activated-user in index and redirect show" do
@@ -76,7 +76,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", user_path(@non_activated),count: 0
     log_in_as(@non_activated)
     get user_path(@non_activated)
-    assert_redirected_to root_path
+    assert_redirected_to top_path
   end
 
   test "should redirect following when not logged in" do

@@ -7,9 +7,9 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
   end
 
   test "layout links" do
-    get root_path
-    assert_template 'home/top'
-    assert_select "a[href=?]", root_path
+    get top_path
+    assert_template 'home/top0'
+    assert_select "a[href=?]", top_path
     assert_select "a[href=?]", about_path
     assert_select "a[href=?]", login_path
     assert_select "a[href=?]", new_user_path
@@ -19,9 +19,9 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_select "title", full_title("Signup")
 
     log_in_as(@user)
-    get root_path
-    assert_template 'home/top'
-    assert_select "a[href=?]",root_path
+    get top_path
+    assert_template 'home/top0'
+    assert_select "a[href=?]",top_path
     assert_select "a[href=?]", about_path
     assert_select "a[href=?]", users_path
     assert_select "a[href=?]", logout_path

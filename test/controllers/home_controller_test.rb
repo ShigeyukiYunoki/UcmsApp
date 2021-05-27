@@ -9,7 +9,7 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
 
 
   test "should get top" do
-    get root_path
+    get top_path
     assert_response :success
     assert_select "title","Home|#{@base_title}"
   end
