@@ -13,6 +13,9 @@ require('bootstrap') // views/layouts/_flashにおいてbootstrapを適応させ
 
 // import 'bootstrap'; // webpackは'require'と'import'のどちらでも対応可能なのでこちらでもok
 
+// create.js.erb destroy.js.erbが動くのに必要
+window.$ = $;
+
 import '../stylesheets/application';
 // import '../post/today';
 import '../post/image_size';
