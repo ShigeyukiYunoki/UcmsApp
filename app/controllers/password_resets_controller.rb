@@ -12,7 +12,7 @@ class PasswordResetsController < ApplicationController
       @user.create_reset_digest
       @user.send_password_reset_email
       flash[:info] = "パスワード再設定メールを送信しました"
-      redirect_to root_path
+      redirect_to top_path
     else
       flash[:danger] = "メールアドレスが存在しません"
       render 'new'
@@ -49,7 +49,7 @@ class PasswordResetsController < ApplicationController
   def valid_user
     unless (@user && @user.activated? &&
       @user.authenticated?(:reset, params[:id]))
-    redirect_to root_path
+    redirect_to top_path
     end
   end
 

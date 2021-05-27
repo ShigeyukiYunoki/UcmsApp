@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root "home#top"
+  get "top0", to: "home#top0", as: :top
   get "about", to: "home#about"
   get "login", to: "users#login_form"
   post "login", to: "users#login"

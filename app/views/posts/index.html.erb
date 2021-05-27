@@ -59,7 +59,7 @@
         <%= date.day %>
 
         <% allposts.each do |allpost| %>
-          <%= link_to allpost.title, root_path(anchor: "post-#{allpost.id}"), data: {"turbolinks" => false}, class:"d-block text-truncate none-deco"%>
+          <%= link_to allpost.title, top_path(anchor: "post-#{allpost.id}"), data: {"turbolinks" => false}, class:"d-block text-truncate none-deco"%>
         <% end %>
 
       <% end %>

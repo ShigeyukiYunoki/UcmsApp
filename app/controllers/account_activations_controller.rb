@@ -9,7 +9,7 @@ class AccountActivationsController < ApplicationController
       redirect_to user
     else
       flash[:danger] = "有効化リンクが不正です"
-      redirect_to root_path
+      redirect_to top_path
     end
 
   end

@@ -6,6 +6,8 @@ class UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:edit,:update]
   before_action :admin, only: :destroy
   before_action :medicine
+  before_action :notification
+
 
   def index
     @users = User.where(activated: true).page(params[:page]).per(30).order(id: :asc)
@@ -14,7 +16,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page]).order(start_time: :desc)
-    redirect_to root_path and return unless @user.activated?
+    redirect_to top_path and return unless @user.activated?
   end
 
   def new
@@ -29,7 +31,7 @@ class UsersController < ApplicationController
     if @user.save
       @user.send_activation_email
       flash[:info] = "アカウント有効化メールを確認してください"
-      redirect_to root_path
+      redirect_to top_path
       # log_in @user
       # redirect_to @user,flash: {success: "ユーザー登録が完了しました"}
     else
@@ -86,7 +88,7 @@ class UsersController < ApplicationController
         message = "アカウントは有効化されていません。"
         message += "アカウント有効化メールを確認してください。"
         flash[:warning] = message
-        redirect_to root_path
+        redirect_to top_path
       end
     else
       flash.now[:danger]= "メールアドレスまたはパスワードが違います"
@@ -99,6 +101,20 @@ class UsersController < ApplicationController
   def logout
     log_out if logged_in?
     redirect_to login_path ,flash: {success: "ログアウトしました"}
+  end
+
+  def following
+    @title = "Following"
+    @user = User.find(params[:id])
+    @users = @user.following.page(params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = "Followers"
+    @user = User.find(params[:id])
+    @users = @user.followers.page(params[:page])
+    render 'show_follow'
   end
 
 #before_action
@@ -117,21 +133,7 @@ class UsersController < ApplicationController
   end
 
   def admin
-    redirect_to root_path unless current_user.admin?
-  end
-
-  def following
-    @title = "Following"
-    @user = User.find(params[:id])
-    @users = @user.following.page(params[:page])
-    render 'show_follow'
-  end
-
-  def followers
-    @title = "Followers"
-    @user = User.find(params[:id])
-    @users = @user.followers.page(params[:page])
-    render 'show_follow'
+    redirect_to top_path unless current_user.admin?
   end
 
   def medicine
