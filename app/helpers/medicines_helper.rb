@@ -29,7 +29,6 @@ module MedicinesHelper
       # end
     end
   end
-<<<<<<< HEAD
 
   def tookmedicines
    @tookmedicines = current_user.medicines.where.not(took_medicine_at: nil).pluck("took_medicine_at")
@@ -57,9 +56,6 @@ module MedicinesHelper
       unless @tookmedicinedays.include?(nil)
         @days += 1
       end
-=======
-
->>>>>>> 5a0f2569a16b33b1b1ce911698cf5c47da65add5
   def tookmedicines
    @tookmedicines = current_user.medicines.where.not(took_medicine_at: nil).pluck("took_medicine_at")
  end
