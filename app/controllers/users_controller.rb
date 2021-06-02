@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.page(params[:page]).order(start_time: :desc)
+    took_medicine_days_straight
     redirect_to top_path and return unless @user.activated?
   end
 

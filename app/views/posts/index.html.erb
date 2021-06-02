@@ -1,7 +1,10 @@
 <% provide(:title, "#{@user.name}'s calendar") %>
 
   <% if @user.id == current_user.id %>
-    <%= link_to "日記をかく", new_post_path, data: {"turbolinks" => false}, class:"btn btn-outline-info mb-5 btn-block btn-lg"%>
+    <%= link_to new_post_path, data: {"turbolinks" => false},
+     class:"btn btn-outline-info mb-5 btn-block btn-lg",method: :get do %>
+      <i class="fas fa-feather-alt fa-lg mr-3"></i>日記をかく
+    <% end %>
   <% end %>
 
   <div class="row">
@@ -56,10 +59,26 @@
     <div class="col-md-8 mx-auto">
 
       <%= month_calendar events: @allposts do |date, allposts| %>
-        <%= date.day %>
+
+        <div class="row">
+          <div class="col-3">
+            <%= date.day %>
+          </div>
+
+          <% if @tookmedicines %>
+            <% @tookmedicines.each do |tookmedicine| %>
+              <% if DateTime.strptime(tookmedicine,'%Y年%m月%d日') == date %>
+                <div class="col-9" id="web-font-bg">
+                  <i class="far fa-check-square fa-lg" style="color: blue;"></i>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
 
         <% allposts.each do |allpost| %>
-          <%= link_to allpost.title, top_path(anchor: "post-#{allpost.id}"), data: {"turbolinks" => false}, class:"d-block text-truncate none-deco"%>
+          <%= link_to allpost.title, top_path(anchor: "post-#{allpost.id}"),
+          data: {"turbolinks" => false}, class:"d-block text-truncate none-deco"%>
         <% end %>
 
       <% end %>

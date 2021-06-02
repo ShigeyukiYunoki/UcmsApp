@@ -15,12 +15,13 @@ require('bootstrap') // views/layouts/_flashにおいてbootstrapを適応させ
 
 // create.js.erb destroy.js.erbが動くのに必要
 window.$ = $;
-
+import '@fortawesome/fontawesome-free/js/all';
 import '../stylesheets/application';
 // import '../post/today';
 import '../post/image_size';
 import '../js/swiper';
 import '../js/sweetalert';
+
 // import '../js/timepicker';
 // import '../js/afternotification';
 

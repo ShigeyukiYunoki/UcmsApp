@@ -1,4 +1,5 @@
 module MedicinesHelper
+
   def took_medicine
     @current_user = current_user
     gon.user = @currnet_user
@@ -26,9 +27,78 @@ module MedicinesHelper
       #   @noid = @no.id
       #   gon.noid = @noid
       # end
-
-      @p = "post"
-      gon.p = @p
     end
   end
+
+  def tookmedicines
+   @tookmedicines = current_user.medicines.where.not(took_medicine_at: nil).pluck("took_medicine_at")
+ end
+
+  def took_medicine_days_straight
+    if logged_in?
+      @days = 0
+      @tookmedicinedays = @current_user.medicines.order(took_medicine_at: :asc).pluck("took_medicine_at")
+
+      @tookmedicinedays.each_cons(2) do |f,s|
+        if !s.nil?
+          @fdt = DateTime.strptime(f,'%Y年%m月%d日')
+          @sdt = DateTime.strptime(s,'%Y年%m月%d日')
+          if @fdt +1 == @sdt
+            @days += 1
+          else
+            @days = 0
+          end
+        else
+          @days += 1
+        end
+      end
+
+      unless @tookmedicinedays.include?(nil)
+        @days += 1
+      end
+  def tookmedicines
+   @tookmedicines = current_user.medicines.where.not(took_medicine_at: nil).pluck("took_medicine_at")
+ end
+
+  def took_medicine_days_straight
+    @days = 0
+    @tookmedicinedays = @current_user.medicines.order(took_medicine_at: :asc).pluck("took_medicine_at")
+
+    @tookmedicinedays.each_cons(2) do |f,s|
+      if !s.nil?
+        @fdt = DateTime.strptime(f,'%Y年%m月%d日')
+        @sdt = DateTime.strptime(s,'%Y年%m月%d日')
+        if @fdt +1 == @sdt
+          @days += 1
+        else
+          @days = 0
+        end
+      else
+        @days += 1
+      end
+    end
+
+    unless @tookmedicinedays.include?(nil)
+      @days += 1
+    end
+  end
+
+  # def took_medicine_days_straight
+  #   @days = 0
+  #   @tookmedicinedays = @current_user.medicines.order(took_medicine_at: :asc)
+  #   # took_medicine_atだけ取り出して並べてみる！
+  #   @tookmedicinedays.each_with_index do |tookmedicineday, i|
+  #     @tkm = tookmedicineday.took_medicine_at
+  #     if @tkm
+  #       @tkmdate = DateTime.strptime(@tkm,'%Y年%m月%d日')
+  #       # @tkmdatetime = Time.parse(@tkmdate)
+  #       if @tkmdate + 1 == @tkmdate.next
+  #         @days += 1
+  #       else
+  #         @days = 0
+  #       end
+  #     end
+  #   end
+  # end
+
 end
