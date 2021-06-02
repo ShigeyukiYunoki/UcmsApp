@@ -1,6 +1,8 @@
 @import '~bootstrap/scss/bootstrap';
 @import 'swiper/swiper-bundle';
 @import 'posts';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
 // 共通
 
 .none-deco:hover {
@@ -17,15 +19,17 @@ $gray-medium-light: #eaeaea;
   -moz-box-sizing:    border-box;
   -webkit-box-sizing: border-box;
   box-sizing:         border-box;
+  border: 1px solid blue;
 }
 
 /* miscellaneous */
 
 .debug_dump {
   background-color: $gray-medium-light;
-  float: left;
+  text-align: center;
   clear: both;
   width: 100%;
+  margin :5%;
   margin-top: 100px;
   @include box_sizing;
 }
@@ -126,3 +130,13 @@ section {
 .swal-overlay {
   background-color: rgba(43, 165, 137, 0.45);
 }
+
+// #web-font-bg {
+//     position: relative;
+//     z-index: 1;
+// }
+//
+// #web-font-bg:before {
+//     position: absolute;
+//     z-index: -1;
+// }
