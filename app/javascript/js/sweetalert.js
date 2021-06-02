@@ -45,8 +45,6 @@ const set_csrftoken = function () {
 
 set_csrftoken();
 
-console.log(gon.p)
-
   var date = new Date();
   var today = format(date, 'yyyy年MM月dd日');
 
@@ -140,9 +138,10 @@ if(today === gon.medicine || gon.noexist !== null){
                               closeOnClickOutside: false,
                               closeOnEsc: false
                             })
-                            $('.swal-button').on('click', function() {
-                              location.reload()
-                            });
+                            setTimeout('location.reload()', 1000);
+                            // $('.swal-button').on('click', function() {
+                            //   location.reload()
+                            // });
                           })
 
                           .fail(() => {
@@ -161,6 +160,7 @@ if(today === gon.medicine || gon.noexist !== null){
         case 'gotit':
           $.get("../../medicines/new", {took_medicine_at: `${today}`})
           swal("Good job!", '',"success")
+          setTimeout('location.reload()', 1000);
         break;
       }
 
@@ -170,5 +170,4 @@ if(today === gon.medicine || gon.noexist !== null){
 
 }
 console.log(gon.gonnatake);
-console.log(gon.medicine)
 }

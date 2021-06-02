@@ -7,19 +7,26 @@
       <%= gravatar_for current_user, 150 %>
       <h3 class="my-3"><%= current_user.name %></h3>
 
+      <h2>連続服薬日数<span class="display-3 text-primary mx-2"><%= @days %></span>日！</h3>
+
     </section>
 
     <h4><%= current_user.email %></h4>
     <h4 class="my-3"><%= current_user.seriousness %></h4>
 
-    <%= link_to "プロフィールの編集", edit_user_path(current_user), data: {"turbolinks" => false}, class: "btn btn-outline-primary" %>
-
+    <%= link_to edit_user_path(current_user), data: {"turbolinks" => false},
+    class: "btn btn-outline-primary",method: :get do %>
+      <i class="fas fa-user-edit fa-lg"></i> プロフィールの編集
+    <% end %>
 
     <section class="my-3">
       <%= render 'shared/stats' %>
     </section>
 
-      <%= link_to "日記をかく", new_post_path, data: {"turbolinks" => false}, class:"btn btn-outline-info mb-5 btn-block btn-lg"%>
+    <%= link_to new_post_path, data: {"turbolinks" => false},
+     class:"btn btn-outline-info mb-5 btn-block btn-lg",method: :get do %>
+      <i class="fas fa-feather-alt fa-lg mr-3"></i>日記をかく
+    <% end %>
 
   </aside>
 
@@ -27,9 +34,10 @@
     <div class="row my-3 text-center">
       <h2 class="col-4">投稿(<%= current_user.feed.count %>)</h2>
       <div class="col-7">
-        <%= link_to "カレンダーでみる",
-        "/posts/#{current_user.id}/index?start_date=#{Date.today.strftime("%Y-%m-%d")}&post_index=0",
-         data: {"turbolinks" => false}, class: "btn btn-success btn-block" %>
+        <%= link_to "/posts/#{current_user.id}/index?start_date=#{Date.today.strftime("%Y-%m-%d")}&post_index=0",
+        data: {"turbolinks" => false}, class: "btn btn-success btn-block", method: :get do %>
+            <i class="far fa-calendar-alt fa-lg mr-xs-3"></i> カレンダーでみる
+        <% end %>
       </div>
     </div>
 
