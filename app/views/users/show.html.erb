@@ -35,7 +35,7 @@
       <div class="row my-3 text-center">
         <h2 class="col-4">投稿(<%= @user.posts.count %>)</h2>
         <div class="col-7">
-           <%= link_to "/posts/#{current_user.id}/index?start_date=#{Date.today.strftime("%Y-%m-%d")}&post_index=1",
+           <%= link_to "/posts/#{@user.id}/index?start_date=#{Date.today.strftime("%Y-%m-%d")}&post_index=1",
            data: {"turbolinks" => false}, class: "btn btn-success btn-block", method: :get do %>
                <i class="far fa-calendar-alt fa-lg mr-xs-3"></i> カレンダーでみる
            <% end %>

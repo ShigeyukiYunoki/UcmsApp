@@ -56,35 +56,6 @@ module MedicinesHelper
       unless @tookmedicinedays.include?(nil)
         @days += 1
       end
-<<<<<<< HEAD
-    end
-
-=======
->>>>>>> 52c1fa3854b6d0936a95c79658b175ce4a4d2e21
-  def tookmedicines
-   @tookmedicines = current_user.medicines.where.not(took_medicine_at: nil).pluck("took_medicine_at")
- end
-
-  def took_medicine_days_straight
-    @days = 0
-    @tookmedicinedays = @current_user.medicines.order(took_medicine_at: :asc).pluck("took_medicine_at")
-
-    @tookmedicinedays.each_cons(2) do |f,s|
-      if !s.nil?
-        @fdt = DateTime.strptime(f,'%Y年%m月%d日')
-        @sdt = DateTime.strptime(s,'%Y年%m月%d日')
-        if @fdt +1 == @sdt
-          @days += 1
-        else
-          @days = 0
-        end
-      else
-        @days += 1
-      end
-    end
-
-    unless @tookmedicinedays.include?(nil)
-      @days += 1
     end
   end
 

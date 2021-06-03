@@ -65,12 +65,14 @@
             <%= date.day %>
           </div>
 
-          <% if @tookmedicines %>
-            <% @tookmedicines.each do |tookmedicine| %>
-              <% if DateTime.strptime(tookmedicine,'%Y年%m月%d日') == date %>
-                <div class="col-9" id="web-font-bg">
-                  <i class="far fa-check-square fa-lg" style="color: blue;"></i>
-                </div>
+          <% if @user.id == current_user.id %>
+            <% if @tookmedicines %>
+              <% @tookmedicines.each do |tookmedicine| %>
+                <% if DateTime.strptime(tookmedicine,'%Y年%m月%d日') == date %>
+                  <div class="col-9" id="web-font-bg">
+                    <i class="far fa-check-square fa-lg" style="color: blue;"></i>
+                  </div>
+                <% end %>
               <% end %>
             <% end %>
           <% end %>
