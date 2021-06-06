@@ -12,7 +12,7 @@ class HomeController < ApplicationController
       @post = current_user.posts.build
       @feed_items = current_user.feed.page(params[:page]).order(created_at: :desc)
     end
-    took_medicine_days_straight
+    took_medicine_days_straight(current_user)
   end
 
 

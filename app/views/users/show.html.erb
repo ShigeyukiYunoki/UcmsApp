@@ -6,11 +6,8 @@
 
         <%= gravatar_for @user, 150 %>
         <h3 class="my-3"><%= @user.name %></h3>
-        <h2>連続服薬日数
-          <% if current_user.id == @user.id %>
-            <span class="display-3 text-primary mx-2"><%= @days %></span>
-          <% else %><span class="display-3 text-primary mx-2">0</span>
-          <% end %>日！</h2>
+        <h2>連続服薬日数</h2>
+        <p class="display-3 text-primary mx-auto"><%= @days %></p>
 
       </section>
 

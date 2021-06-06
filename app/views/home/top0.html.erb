@@ -7,8 +7,8 @@
       <%= gravatar_for current_user, 150 %>
       <h3 class="my-3"><%= current_user.name %></h3>
 
-      <h2>連続服薬日数<span class="display-3 text-primary mx-2"><%= @days %></span>日！</h3>
-
+      <h2>連続服薬日数</h2>
+      <p class="display-3 text-primary"><%= @days %></p>
     </section>
 
     <h4><%= current_user.email %></h4>

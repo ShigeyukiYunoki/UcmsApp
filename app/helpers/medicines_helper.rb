@@ -30,34 +30,49 @@ module MedicinesHelper
     end
   end
 
-  def tookmedicines
-   @tookmedicines = current_user.medicines.where.not(took_medicine_at: nil).pluck("took_medicine_at")
+  def tookmedicines(user)
+   @tookmedicines = user.medicines.where.not(took_medicine_at: nil).pluck("took_medicine_at")
  end
 
-  def took_medicine_days_straight
-    if logged_in?
-      @days = 0
-      @tookmedicinedays = @current_user.medicines.order(took_medicine_at: :asc).pluck("took_medicine_at")
+ def took_medicine_days_straight(user)
+   if logged_in?
+     @days = 0
+     # "took_medicine_at"を昇順で取得
+     @tookmedicinedays = user.medicines.order(took_medicine_at: :asc).pluck("took_medicine_at")
+     # 順番に２つごとに並べて日付を比較
+     @tookmedicinedays.each_cons(2) do |f,s|
+       # sがnilだと比較できずエラーになる
+       if !s.nil?
+         @fdt = DateTime.strptime(f,'%Y年%m月%d日')
+         @sdt = DateTime.strptime(s,'%Y年%m月%d日')
+         # ２つの日付を比較し連続なら＋１そうでないなら０
+         if @fdt +1 == @sdt
+           @days += 1
+         else
+           @days = 0
+         end
+       # gonna_take_medicine_atの値を持ち、took_medicine_atがnilのデータが最後に存在する場合
+       # 最後はsがnilとなり比較できないので問答無用で＋１
+       else
+         @days += 1
+       end
+     end
+     # gonna_take_medicine_atの値を持ち、took_medicine_atがnilのデータが最後に存在しない場合
+     # 最後のs自体存在せず比較できないのでこちらも問答無用で＋１
+     unless @tookmedicinedays.last.nil?
+       @days += 1
+     end
 
-      @tookmedicinedays.each_cons(2) do |f,s|
-        if !s.nil?
-          @fdt = DateTime.strptime(f,'%Y年%m月%d日')
-          @sdt = DateTime.strptime(s,'%Y年%m月%d日')
-          if @fdt +1 == @sdt
-            @days += 1
-          else
-            @days = 0
-          end
-        else
-          @days += 1
-        end
-      end
+     # if @tookmedicinedays.count == 1
+     #   @days = 1
+     # end
 
-      unless @tookmedicinedays.include?(nil)
-        @days += 1
-      end
-    end
-  end
+     # if @tookmedicinedays.blank?
+     #   @days = 0
+     # end
+
+   end
+ end
 
   # def took_medicine_days_straight
   #   @days = 0

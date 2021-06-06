@@ -19,7 +19,7 @@ class PostsController < ApplicationController
     when "1"
       @allposts = @user.posts
       @posts = @user.posts.page(params[:page]).where('start_time::text LIKE?', "#{@year}-#{@month}-%").order(start_time: :asc).per(10)
-      tookmedicines
+      tookmedicines(@user)
     end
   end
 

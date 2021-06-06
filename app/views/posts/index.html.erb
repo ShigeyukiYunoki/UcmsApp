@@ -79,7 +79,8 @@
         </div>
 
         <% allposts.each do |allpost| %>
-          <%= link_to allpost.title, top_path(anchor: "post-#{allpost.id}"),
+                                    <%# top_path(anchor: "post-#{allpost.id}") %>
+          <%= link_to allpost.title, allpost,
           data: {"turbolinks" => false}, class:"d-block text-truncate none-deco"%>
         <% end %>
 
