@@ -1,9 +1,8 @@
 module UsersHelper
-
   def gravatar_for(user, size)
-    gravatar_id = Digest::MD5::hexdigest(user.email.downcase)
+    gravatar_id = Digest::MD5.hexdigest(user.email.downcase)
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}?s=#{size}"
-    image_tag(gravatar_url, alt: user.name, class: "gravatar")
+    image_tag(gravatar_url, alt: user.name, class: 'gravatar')
   end
 
   def log_in(user)
@@ -20,9 +19,9 @@ module UsersHelper
     if (user_id = session[:user_id])
       @currnet_user ||= User.find_by(id: user_id)
     elsif (user_id = cookies.signed[:user_id])
-      #raise       # テストがパスすれば、この部分がテストされていないことがわかる
+      # raise       # テストがパスすれば、この部分がテストされていないことがわかる
       user = User.find_by(id: user_id)
-      if user&.authenticated?(:remember,cookies[:remember_token])
+      if user&.authenticated?(:remember, cookies[:remember_token])
         log_in user
         @current_user = user
       end
@@ -50,12 +49,11 @@ module UsersHelper
   end
 
   def redirect_back_or(default)
-    redirect_to(session[:forwarding_url]||default)
+    redirect_to(session[:forwarding_url] || default)
     session.delete(:forwarding_url)
   end
 
   def store_location
     session[:forwarding_url] = request.original_url if request.get?
   end
-
 end

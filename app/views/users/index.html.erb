@@ -1,19 +1,19 @@
 <% provide(:title,"Users") %>
-    <h2 class="m-5">ユーザー一覧</h2>
+  <h2 class="m-5">ユーザー一覧</h2>
 
-    <div class="mx-5 pb-3">
-      <%= paginate @users %>
-    </div>
+  <div class="mx-5 pb-3">
+    <%= paginate @users %>
+  </div>
 
-    <div class="mx-3">
-      <ul class="list-group bg-transparent">
-        <%= render @users %>
-        <%# <% @users.each do |user| %>
-          <%# <%= render user %>
-        <%# <% end %>
-      </ul>
-    </div>
+  <div class="mx-3">
+    <ul class="list-group bg-transparent">
+      <%= render @users %>
+      <%# <% @users.each do |user| %>
+        <%# <%= render user %>
+          <%# <% end %>
+          </ul>
+        </div>
 
-    <div class="mx-5 pt-5">
-      <%= paginate @users %>
-    </div>
+        <div class="mx-5 pt-5">
+          <%= paginate @users %>
+        </div>

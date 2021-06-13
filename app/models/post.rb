@@ -9,15 +9,14 @@ class Post < ApplicationRecord
 
   validates :user_id, presence: true
   validates :title, presence: true
-  validates :content, presence: true, length: {maximum: 300}
+  validates :content, presence: true, length: { maximum: 300 }
   validates :start_time, presence: true
-  validates :image, content_type: {in: %w[image/jpeg image/gif image/png],
-                                message:"はjpeg,gif,pngのみ対応しています"},
-                    size: {less_than: 5.megabytes,
-                    message: "のサイズは５MBまでです"}
+  validates :image, content_type: { in: %w[image/jpeg image/gif image/png],
+                                    message: 'はjpeg,gif,pngのみ対応しています' },
+                    size: { less_than: 5.megabytes,
+                            message: 'のサイズは５MBまでです' }
 
   def display_image
-    image.variant(resize_to_limit:[500,500])
+    image.variant(resize_to_limit: [500, 500])
   end
-
 end

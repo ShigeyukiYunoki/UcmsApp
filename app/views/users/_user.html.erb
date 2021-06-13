@@ -2,7 +2,6 @@
   <%= gravatar_for user, 50 %>
   <%= link_to user.name, user_path(user), data: {"turbolinks" => false}, class:"none-deco mx-sm-4 text-nowrap" %>
   <% if current_user.admin? && !current_user?(user) %>
-   <%= link_to "削除", user, method: :delete,data: {confirm: "本当に削除しますか？" },
-   class:"btn btn-outline-danger none-deco mt-2 btn-block" %>
+    <%= link_to "削除", user, method: :delete,data: {confirm: "本当に削除しますか？" }, class:"btn btn-outline-danger none-deco mt-2 btn-block" %>
   <% end %>
 </li>
