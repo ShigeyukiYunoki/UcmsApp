@@ -1,16 +1,16 @@
-const { environment } = require('@rails/webpacker')
+const { environment } = require("@rails/webpacker");
 
 // ここから
 // jQueryとBootstapのJSを使えるように
-const webpack = require('webpack')
+const webpack = require("webpack");
 environment.plugins.prepend(
-  'Provide',
+  "Provide",
   new webpack.ProvidePlugin({
-    $: 'jquery',
-    jQuery: 'jquery',
-    Popper: 'popper.js'
+    $: "jquery",
+    jQuery: "jquery",
+    Popper: "popper.js",
   })
-)
+);
 // ここまで
 
-module.exports = environment
+module.exports = environment;

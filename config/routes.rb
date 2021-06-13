@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
-
-  root "home#top"
-  get "top0", to: "home#top0", as: :top
-  get "about", to: "home#about"
-  get "login", to: "users#login_form"
-  post "login", to: "users#login"
-  delete "logout", to: "users#logout"
-  get "posts/:user_id/index", to: "posts#index"
+  root 'home#top'
+  get 'top0', to: 'home#top0', as: :top
+  get 'about', to: 'home#about'
+  get 'login', to: 'users#login_form'
+  post 'login', to: 'users#login'
+  delete 'logout', to: 'users#logout'
+  get 'posts/:user_id/index', to: 'posts#index'
 
   resources :users do
     member do
@@ -15,11 +14,11 @@ Rails.application.routes.draw do
   end
 
   resources :users
-  resources :account_activations, only:[:edit]
-  resources :password_resets, only: [:edit,:update,:create,:new]
+  resources :account_activations, only: [:edit]
+  resources :password_resets, only: %i[edit update create new]
   resources :posts
-  resources :relationships, only:[:create,:destroy]
-  resources :medicines, only:[:index,:new,:create,:destroy]
+  resources :relationships, only: %i[create destroy]
+  resources :medicines, only: %i[index new create destroy]
 
   # post "posts/:id/destroy", to: "posts#destroy", as: :destroy_post
   # post "posts/:id/update", to: "posts#update"
@@ -35,5 +34,4 @@ Rails.application.routes.draw do
   # get "signup", to: "users#new"
   # get "index", to: "users#index"
   # get "users/:id", to: "users#show"
-
 end

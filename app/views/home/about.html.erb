@@ -1,93 +1,90 @@
 <% provide(:title,"About")%>
 
-<% logged_in? %>
+  <% logged_in? %>
 
-  <div class="text-info text-center">
+    <div class="text-info text-center">
 
-    <h1 class="display-4 pb-5 cover-heading">潰瘍性大腸炎患者相互支援SNS</h1>
+      <h1 class="display-4 pb-5 cover-heading">潰瘍性大腸炎患者相互支援SNS</h1>
 
-    <p class="lead mt-5 text-monospace" style="padding: 120px 0 500px  0">未だ治療法が見つかっていない難病である潰瘍性大腸炎に罹った人達が<br>
-      このSNSで少しでも前向きで生きられるようお互い励ましあえるようにできるように。<br>
-      治療法の発見に希望をもつのはもちろんのこと、この病気と共にでもよりよく生きたいとの願いがあります。
-    </p>
+      <p class="lead mt-5 text-monospace" style="padding: 120px 0 500px  0">未だ治療法が見つかっていない難病である潰瘍性大腸炎に罹った人達が<br>
+        このSNSで少しでも前向きで生きられるようお互い励ましあえるようにできるように。<br>
+        治療法の発見に希望をもつのはもちろんのこと、この病気と共にでもよりよく生きたいとの願いがあります。
+      </p>
 
-    <h1 class="py-5">たまには立ち止まりつつ前向きに生きて行きたい人が集まるSNS</h1>
+      <h1 class="py-5">たまには立ち止まりつつ前向きに生きて行きたい人が集まるSNS</h1>
 
-    <section class="row m-5">
-      <div class="col-md-6">
-        <h2 class="pt-5">希望をもったっていいじゃない</h2>
-        <h3 class="py-4">希望をもてる情報の交換・発信</h3>
-        <p>まだ治療法が見つかっていないため、完治することはありませんが、現在の医療の進歩は目をみはる物があり、
-          過剰な期待はせずにそのような情報や知識を得ることで、希望をもち、人生を楽しみたい！</p>
+      <section class="row m-5">
+        <div class="col-md-6">
+          <h2 class="pt-5">希望をもったっていいじゃない</h2>
+          <h3 class="py-4">希望をもてる情報の交換・発信</h3>
+          <p>まだ治療法が見つかっていないため、完治することはありませんが、現在の医療の進歩は目をみはる物があり、 過剰な期待はせずにそのような情報や知識を得ることで、希望をもち、人生を楽しみたい！</p>
 
-        <!-- Slider main container -->
-      <div class="swiper-container swiper1 my-5">
-        <!-- Additional required wrapper -->
-        <div class="swiper-wrapper">
-          <!-- Slides -->
-          <div class="swiper-slide"><%= image_pack_tag 'selfcomp.png', class:"img-fluid" %></div>
-          <div class="swiper-slide"><%= image_pack_tag '2030.png', class:"img-fluid" %></div>
-          <div class="swiper-slide"><%= image_pack_tag 'common.29.png', class:"img-fluid" %></div>
-          <div class="swiper-slide"><%= image_pack_tag 'brainmaker.png', class:"img-fluid" %></div>
+          <!-- Slider main container -->
+          <div class="swiper-container swiper1 my-5">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper">
+              <!-- Slides -->
+              <div class="swiper-slide"><%= image_pack_tag 'selfcomp.png', class:"img-fluid" %></div>
+              <div class="swiper-slide"><%= image_pack_tag '2030.png', class:"img-fluid" %></div>
+              <div class="swiper-slide"><%= image_pack_tag 'common.29.png', class:"img-fluid" %></div>
+              <div class="swiper-slide"><%= image_pack_tag 'brainmaker.png', class:"img-fluid" %></div>
 
-        </div>
-        <!-- If we need pagination -->
-        <div class="swiper-pagination page1"></div>
+            </div>
+            <!-- If we need pagination -->
+            <div class="swiper-pagination page1"></div>
 
-        <!-- If we need navigation buttons -->
-        <!-- <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div> -->
+            <!-- If we need navigation buttons -->
+            <!-- <div class="swiper-button-prev"></div> <div class="swiper-button-next"></div> -->
 
-        <!-- If we need scrollbar -->
-        <!-- <div class="swiper-scrollbar"></div> -->
-        </div>
-      </div>
-
-      <div class="col-md-6">
-        <%= image_pack_tag "hope.png", class:"img-fluid my-3", alt:"hope image" %>
-      </div>
-    </section>
-
-    <section class="row m-5">
-
-      <div class="col-md-6 order-md-2">
-        <h2 class="pt-5">感謝って気持ちいいじゃない</h2>
-        <h3 class="py-4">何気ない日常生活が送れることへの感謝</h3>
-        <p>自分より苦しんでいる人のことを知り、病気でない人たちと同じような暮らしができることへの感謝を忘れずに暮らせる！</p>
-        <p>重い病状でも、精力的な方の作品や活動を知ることによって活力を！</p>
-
-      <div class="swiper-container swiper2 mt-5">
-
-        <div class="swiper-wrapper">
-
-          <div class="swiper-slide"><%= image_pack_tag 'tyoyo.png', class:"img-fluid" %></div>
-          <div class="swiper-slide"><%= image_pack_tag 'taberukototo.png', class:"img-fluid" %></div>
-
+            <!-- If we need scrollbar -->
+            <!-- <div class="swiper-scrollbar"></div> -->
+          </div>
         </div>
 
-        <div class="swiper-pagination page2"></div>
+        <div class="col-md-6">
+          <%= image_pack_tag "hope.png", class:"img-fluid my-3", alt:"hope image" %>
+        </div>
+      </section>
 
-      </div>
+      <section class="row m-5">
 
-      </div>
+        <div class="col-md-6 order-md-2">
+          <h2 class="pt-5">感謝って気持ちいいじゃない</h2>
+          <h3 class="py-4">何気ない日常生活が送れることへの感謝</h3>
+          <p>自分より苦しんでいる人のことを知り、病気でない人たちと同じような暮らしができることへの感謝を忘れずに暮らせる！</p>
+          <p>重い病状でも、精力的な方の作品や活動を知ることによって活力を！</p>
 
-      <div class="col-md-6 order-md-1">
-        <%= image_pack_tag "greatful.png", class:"img-fluid", alt:"greatful image" %>
-      </div>
+          <div class="swiper-container swiper2 mt-5">
 
-    </section>
+            <div class="swiper-wrapper">
 
-    <section class="row m-5">
-      <div class="col-md-6">
-        <h2 class="pt-5">たまには愚痴ったっていいじゃない</h2>
-        <h3 class="py-4">症状が悪化した人への応援</h3>
-        <p>症状が悪化した時の苦しみ・孤独感はどんな病気でもそうかもしれないが、似た苦しみをもつ者同士、
-        たまには愚痴や苦しみを吐き出してもいいのでは？ただし、誹謗中傷は誰にも良いことないからやめましょ</p>
-      </div>
-      <div class="col-md-6">
-        <%= image_pack_tag "anger.png", class:"img-fluid", alt:"anger image"  %>
-      </div>
+              <div class="swiper-slide"><%= image_pack_tag 'tyoyo.png', class:"img-fluid" %></div>
+              <div class="swiper-slide"><%= image_pack_tag 'taberukototo.png', class:"img-fluid" %></div>
 
-    </section>
+            </div>
 
-  </div>
+            <div class="swiper-pagination page2"></div>
+
+          </div>
+
+        </div>
+
+        <div class="col-md-6 order-md-1">
+          <%= image_pack_tag "greatful.png", class:"img-fluid", alt:"greatful image" %>
+        </div>
+
+      </section>
+
+      <section class="row m-5">
+        <div class="col-md-6">
+          <h2 class="pt-5">たまには愚痴ったっていいじゃない</h2>
+          <h3 class="py-4">症状が悪化した人への応援</h3>
+          <p>症状が悪化した時の苦しみ・孤独感はどんな病気でもそうかもしれないが、似た苦しみをもつ者同士、 たまには愚痴や苦しみを吐き出してもいいのでは？ただし、誹謗中傷は誰にも良いことないからやめましょ</p>
+        </div>
+        <div class="col-md-6">
+          <%= image_pack_tag "anger.png", class:"img-fluid", alt:"anger image" %>
+        </div>
+
+      </section>
+
+    </div>

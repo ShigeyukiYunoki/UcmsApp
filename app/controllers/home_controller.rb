@@ -3,9 +3,7 @@ class HomeController < ApplicationController
   before_action :notification
   before_action :afternotification, only: [:top]
 
-  def top
-
-  end
+  def top; end
 
   def top0
     if logged_in?
@@ -15,8 +13,7 @@ class HomeController < ApplicationController
     took_medicine_days_straight(current_user)
   end
 
-
-# before_action
+  # before_action
   def medicine
     took_medicine
   end
@@ -33,5 +30,4 @@ class HomeController < ApplicationController
       redirect_to top_path
     end
   end
-
 end

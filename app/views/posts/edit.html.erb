@@ -1,35 +1,31 @@
-  <% provide(:button_text,"投稿の編集")%>
+<% provide(:button_text,"投稿の編集")%>
 
   <%= form_with model: @post, local: true do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
+  <%= render 'shared/error_messages', object: f.object %>
 
-    <div class="row m-5 justify-content-center">
+  <div class="row m-5 justify-content-center">
 
-      <div class="col-md-6 col-10 my-2">
-        <%= f.label :title, "タイトル" %>
-        <%= f.text_field :title, class:"form-control", value: @post.title %>
-      </div>
-
-      <div class="col-md-4 col-10 my-2">
-        <%= f.label :start_time, "日時" %>
-        <%= f.text_field :start_time, class:"form-control", readonly: true,
-            value: @post.start_time.strftime("%Y/%m/%d") %>
-      </div>
-
+    <div class="col-md-6 col-10 my-2">
+      <%= f.label :title, "タイトル" %>
+      <%= f.text_field :title, class:"form-control", value: @post.title %>
     </div>
 
-    <div class="px-5 col-10 d-block mx-auto">
-      <%= f.label :content, "投稿内容" %>
-      <%= f.text_area :content, class:"form-control pb-5",
-          value: @post.content %>
+    <div class="col-md-4 col-10 my-2">
+      <%= f.label :start_time, "日時" %>
+      <%= f.text_field :start_time, class:"form-control", readonly: true, value: @post.start_time.strftime("%Y/%m/%d") %>
     </div>
 
-    <div class="d-flex justify-content-center">
-      <%= f.file_field :image, accept: "image/jpeg, image/gif, image/png",
-          id:"post_image", class:"my-5"%>
-    </div>
+  </div>
 
-    <%= f.submit yield(:button_text),
-        class:"btn btn-lg btn-primary btn-block mx-auto" %>
+  <div class="px-5 col-10 d-block mx-auto">
+    <%= f.label :content, "投稿内容" %>
+    <%= f.text_area :content, class:"form-control pb-5", value: @post.content %>
+  </div>
 
-  <% end %>
+  <div class="d-flex justify-content-center">
+    <%= f.file_field :image, accept: "image/jpeg, image/gif, image/png", id:"post_image", class:"my-5"%>
+  </div>
+
+  <%= f.submit yield(:button_text), class:"btn btn-lg btn-primary btn-block mx-auto" %>
+
+<% end %>

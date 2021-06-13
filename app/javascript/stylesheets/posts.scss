@@ -6,8 +6,6 @@ table {
   width: 100%;
 }
 
-
-
 .simple-calendar {
   table {
     // -webkit-border-horizontal-spacing: 0px;
@@ -55,28 +53,38 @@ table {
     height: 80px;
   }
 
-  .wday-0 {}
-  .wday-1 {}
-  .wday-2 {}
-  .wday-3 {}
-  .wday-4 {}
-  .wday-5 {}
-  .wday-6 {}
+  .wday-0 {
+  }
+  .wday-1 {
+  }
+  .wday-2 {
+  }
+  .wday-3 {
+  }
+  .wday-4 {
+  }
+  .wday-5 {
+  }
+  .wday-6 {
+  }
 
   .today {
-    background: #FFFFC0
+    background: #ffffc0;
   }
 
-  .past {}
-  .future {}
+  .past {
+  }
+  .future {
+  }
 
-  .start-date {}
+  .start-date {
+  }
 
   .prev-month {
-    background: #DDD;
+    background: #ddd;
   }
   .next-month {
-    background: #DDD;
+    background: #ddd;
   }
   .current-month {
   }
