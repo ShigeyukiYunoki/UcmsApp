@@ -1,64 +1,61 @@
 <% if logged_in? %>
 
-<div class="row">
-  <aside class="col-md-3 text-center">
-    <section class="mx-auto">
+  <div class="row">
+    <aside class="col-md-3 text-center">
+      <section class="mx-auto">
 
-      <%= gravatar_for current_user, 150 %>
-      <h3 class="my-3"><%= current_user.name %></h3>
+        <%= gravatar_for current_user, 150 %>
+        <h3 class="my-3"><%= current_user.name %></h3>
 
-      <h2>連続服薬日数</h2>
-      <p class="display-3 text-primary"><%= @days %></p>
-    </section>
+        <h2>連続服薬日数</h2>
+        <p class="display-3 text-primary"><%= @days %></p>
+      </section>
 
-    <h4><%= current_user.email %></h4>
-    <h4 class="my-3"><%= current_user.seriousness %></h4>
+      <h4><%= current_user.email %></h4>
+      <h4 class="my-3"><%= current_user.seriousness %></h4>
 
-    <%= link_to edit_user_path(current_user), data: {"turbolinks" => false},
-    class: "btn btn-outline-primary",method: :get do %>
-      <i class="fas fa-user-edit fa-lg"></i> プロフィールの編集
+      <%= link_to edit_user_path(current_user), data: {"turbolinks" => false}, class: "btn btn-outline-primary",method: :get do %>
+      <i class="fas fa-user-edit fa-lg"></i>
+      プロフィールの編集
     <% end %>
 
     <section class="my-3">
       <%= render 'shared/stats' %>
     </section>
 
-    <%= link_to new_post_path, data: {"turbolinks" => false},
-     class:"btn btn-outline-info mb-5 btn-block btn-lg",method: :get do %>
-      <i class="fas fa-feather-alt fa-lg mr-3"></i>日記をかく
+    <%= link_to new_post_path, data: {"turbolinks" => false}, class:"btn btn-outline-info mb-5 btn-block btn-lg",method: :get do %>
+    <i class="fas fa-feather-alt fa-lg mr-3"></i>日記をかく
+  <% end %>
+
+</aside>
+
+<div class="col-md-9">
+  <div class="row my-3 text-center">
+    <h2 class="col-4">投稿(<%= current_user.feed.count %>)</h2>
+    <div class="col-7">
+      <%= link_to "/posts/#{current_user.id}/index?start_date=#{Date.today.strftime("%Y-%m-%d")}&post_index=0", data: {"turbolinks" => false}, class: "btn btn-success btn-block", method: :get do %>
+      <i class="far fa-calendar-alt fa-lg mr-xs-3"></i>
+      カレンダーでみる
     <% end %>
-
-  </aside>
-
-  <div class="col-md-9">
-    <div class="row my-3 text-center">
-      <h2 class="col-4">投稿(<%= current_user.feed.count %>)</h2>
-      <div class="col-7">
-        <%= link_to "/posts/#{current_user.id}/index?start_date=#{Date.today.strftime("%Y-%m-%d")}&post_index=0",
-        data: {"turbolinks" => false}, class: "btn btn-success btn-block", method: :get do %>
-            <i class="far fa-calendar-alt fa-lg mr-xs-3"></i> カレンダーでみる
-        <% end %>
-      </div>
-    </div>
-
-    <%= render 'shared/feed' %>
   </div>
+</div>
 
+<%= render 'shared/feed' %>
+</div>
 
 <% else %>
-  <% provide(:title,"Home")%>
-    <div class="text-info text-center">
+<% provide(:title,"Home")%>
+<div class="text-info text-center">
 
-      <h1 class="display-4 pb-5 cover-heading">潰瘍性大腸炎患者相互支援SNS</h1>
+  <h1 class="display-4 pb-5 cover-heading">潰瘍性大腸炎患者相互支援SNS</h1>
 
-      <p class="lead mt-5 text-monospace" style="padding:120px 0 400px 0">未だ治療法が見つかっていない難病である潰瘍性大腸炎に罹った人達が<br>
-        このSNSで少しでも前向きで生きられるようお互い励ましあえるようにできるように。<br>
-        治療法の発見に希望をもつのはもちろんのこと、この病気と共にでもよりよく生きたいとの願いがあります。
-      </p>
+  <p class="lead mt-5 text-monospace" style="padding:120px 0 400px 0">未だ治療法が見つかっていない難病である潰瘍性大腸炎に罹った人達が<br>
+    このSNSで少しでも前向きで生きられるようお互い励ましあえるようにできるように。<br>
+    治療法の発見に希望をもつのはもちろんのこと、この病気と共にでもよりよく生きたいとの願いがあります。
+  </p>
 
+  <%# <%= link_to image_tag("kitten.jpg",alt:"kitten", width:"200px"),"#" %>
 
-      <%# <%= link_to image_tag("kitten.jpg",alt:"kitten", width:"200px"),"#" %>
-
-    </div>
+  </div>
 
 <% end %>

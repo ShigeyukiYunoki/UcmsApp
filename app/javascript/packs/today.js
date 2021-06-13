@@ -1,14 +1,13 @@
-import { format, eachDayOfInterval } from 'date-fns'
+import { format, eachDayOfInterval } from "date-fns";
 
 var date = new Date();
-var today = format(date, 'yyyy-MM-dd')
+var today = format(date, "yyyy-MM-dd");
 
-document.addEventListener("turbolinks:load",() => {
-
+document.addEventListener("turbolinks:load", () => {
   document.getElementById("today").value = today;
 
-  var setmin = document.getElementById("today")
-  setmin.setAttribute('min', `${today}`)
+  var setmin = document.getElementById("today");
+  setmin.setAttribute("min", `${today}`);
 });
 
 // document.addEventListener("turbolinks:load",function () {

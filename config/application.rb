@@ -21,6 +21,5 @@ module UcmsApp
 
     # デフォルトの言語を日本語化
     config.i18n.default_locale = :ja
-
   end
 end

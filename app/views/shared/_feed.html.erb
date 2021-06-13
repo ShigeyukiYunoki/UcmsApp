@@ -1,9 +1,9 @@
 <% if @feed_items.any? %>
-<div class="d-flex justify-content-center">
-  <%= paginate @feed_items, window: 1 %>
-</div>
+  <div class="d-flex justify-content-center">
+    <%= paginate @feed_items, window: 1 %>
+  </div>
   <%= render @feed_items %>
-<div class="d-flex justify-content-center my-3">
-  <%= paginate @feed_items, window: 1 %>
-</div>
+  <div class="d-flex justify-content-center my-3">
+    <%= paginate @feed_items, window: 1 %>
+  </div>
 <% end %>
