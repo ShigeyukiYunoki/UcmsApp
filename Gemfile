@@ -61,7 +61,10 @@ group :development, :test do
   # Use pg as the database for Active Record
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'factory_bot_rails'
   gem 'pry-rails'
+  gem 'rspec-rails'
+  gem 'database_cleaner'
 end
 
 group :development do
@@ -70,13 +73,16 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 2.15'
+  gem 'launchy'
   gem 'selenium-webdriver'
+  gem 'show_me_the_cookies'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 

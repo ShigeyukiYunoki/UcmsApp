@@ -19,7 +19,16 @@ module UcmsApp
     # 認証トークンをremoteフォームに埋め込む
     # config.action_view.embed_authenticity_token_in_remote_forms = true
 
+    config.time_zone = 'Asia/Tokyo'
+
     # デフォルトの言語を日本語化
     config.i18n.default_locale = :ja
+
+    config.generators do |g|
+      g.test_framework :rspec,
+                       view_specs: false,
+                       helper_specs: false,
+                       routing_specs: false
+    end
   end
 end
