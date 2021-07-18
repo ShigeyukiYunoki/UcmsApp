@@ -2,7 +2,7 @@ class MedicinesController < ApplicationController
   def new
     @medicine = current_user.medicines.build(medicine_params)
     @medicine.save(validate: false)
-    # saveだと、on: :createでvalidatonがかかってしまうため、validatonが発生しないようにする
+    # validate :start_checkがかかってしまうため、validatonが発生しないようにする
   end
 
   def create

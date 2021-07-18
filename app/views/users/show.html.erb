@@ -38,7 +38,7 @@
       </div>
     </div>
 
-    <%= render "follow_form" if logged_in? %>
+    <%= render "follow_form" %>
 
     <div class="d-flex justify-content-center">
       <%= paginate @posts %>
@@ -72,7 +72,7 @@
   <h2 class="my-3">投稿(<%= @user.posts.count %>)</h2>
 
   <div class="col-5 mx-auto">
-    <%= render "follow_form" if logged_in? %>
+    <%= render "follow_form" %>
   </div>
 
 </aside>

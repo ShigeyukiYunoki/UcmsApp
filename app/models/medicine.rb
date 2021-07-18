@@ -3,8 +3,8 @@ class Medicine < ApplicationRecord
   validates :user_id, presence: true
   # validates :took_medicine_at, on: :save, uniqueness: {scope: :user_id}
   # validates :gonna_take_medicine_at, timeliness: {after: :now, format: '%H:%M:%S'}
-  validates :gonna_take_medicine_at, on: :create, presence: true
-  validate :start_check, on: :create
+  # validates :gonna_take_medicine_at
+  validate :start_check
 
   def start_check
     # require "time"

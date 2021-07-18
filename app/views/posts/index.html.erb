@@ -8,49 +8,52 @@
 
 <div class="row">
 
-  <div class="col-md-4  text-center">
+  <% if render @posts %>
+    <div class="col-md-4  text-center">
 
-    <table>
-      <tbody>
+      <table>
+        <tbody>
+          <div class="d-inline-block pb-2">
+            <%= paginate @posts, window: 1 %>
+          </div>
 
-        <div class="d-inline-block pb-2"><%= paginate @posts, window: 1 %></div>
+          <% @posts.each do |post| %>
 
-        <% @posts.each do |post| %>
+            <%# <% if @yearmonth == post.start_time.strftime("%Y/%m")%>
 
-          <%# <% if @yearmonth == post.start_time.strftime("%Y/%m")%>
-
-            <tr class="table table-borderless align-middle">
-
-              <td>
-                <%= post.start_time.strftime("%Y/%m/%d") %>
-              </td>
-
-              <% if post.user_id == current_user.id %>
+              <tr class="table table-borderless align-middle">
 
                 <td>
-                  <%= link_to post.title, post, class: "d-block text-truncate none-deco"%>
-                  <div class="mt-2">
-                    <%= link_to "編集", edit_post_path(post), data: {"turbolinks" => false}, class: "btn btn-sm btn-outline-primary mr-1" %>
-                    <%= link_to "削除", post, method: :delete, data:{confirm: "本当に削除しますか?"}, class: "btn btn-sm btn-outline-danger" %>
-                  </div>
+                  <%= post.start_time.strftime("%Y/%m/%d") %>
                 </td>
 
-              <% else %>
+                <% if post.user_id == current_user.id %>
 
-                <td>
-                  <%= link_to post.title, post, data: {"turbolinks" => false}, class: "d-block text-truncate none-deco" %>
-                </td>
+                  <td>
+                    <%= link_to post.title, post, class: "d-block text-truncate none-deco"%>
+                    <div class="mt-2">
+                      <%= link_to "編集", edit_post_path(post), data: {"turbolinks" => false}, class: "btn btn-sm btn-outline-primary mr-1" %>
+                      <%= link_to "削除", post, method: :delete, data:{confirm: "本当に削除しますか?"}, class: "btn btn-sm btn-outline-danger" %>
+                    </div>
+                  </td>
 
-              <% end %>
+                <% else %>
 
-            </tr>
+                  <td>
+                    <%= link_to post.title, post, data: {"turbolinks" => false}, class: "d-block text-truncate none-deco" %>
+                  </td>
 
-            <%# <% end %><% end %>
+                <% end %>
 
-          </tbody>
-        </table>
+              </tr>
 
-      </div>
+              <%# <% end %><% end %>
+
+            </tbody>
+          </table>
+
+        </div>
+      <% end %>
 
       <div class="col-md-8 mx-auto">
 

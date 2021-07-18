@@ -20,7 +20,7 @@ class User < ApplicationRecord
 
   # 常にDBが大文字小文字を区別しているとは限らないので、DBに保存前に全てのemailを小文字に変換
   before_save :downcase_email # {email.downcase!} {self.email = email.downcase} 右式のselfは省略可
-  before_save :create_activation_digest
+  before_create :create_activation_digest
   validates :name, presence: true, length: { maximum: 50 }
 
   VALID_EMAIL_REGAX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
