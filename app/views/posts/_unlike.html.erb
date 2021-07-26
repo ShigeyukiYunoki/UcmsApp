@@ -1,0 +1,6 @@
+<%= link_to "/likes/#{@post.id}/destroy", method: :delete, class:"none-deco", id:"unlike" ,remote: true do %>
+  <i class="fas fa-thumbs-up fa-lg like-btn mr-1"></i>
+<% end %>
+<strong id='likes'>
+  <%= @post.likes.count %>
+</strong>

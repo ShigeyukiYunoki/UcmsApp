@@ -17,7 +17,7 @@ class User < ApplicationRecord
 
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
-
+  has_many :likes, dependent: :destroy
   # 常にDBが大文字小文字を区別しているとは限らないので、DBに保存前に全てのemailを小文字に変換
   before_save :downcase_email # {email.downcase!} {self.email = email.downcase} 右式のselfは省略可
   before_create :create_activation_digest
@@ -105,12 +105,12 @@ class User < ApplicationRecord
   end
 
   def feed
-    following_ids = "SELECT followed_id FROM relationships
-                    WHERE follower_id= :user_id"
-    Post.where("user_id IN (#{following_ids}) OR user_id= :user_id", user_id: id)
+    # following_ids = "SELECT followed_id FROM relationships
+    #                 WHERE follower_id= :user_id"
+    # Post.where("user_id IN (#{following_ids}) OR user_id= :user_id", user_id: id)
 
-    # part_of_feed = "relationships.follower_id = :id or posts.user_id = :id"
-    # Post.joins(user: :followers).where(part_of_feed,{id: id}).distinct
+    part_of_feed = 'relationships.follower_id = :id or posts.user_id = :id'
+    Post.joins(user: :followers).where(part_of_feed, { id: id }).distinct
   end
 
   private

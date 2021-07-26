@@ -1,0 +1,7 @@
+<%= link_to "/likes/#{@post.id}/create", method: :post, class:"none-deco", id:"like", remote: true do %>
+  <i class="far fa-thumbs-up fa-lg like-btn mr-1"></i>
+  <strong>いいね！</strong>
+<% end %>
+<strong id='likes'>
+  <%= @post.likes.count %>
+</strong>

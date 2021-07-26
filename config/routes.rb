@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   get 'login', to: 'users#login_form'
   post 'login', to: 'users#login'
   delete 'logout', to: 'users#logout'
+  get 'users/:id/likes', to: 'users#likes', as: :like
   get 'posts/:user_id/index', to: 'posts#index'
+  post 'likes/:post_id/create', to: 'likes#create'
+  delete 'likes/:post_id/destroy', to: 'likes#destroy'
 
   resources :users do
     member do

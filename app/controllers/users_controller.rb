@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user, only: %i[index show edit update destroy
+  before_action :authenticate_user, only: %i[index show likes edit update destroy
                                              following followers]
   before_action :forbid_login_user, only: %i[new create login_form login]
   before_action :ensure_correct_user, only: %i[edit update]
@@ -16,6 +16,13 @@ class UsersController < ApplicationController
     @posts = @user.posts.page(params[:page]).order(start_time: :desc)
     took_medicine_days_straight(@user)
     redirect_to top_path and return unless @user.activated?
+  end
+
+  def likes
+    @user = User.find(params[:id])
+    @likes = Like.where(user_id: @user.id)
+    @posts = @user.likes.page(params[:page])
+    took_medicine_days_straight(@user)
   end
 
   def new
