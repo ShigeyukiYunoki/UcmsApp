@@ -78,9 +78,41 @@ RSpec.describe 'Users', type: :request do
 
     # ゲストとして
     context 'as a guest' do
+      before do
+        @user = FactoryBot.create(:user)
+      end
       # 302レスポンスを返し、ログインページにリダイレクトすること
       it 'returns a 302 response and redirect to login_path' do
-        get users_path
+        get user_path(@user)
+        aggregate_failures do
+          expect(response).to have_http_status '302'
+          expect(response).to redirect_to login_path
+        end
+      end
+    end
+  end
+
+  describe 'get /likes' do
+    # 認証済みのユーザーとして
+    context 'as an authenticated user' do
+      before do
+        @user = FactoryBot.create(:user)
+      end
+      # 正常に200レスポンスを返すこと
+      it 'responds successfully and returns a 200 response' do
+        log_in_as @user
+        get like_path(@user)
+        aggregate_failures do
+          expect(response).to be_successful
+          expect(response).to have_http_status '200'
+        end
+      end
+    end
+    # ゲストとして
+    context 'as a guest' do
+      # 302レスポンスを返し、ログインページにリダイレクトすること
+      it 'returns a 302 response and redirect to login_path' do
+        get like_path(1)
         aggregate_failures do
           expect(response).to have_http_status '302'
           expect(response).to redirect_to login_path
@@ -172,22 +204,36 @@ RSpec.describe 'Users', type: :request do
       @user = FactoryBot.create(:user)
       @other_user = FactoryBot.create(:user)
     end
-    # currnet_userは自らのプロフィール編集画面を表示できること
-    it 'responds successfully and returns a 200 response' do
-      log_in_as(@user)
-      get edit_user_path(@user)
-      aggregate_failures do
-        expect(response).to be_successful
-        expect(response).to have_http_status '200'
+    # 認証済みのユーザーとして
+    context 'as an authenticated user' do
+      # currnet_userは自らのプロフィール編集画面を表示できること
+      it 'responds successfully and returns a 200 response' do
+        log_in_as(@user)
+        get edit_user_path(@user)
+        aggregate_failures do
+          expect(response).to be_successful
+          expect(response).to have_http_status '200'
+        end
+      end
+      # currnet_userは自分以外のプロフィール編集画面を表示できないこと
+      it 'returns a 302 response and redirect to user_path' do
+        log_in_as(@other_user)
+        get edit_user_path(@user)
+        aggregate_failures do
+          expect(response).to have_http_status '302'
+          expect(response).to redirect_to user_path(@other_user)
+        end
       end
     end
-    # currnet_userは自分以外のプロフィール編集画面を表示できないこと
-    it 'returns a 302 response and redirect to user_path' do
-      log_in_as(@other_user)
-      get edit_user_path(@user)
-      aggregate_failures do
-        expect(response).to have_http_status '302'
-        expect(response).to redirect_to user_path(@other_user)
+    # ゲストとして
+    context 'as a guest' do
+      # 302レスポンスを返し、ログインページにリダイレクトすること
+      it 'returns a 302 response and redirect to user_path' do
+        get edit_user_path(@user)
+        aggregate_failures do
+          expect(response).to have_http_status '302'
+          expect(response).to redirect_to login_path
+        end
       end
     end
   end
@@ -197,6 +243,7 @@ RSpec.describe 'Users', type: :request do
       @user = FactoryBot.create(:user)
       @other_user = FactoryBot.create(:user)
     end
+    # 認証済みのユーザーとして
     context 'as an authenticated user' do
       # currnet_userは自分以外のプロフィール編集ができないこと
       it 'returns a 302 response and redirect to user_path' do
@@ -249,32 +296,32 @@ RSpec.describe 'Users', type: :request do
         end
       end
 
-    # パスワードを忘れた場合
-    context 'user forgets the password' do
-      # パスワードを再設定する
-      it 'user updates the password' do
-        user = create(:user)
-        aggregate_failures do
-          # パスワードが一致しない場合
-          user.create_reset_digest
-          get edit_password_reset_path(user.reset_token, email: user.email)
-          patch password_reset_path(user.reset_token),
-          params: { email: user.email,
-            user: { password: 'fooobbar',
-              password_confirmation: 'hdjfjsffjks' } }
-              expect(response).to render_template(:edit)
-              # パスワードが正しく入力された場合
-              get edit_password_reset_path(user.reset_token, email: user.email)
-              patch password_reset_path(user.reset_token),
-              params: { email: user.email,
-                user: { password: 'password',
-                  password_confirmation: 'password' } }
-                  expect(response).to redirect_to user_path(user)
-                  expect(session[:user_id]).to eq user.id
-                end
-              end
-            end
+      # パスワードを忘れた場合
+      context 'user forgets the password' do
+        # パスワードを再設定する
+        it 'user updates the password' do
+          user = create(:user)
+          aggregate_failures do
+            # パスワードが一致しない場合
+            user.create_reset_digest
+            get edit_password_reset_path(user.reset_token, email: user.email)
+            patch password_reset_path(user.reset_token),
+                  params: { email: user.email,
+                            user: { password: 'fooobbar',
+                                    password_confirmation: 'hdjfjsffjks' } }
+            expect(response).to render_template(:edit)
+            # パスワードが正しく入力された場合
+            get edit_password_reset_path(user.reset_token, email: user.email)
+            patch password_reset_path(user.reset_token),
+                  params: { email: user.email,
+                            user: { password: 'password',
+                                    password_confirmation: 'password' } }
+            expect(response).to redirect_to user_path(user)
+            expect(session[:user_id]).to eq user.id
           end
+        end
+      end
+    end
 
     context '/logout' do
       before do
@@ -301,7 +348,6 @@ RSpec.describe 'Users', type: :request do
   describe 'delete /destroy' do
     before do
       @user = create(:user)
-      @other_user = create(:user)
     end
     # 管理者の場合
     context 'as a admin' do
@@ -312,6 +358,25 @@ RSpec.describe 'Users', type: :request do
           delete user_path(@user)
         end.to change(User, :count).by(-1)
         expect(response).to redirect_to users_path
+      end
+      # ユーザーが削除されるとその投稿、服薬記録、いいね！も削除されること
+      it 'delete a user and delete users posts, medicines and likes' do
+        @admin = create(:user, :with_posts, admin: true)
+        @other_user = create(:user, :with_posts)
+        @others_medicine = create(:medicine, user: @other_user)
+        @other_like = create(:like, user_id: @other_user.id, post_id: @admin.posts.first.id)
+
+        log_in_as(@admin)
+        expect(@other_user.posts).to be_truthy
+        expect(@other_user.medicines).to be_truthy
+        expect(@other_user.likes).to be_truthy
+        expect do
+          delete user_path(@other_user)
+        end.to change(User, :count).by(-1)
+        expect(response).to redirect_to users_path
+        expect(@other_user.posts).to be_empty
+        expect(@other_user.medicines).to be_empty
+        expect(@other_user.likes).to be_empty
       end
     end
     # 管理者ではない場合

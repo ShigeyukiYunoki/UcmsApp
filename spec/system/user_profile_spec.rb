@@ -10,7 +10,8 @@ RSpec.describe 'UserProfile', type: :system, js: true do
       expect(page).to have_title full_title(user.name)
       expect(page).to have_content user.name
       expect(page).to have_css 'img.gravatar'
-      expect(page).to have_content "投稿(#{user.posts.count})"
+      expect(page).to have_content "投稿 (#{user.posts.count})"
+      expect(page).to have_content "いいね! (#{user.likes.count})"
       expect(page).to have_content "#{user.following.count} フォロー"
       expect(page).to have_content "#{user.followers.count} フォロワー"
       expect(page).to have_css 'ul.pagination', count: 2
