@@ -3,6 +3,10 @@
 @import "posts";
 @import "~@fortawesome/fontawesome-free/scss/fontawesome"; // 共通
 
+ul,
+li {
+  list-style-type: none;
+}
 .none-deco:hover {
   text-decoration: none;
 }
@@ -19,9 +23,9 @@ $gray-medium-light: #eaeaea;
 .debug_dump {
   background-color: $gray-medium-light;
   text-align: center;
+  overflow-wrap: break-word;
   clear: both;
-  width: 100%;
-  margin: 100px 5% 5%;
+  margin: 50px auto;
   @include box_sizing;
 }
 // header
@@ -80,6 +84,30 @@ body {
 //     }
 //   }
 // }
+.user-tabs {
+  margin-top: 40px;
+  background-color: white;
+  overflow: hidden;
+  box-shadow: 0 2px 6px #c1ced7;
+}
+
+.user-tabs li {
+  float: left;
+}
+
+.user-tabs li.active {
+  border-bottom: 2px solid #3ecdc6;
+}
+
+.user-tabs li.active a {
+  color: #57575f;
+}
+
+.user-tabs a {
+  display: inline-block;
+  padding: 16px 30px;
+  color: #afb6bf;
+}
 
 .gravatar {
   // float: left;
@@ -115,6 +143,10 @@ section {
 
 .swal-overlay {
   background-color: rgba(43, 165, 137, 0.45);
+}
+
+.like-btn {
+  color: blue;
 }
 // #web-font-bg {
 //     position: relative;

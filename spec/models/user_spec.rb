@@ -92,14 +92,4 @@ RSpec.describe User, type: :model do
       expect(user.errors[:password]).to include('は8文字以上で入力してください')
     end
   end
-
-  # ユーザーがdigestをもたなければ承認されないこと
-
-  # ユーザーが削除されると同時にそのユーザーの投稿も削除されること
-
-  # ユーザーが削除されると同時にそのユーザーの服薬記録も削除されること
-
-  # フォローアンフォローが正しく機能していること
-
-  # feedが正しい投稿であること
 end

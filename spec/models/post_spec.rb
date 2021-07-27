@@ -31,12 +31,4 @@ RSpec.describe Post, type: :model do
     post.valid?
     expect(post.errors[:start_time]).to include('を入力してください')
   end
-
-  # imageはjpeg,gif,pngで無ければ無効な状態であること
-  # it "is invalid with an image invalid format" do
-  #   post = build(:post)
-  #   attach_file 'post_image', "#{Rails.root}/spec/factories/1292866.svg"
-  #   post.valid?
-  #   expect(image.errors[:image]).to include('はjpeg,gif,pngのみ対応しています')
-  # end
 end

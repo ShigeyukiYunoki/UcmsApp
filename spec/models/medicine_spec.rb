@@ -17,11 +17,10 @@ RSpec.describe Medicine, type: :model do
     medicine.valid?
     expect(medicine.errors[:gonna_take_medicine_at]).to include('は現在時刻より遅い時間を選択してください!')
   end
-
   # took_medicine_atが保存されること
-  # it "is valid with a took_medicine_at" do
-  #   medicine = build(:medicine, took_medicine_at: Time.now&.strftime('%Y年%m月%d日'),
-  #             gonna_take_medicine_at: nil)
-  #   expect(medicine).to be_valid
-  # end
+  it 'is valid with a took_medicine_at' do
+    medicine = create(:medicine, :skip_validate, took_medicine_at: Time.now&.strftime('%Y年%m月%d日'),
+                                                 gonna_take_medicine_at: nil)
+    expect(medicine).to be_truthy
+  end
 end
