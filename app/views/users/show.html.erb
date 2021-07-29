@@ -31,7 +31,7 @@
           <strong class="col-sm-6">
             <ul class="user-tabs">
               <li class="active"><%= link_to "投稿 (#{@user.posts.count})", "/users/#{@user.id}", data: {"turbolinks" => false} %></li>
-              <li><%= link_to "いいね! (#{@user.likes.count})", "/users/#{@user.id}/likes", data: {"turbolinks" => false} %></li>
+              <li><%= link_to "いいね! (#{@user.liked_posts.count})", "/users/#{@user.id}/likes", data: {"turbolinks" => false} %></li>
             </ul>
           </strong>
           <div class="col-sm-6 m-auto">
@@ -72,6 +72,7 @@
   </section>
 
   <h2 class="my-3">投稿(<%= @user.posts.count %>)</h2>
+  <h2 class="my-3">いいね!(<%= @user.liked_posts.count %>)</h2>
 
   <div class="col-5 mx-auto">
     <%= render "follow_form" %>

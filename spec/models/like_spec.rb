@@ -23,4 +23,9 @@ RSpec.describe Like, type: :model do
     expect(like.errors[:post_id]).to include('を入力してください')
   end
   # ユーザーは自分の投稿にいいね！できないこと
+  it 'is invalid with own post_id' do
+    like = build(:like, user_id: @user.id, post_id: @user.posts.first.id)
+    like.valid?
+    expect(like.errors[:post_id]).to include('が自分のものはいいねできません')
+  end
 end

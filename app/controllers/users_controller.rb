@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   def likes
     @user = User.find(params[:id])
     @likes = Like.where(user_id: @user.id)
-    @posts = @user.likes.page(params[:page])
+    @liked_posts = @user.liked_posts.page(params[:page])
     took_medicine_days_straight(@user)
   end
 

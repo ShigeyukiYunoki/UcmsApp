@@ -18,6 +18,7 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :likes, dependent: :destroy
+  has_many :liked_posts, through: :likes, source: :post
   # 常にDBが大文字小文字を区別しているとは限らないので、DBに保存前に全てのemailを小文字に変換
   before_save :downcase_email # {email.downcase!} {self.email = email.downcase} 右式のselfは省略可
   before_create :create_activation_digest
