@@ -35,3 +35,32 @@
 
 <%= link_to "戻る", :back, data: {"turbolinks" => false}, class: "btn btn-outline-dark float-right col mr-2" %>
 </div>
+
+<h4 class="m-4">コメント一覧</h4>
+<hr>
+<% @comments.each do |c| %>
+  <div class="mx-auto">
+    <span class="mr-3">
+      <%= c.created_at.strftime("%Y/%m/%d/%H:%M") %>
+    </span>
+    <%= link_to c.user.name, user_path(c.user_id), data: {"turbolinks" => false}, class:"none-deco" %>
+  <div class="m-3">
+    <%= c.content %>
+  </div>
+    <hr>
+  </div>
+<% end %>
+
+<div class="mt-4">
+  <%= form_with(model:[@post, @comment]) do |f| %>
+  <div class="row">
+    <div class="col">
+      <%= f.text_field :content, class:"form-control",required: true %>
+      <%= f.hidden_field :post_id, value: @post.id %>
+    </div>
+    <div class="col">
+      <%= f.submit 'コメントする', class: "btn btn-primary" %>
+    </div>
+  </div>
+  <% end %>
+</div>
