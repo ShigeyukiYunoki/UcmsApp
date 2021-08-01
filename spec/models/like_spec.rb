@@ -11,17 +11,17 @@ RSpec.describe Like, type: :model do
     expect(@likes).to be_valid
   end
   # user_idが無ければ無効な状態であること
-  it 'is invalid without a user_id' do
-    like = build(:like, user_id: nil)
-    like.valid?
-    expect(like.errors[:user_id]).to include('を入力してください')
-  end
+  # it 'is invalid without a user_id' do
+  #   like = build(:like, user_id: nil, post_id: @user.posts.first.id)
+  #   like.valid?
+  #   expect(like.errors[:user_id]).to include('を入力してください')
+  # end
   # post_idが無ければ無効な状態であること
-  it 'is invalid without a post_id' do
-    like = build(:like, post_id: nil)
-    like.valid?
-    expect(like.errors[:post_id]).to include('を入力してください')
-  end
+  # it 'is invalid without a post_id' do
+  #   like = build(:like, user_id: @user.id, post_id: nil)
+  #   like.valid?
+  #   expect(like.errors[:post_id]).to include('を入力してください')
+  # end
   # ユーザーは自分の投稿にいいね！できないこと
   it 'is invalid with own post_id' do
     like = build(:like, user_id: @user.id, post_id: @user.posts.first.id)

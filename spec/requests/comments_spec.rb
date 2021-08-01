@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Comments', type: :request , focus: true do
+RSpec.describe 'Comments', type: :request do
   describe 'post /create' do
     let!(:headers) { { HTTP_REFEREE: 'http://www.example.com/' } }
     before do
