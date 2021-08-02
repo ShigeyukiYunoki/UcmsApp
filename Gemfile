@@ -26,6 +26,8 @@ gem 'kaminari'
 
 gem 'gon'
 
+gem 'ransack'
+
 # gem 'onesignal-ruby'
 
 # gem 'rack'

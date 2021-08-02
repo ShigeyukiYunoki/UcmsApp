@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     member do
       get :following, :followers
     end
+    collection do
+      get 'search'
+    end
   end
 
   resources :account_activations, only: [:edit]
@@ -23,8 +26,6 @@ Rails.application.routes.draw do
   end
   resources :relationships, only: %i[create destroy]
   resources :medicines, only: %i[new create destroy]
-
-
   # post "posts/:id/destroy", to: "posts#destroy", as: :destroy_post
   # post "posts/:id/update", to: "posts#update"
   # get "posts/:id/edit", to: "posts#edit", as: :edit_post
