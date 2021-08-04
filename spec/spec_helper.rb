@@ -44,6 +44,7 @@ RSpec.configure do |config|
   # triggering implicit auto-inclusion in groups with matching metadata.
   config.shared_context_metadata_behavior = :apply_to_host_groups
 
+  # Capybara.ignore_hidden_elements = false
 
   config.filter_run focus: true
   config.run_all_when_everything_filtered = true

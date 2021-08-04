@@ -1,10 +1,10 @@
-<% provide(:title,"Users") %>
+<% provide(:title,"SearchResult") %>
 <div class="container">
-  <h2 class="mb-3 text-center">ユーザー一覧</h2>
+  <h2 class="mb-3 text-center">検索結果</h2>
 
   <div class="text-center">
     <%= search_form_for @q, url: search_users_path do |f| %>
-    <%= f.label :name_cont, 'ユーザーを見つけましょう！', class: 'lead' %>
+    <%= f.label :name_cont, 'ユーザーは見つかりましたか？', class: 'lead' %>
     <div class="row my-4">
       <div class="col-9">
         <%= f.search_field :name_cont, class: "form-control", placeholder: "ユーザー名に含まれる文字を入力"  %>
@@ -16,16 +16,9 @@
     <% end %>
   </div>
 
-  <div class="d-flex justify-content-center pb-3">
-    <%= paginate @users %>
-  </div>
-
   <div class="mx-3">
     <ul class="list-group bg-transparent">
-      <%= render @users %>
-      <%# <% @users.each do |user| %>
-      <%# <%= render user %>
-      <%# <% end %>
+      <%= render @results %>
     </ul>
   </div>
 

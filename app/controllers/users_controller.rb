@@ -6,6 +6,7 @@ class UsersController < ApplicationController
   before_action :admin, only: :destroy
   before_action :medicine
   before_action :notification
+  before_action :set_q, only: [:index, :search]
 
   def index
     @users = User.where(activated: true).page(params[:page]).per(30).order(id: :asc)
@@ -16,6 +17,11 @@ class UsersController < ApplicationController
     @posts = @user.posts.page(params[:page]).order(start_time: :desc)
     took_medicine_days_straight(@user)
     redirect_to top_path and return unless @user.activated?
+  end
+
+  def search
+    @results = @q.result
+    @users = @q.result.page(params[:page])
   end
 
   def likes
@@ -121,7 +127,7 @@ class UsersController < ApplicationController
     @users = @user.followers.page(params[:page])
     render 'show_follow'
   end
-
+  
   # before_action
 
   def ensure_correct_user
@@ -148,5 +154,9 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :email, :seriousness, :password,
                                  :password_confirmation)
+  end
+
+  def set_q
+    @q = User.ransack(params[:q])
   end
 end

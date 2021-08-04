@@ -11,7 +11,7 @@ RSpec.describe 'Like', type: :system, js: true do
       visit user_path(user1)
       expect(current_path).to eq user_path(user1)
       expect(page).to have_link "いいね! (#{user1.likes.count})"
-      expect(page).to have_content '総いいね数'
+      expect(page).to have_content 'いいね数'
       click_on user1.posts.first.title
       expect(current_path).to eq post_path(user1.posts.first)
       expect do
@@ -26,7 +26,7 @@ RSpec.describe 'Like', type: :system, js: true do
       expect(current_path).to eq like_path(user)
       expect(page).to have_content user1.posts.first.content
       post = user1.posts.first
-      expect(page).to have_content "総いいね数 #{Like.where(post_id: post.id).count}"
+      expect(page).to have_content "いいね数 #{Like.where(post_id: post.id).count}"
 
       visit user_path(user1)
       click_on user1.posts.first.title

@@ -1,27 +1,41 @@
-<li class="list-group-item list-group-item-action position-relative pb-5 bg-transparent" id="post-<%= post.id %>">
-  <%= link_to gravatar_for(post.user, 50), post.user, data: {"turbolinks" => false}, class:"float-left pr-3"%>
-  <%= link_to post.user.name, post.user, data: {"turbolinks" => false}, class:"pr-3 none-deco" %>
-  <%= post.start_time.strftime("%Y/%m/%d") %>
-  <span class="timestamp pl-sm-3 text-nowrap">
-    <%= time_ago_in_words(post.created_at) %>前に投稿
-  </span>
-  <%  if post.image.attached? %>
-    <div class="row">
-      <div class="col-sm-8">
-        <h3 class="py-3 text-center"><%= link_to post.title, post, data: {"turbolinks" => false}, class: "none-deco text-info" %></h3>
-        <div class="lead mb-4"><%= post.content %></div>
-      </div>
-      <div class="col-sm-4 my-3"><%= image_tag post.display_image, class:"rounded mx-auto d-block", width: '100%', height: '100%' %></div>
+<li class="list-group-item list-group-item-action position-relative py-5 bg-transparent" id="post-<%= post.id %>">
+  <div class="row">
+    <div class="col-3">
+      <%= link_to gravatar_for(post.user, 50), post.user, data: {"turbolinks" => false}, class:"pr-3"%>
     </div>
+    <div class="col-9">
+      <%= link_to post.user.name, post.user, data: {"turbolinks" => false}, class:"pr-1 none-deco" %>
+      <%= post.start_time.strftime("%Y/%m/%d") %>
+      <span class="timestamp pl-sm-3 text-nowrap">
+        <%= time_ago_in_words(post.created_at) %>前に投稿
+      </span>
+    </div>
+  </div>
+  <%  if post.image.attached? %>
+  <div class="row">
+    <div class="col-lg-8">
+      <h3 class="py-3 text-center"><%= link_to post.title, post, data: {"turbolinks" => false}, class: "none-deco text-info" %></h3>
+      <div class="lead mb-4"><%= post.content %></div>
+    </div>
+    <div class="col-lg-4">
+      <div class="my-3"><%= image_tag post.display_image, class:"rounded mx-auto d-block", width: '100%', height: '100%' %></div>
+    </div>
+  </div>
   <% else %>
     <h3 class="py-3"><%= link_to post.title, post, data: {"turbolinks" => false}, class: "none-deco text-info" %></h3>
     <div class="lead mb-4"><%= post.content %></div>
   <% end %>
 
-  <div class="float-right">
+  <div class="float-right mb-3">
     <i class="fas fa-thumbs-up fa-lg like-btn mr-1"></i>
     <strong>
-      総いいね数 <%= post.liked_users.count %>
+      いいね数
+      <%= post.liked_users.count %>
+    </strong>
+    <i class="far fa-comments fa-lg like-btn ml-2 mr-1"></i>
+    <strong>
+      コメント数
+      <%= post.commented_users.count %>
     </strong>
   </div>
 
