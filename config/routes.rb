@@ -18,12 +18,15 @@ Rails.application.routes.draw do
       get 'search'
     end
   end
+  resources :posts do
+    resources :comments, only: [:create]
+    collection do
+      get 'search'
+    end
+  end
 
   resources :account_activations, only: [:edit]
   resources :password_resets, only: %i[edit update create new]
-  resources :posts do
-    resources :comments, only: [:create]
-  end
   resources :relationships, only: %i[create destroy]
   resources :medicines, only: %i[new create destroy]
   # post "posts/:id/destroy", to: "posts#destroy", as: :destroy_post

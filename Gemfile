@@ -28,6 +28,8 @@ gem 'gon'
 
 gem 'ransack'
 
+gem 'rakuten_web_service'
+
 # gem 'onesignal-ruby'
 
 # gem 'rack'

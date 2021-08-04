@@ -29,6 +29,10 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
+  def search
+    @items = RakutenWebService::Ichiba::Item.search(keyword: params[:keyword])
+  end
+
   def show
     @post = Post.find(params[:id])
     @comments = @post.comments

@@ -1,0 +1,6 @@
+<% @items.each do |item| %>
+  <li class="list-group-item list-group-item-action position-relative py-3 bg-transparent">
+    <%= link_to (image_tag item["mediumImageUrls"][0]), item.url %>
+    <%= item.name %>
+  </li>
+<% end %>
