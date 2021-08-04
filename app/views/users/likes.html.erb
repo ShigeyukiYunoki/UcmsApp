@@ -73,7 +73,13 @@
             <div class="float-right">
               <i class="fas fa-thumbs-up fa-lg like-btn mr-1"></i>
               <strong>
-                総いいね数 <%= post.likes.count %>
+                いいね数
+                <%= post.liked_users.count %>
+              </strong>
+              <i class="far fa-comments fa-lg like-btn ml-2 mr-1"></i>
+              <strong>
+                コメント数
+                <%= post.commented_users.count %>
               </strong>
             </div>
           </li>
