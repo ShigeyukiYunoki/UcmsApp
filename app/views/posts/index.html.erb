@@ -1,69 +1,89 @@
 <% provide(:title, "#{@user.name}'s calendar") %>
 
   <% if @user.id == current_user.id %>
-    <%= link_to "日記をかく", new_post_path, class:"btn btn-outline-info mb-5 btn-block btn-lg"%>
+    <%= link_to new_post_path, data: {"turbolinks" => false}, class:"btn btn-outline-info mb-5 btn-block btn-lg",method: :get do %>
+    <i class="fas fa-feather-alt fa-lg mr-3"></i>日記をかく
   <% end %>
+<% end %>
 
-  <div class="row">
+<div class="row">
 
+  <% if render @posts %>
     <div class="col-md-4  text-center">
 
       <table>
         <tbody>
-
-          <div class="d-inline-block pb-2"><%= paginate @posts, window: 1 %></div>
+          <div class="d-inline-block pb-2">
+            <%= paginate @posts, window: 1 %>
+          </div>
 
           <% @posts.each do |post| %>
 
-              <%# <% if @yearmonth == post.start_time.strftime("%Y/%m")%>
+            <%# <% if @yearmonth == post.start_time.strftime("%Y/%m")%>
 
-                <tr class="table table-borderless align-middle">
+              <tr class="table table-borderless align-middle">
 
-                  <td>
-                    <%= post.start_time.strftime("%Y/%m/%d") %>
-                  </td>
+                <td>
+                  <%= post.start_time.strftime("%Y/%m/%d") %>
+                </td>
 
-                  <% if post.user_id == current_user.id %>
+                <% if post.user_id == current_user.id %>
 
                   <td>
                     <%= link_to post.title, post, class: "d-block text-truncate none-deco"%>
                     <div class="mt-2">
-                      <%= link_to "編集", edit_post_path(post), class: "btn btn-sm btn-outline-primary mr-1" %>
-                      <%= link_to "削除", post, method: :delete,
-                      data:{confirm: "本当に削除しますか?"}, class: "btn btn-sm btn-outline-danger" %>
+                      <%= link_to "編集", edit_post_path(post), data: {"turbolinks" => false}, class: "btn btn-sm btn-outline-primary mr-1" %>
+                      <%= link_to "削除", post, method: :delete, data:{confirm: "本当に削除しますか?"}, class: "btn btn-sm btn-outline-danger" %>
                     </div>
                   </td>
 
-                  <% else %>
+                <% else %>
 
                   <td>
-                    <%= link_to post.title, post, class: "d-block text-truncate none-deco" %>
+                    <%= link_to post.title, post, data: {"turbolinks" => false}, class: "d-block text-truncate none-deco" %>
                   </td>
 
-                  <% end %>
+                <% end %>
 
-                </tr>
+              </tr>
 
-              <%# <% end %>
+              <%# <% end %><% end %>
 
-          <% end %>
+            </tbody>
+          </table>
 
-        </tbody>
-      </table>
-
-    </div>
-
-    <div class="col-md-8 mx-auto">
-
-      <%= month_calendar events: @allposts do |date, allposts| %>
-        <%= date.day %>
-
-        <% allposts.each do |allpost| %>
-          <%= link_to allpost.title, root_path(anchor: "post-#{allpost.id}"), class:"d-block text-truncate none-deco"%>
-        <% end %>
-
+        </div>
       <% end %>
 
-    </div>
+      <div class="col-md-8 mx-auto">
 
-  </div>
+        <%= month_calendar events: @allposts do |date, allposts| %>
+
+        <div class="row">
+          <div class="col-3">
+            <%= date.day %>
+          </div>
+
+          <% if @user.id == current_user.id %>
+            <% if @tookmedicines %>
+              <% @tookmedicines.each do |tookmedicine| %>
+                <% if DateTime.strptime(tookmedicine,'%Y年%m月%d日') == date %>
+                  <div class="col-9" id="web-font-bg">
+                    <i class="far fa-check-square fa-lg" style="color: blue;"></i>
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+
+        <% allposts.each do |allpost| %>
+          <%# top_path(anchor: "post-#{allpost.id}") %>
+            <%= link_to allpost.title, allpost, data: {"turbolinks" => false}, class:"d-block text-truncate none-deco"%>
+          <% end %>
+
+        <% end %>
+
+      </div>
+
+    </div>

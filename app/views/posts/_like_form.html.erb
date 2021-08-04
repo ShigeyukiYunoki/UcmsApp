@@ -1,0 +1,9 @@
+<% if @post.user_id != current_user.id %>
+  <div class="ml-2 none-deco col-9" id='like_form'>
+    <% if Like.find_by(user_id: current_user.id, post_id: @post.id) %>
+      <%= render 'unlike' %>
+    <% else %>
+      <%= render 'like' %>
+    <% end %>
+  </div>
+<% end %>

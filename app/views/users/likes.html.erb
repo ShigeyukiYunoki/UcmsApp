@@ -1,0 +1,119 @@
+ <% provide(:title, @user.name) %>
+  <% if @user.posts.any? %>
+    <div class="row">
+      <aside class="col-md-3 text-center">
+        <section class="mx-auto">
+
+          <%= gravatar_for @user, 150 %>
+          <h3 class="my-3"><%= @user.name %></h3>
+          <h2>連続服薬日数</h2>
+          <p class="display-3 text-primary mx-auto"><%= @days %></p>
+
+        </section>
+
+        <h4><%= @user.email %></h4>
+        <h4 class="my-3"><%= @user.seriousness %></h4>
+
+        <% if @user.id == current_user.id %>
+          <%= link_to edit_user_path(current_user), data: {"turbolinks" => false}, class: "btn btn-outline-primary",method: :get do %>
+          <i class="fas fa-user-edit fa-lg"></i>
+          プロフィールの編集
+        <% end %>
+      <% end %>
+
+      <section class="my-3">
+        <%= render 'shared/stats' %>
+      </section>
+
+    </aside>
+
+    <div class="col-md-9">
+      <div class="row">
+        <strong class="col-sm-6">
+          <ul class="user-tabs">
+            <li><%= link_to "投稿 (#{@user.posts.count})", @user , data: {"turbolinks" => false} %></li>
+            <li class="active"><%= link_to "いいね! (#{@user.liked_posts.count})", like_path(@user), data: {"turbolinks" => false} %></li>
+          </ul>
+        </strong>
+        <div class="col-sm-6 m-auto">
+          <%= link_to "/posts/#{@user.id}/index?start_date=#{Date.today.strftime("%Y-%m-%d")}&post_index=1", data: {"turbolinks" => false}, class: "btn btn-success btn-block", method: :get do %>
+            <i class="far fa-calendar-alt fa-lg mr-xs-3"></i>
+            カレンダーでみる
+          <% end %>
+        </div>
+      </div>
+
+    <%= render "follow_form" %>
+    <% if @user.liked_posts.any? %>
+      <div class="d-flex justify-content-center mt-2">
+        <%= paginate @liked_posts %>
+      </div>
+
+        <% @likes.each do |like| %>
+          <li class="list-group-item list-group-item-action position-relative pb-5 bg-transparent">
+            <% post = Post.find_by(id: like.post_id) %>
+            <%= link_to gravatar_for(post.user, 50), post.user, data: {"turbolinks" => false}, class:"float-left pr-3"%>
+            <%= link_to post.user.name, post.user, data: {"turbolinks" => false}, class:"pr-3 none-deco" %>
+            <%= post.start_time.strftime("%Y/%m/%d") %>
+            <span class="timestamp pl-sm-3 text-nowrap">
+              <%= time_ago_in_words(post.created_at) %>前に投稿
+            </span>
+            <% if post.image.attached? %>
+              <div class="row">
+                <div class="col-sm-8">
+                  <h3 class="py-3 text-center"><%= link_to post.title, post, data: {"turbolinks" => false}, class: "none-deco text-info" %></h3>
+                  <div class="lead mb-4"><%= post.content %></div>
+                </div>
+                <div class="col-sm-4 my-3"><%= image_tag post.display_image, class:"rounded mx-auto d-block", width: '100%', height: '100%' %></div>
+              </div>
+            <% else %>
+              <h3 class="py-3"><%= link_to post.title, post, data: {"turbolinks" => false}, class: "none-deco text-info" %></h3>
+              <div class="lead mb-4"><%= post.content %></div>
+            <% end %>
+            <div class="float-right">
+              <i class="fas fa-thumbs-up fa-lg like-btn mr-1"></i>
+              <strong>
+                いいね数
+                <%= post.liked_users.count %>
+              </strong>
+              <i class="far fa-comments fa-lg like-btn ml-2 mr-1"></i>
+              <strong>
+                コメント数
+                <%= post.commented_users.count %>
+              </strong>
+            </div>
+          </li>
+        <% end %>
+
+        <div class="d-flex justify-content-center my-3">
+          <%= paginate @liked_posts %>
+        </div>
+      </div>
+      <% end %>
+
+  </div>
+<% else %>
+  <aside class="text-center">
+    <%= gravatar_for @user, 150 %>
+    <h3 class="my-3"><%= @user.name %></h3>
+
+    <h4><%= @user.email %></h4>
+    <h4 class="my-3"><%= @user.seriousness %></h4>
+
+    <% if @user.id == current_user.id %>
+      <%= link_to "プロフィールの編集", edit_user_path(@user), data: {"turbolinks" => false}, class: "btn btn-outline-primary mb-3" %>
+    <% end %>
+
+    <section>
+      <%= render 'shared/stats' %>
+    </section>
+
+    <h2 class="my-3">投稿(<%= @user.posts.count %>)</h2>
+    <h2 class="my-3">いいね!(<%= @user.liked_posts.count %>)</h2>
+
+    <div class="col-5 mx-auto">
+      <%= render "follow_form" %>
+    </div>
+
+  </aside>
+<% end %>

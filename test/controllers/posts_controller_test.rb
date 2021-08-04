@@ -26,7 +26,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference "Post.count" do
       delete post_path(post)
     end
-    assert_redirected_to root_path
+    assert_redirected_to top_path
   end
 
 

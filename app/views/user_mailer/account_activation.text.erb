@@ -1,5 +1,3 @@
-こんにちは<%= @user.name %>さん！
+こんにちは<%= @user.name %>さん！ Ucmsappにようこそ！下記のlinkをクリックしてアカウントを有効化してください。
 
- Ucmsappにようこそ！下記のlinkをクリックしてアカウントを有効化してください。
-
- <%= edit_account_activation_url(@user.activation_token,email: @user.email) %>
+<%= edit_account_activation_url(@user.activation_token,email: @user.email) %>

@@ -1,8 +1,18 @@
 <%= csrf_meta_tags %>
 <%= csp_meta_tag %>
+<%= include_gon(:init => true) %>
+
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+  window.OneSignal = window.OneSignal || [];
+  OneSignal.push(function () {
+    OneSignal.init({appId: "d56a3bea-3546-4901-b800-7f4f107b842b", safari_web_id: "web.onesignal.auto.115f8fcb-d4e8-44f7-85e0-0f5ff0e5093f"});
+  });
+</script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <%# 下記により'javascript/packs/application.js'から作られたstylesheetsファイルパスetc'posts'などをwebpackerから取得できる %>
-<%# media属性は指定なしの場合,'all'が指定されるので省略可 %>
-<%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-<%# 下記により'javascript/packs/application.js'から作られたjavascriptファイルパスetc'post/today'などをwebpackerから取得できる %>
-<%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%# media属性は指定なしの場合,'all'が指定されるので省略可 %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%# 下記により'javascript/packs/application.js'から作られたjavascriptファイルパスetc'post/today'などをwebpackerから取得できる %>
+      <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
