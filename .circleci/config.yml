@@ -9,11 +9,7 @@ orbs:
 jobs:
   build: # our first job, named "build"
     docker:
-<<<<<<< HEAD
-      - image: cimg/ruby:2.7.1-node # use a tailored CircleCI docker image.
-=======
-      - image: cimg/ruby:2.7-node # use a tailored CircleCI docker image.
->>>>>>> e72dbb89da17a8a9f603cbb69aa138bf4c5f3aaf
+      - image: circleci/ruby:2.7.1-node # use a tailored CircleCI docker image.
         auth:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD # context / project UI env-var reference
@@ -33,11 +29,7 @@ jobs:
     parallelism: 3
     # here we set TWO docker images.
     docker:
-<<<<<<< HEAD
-      - image: cimg/ruby:2.7.1-node # this is our primary docker image, where step commands run.
-=======
-      - image: cimg/ruby:2.7-node # this is our primary docker image, where step commands run.
->>>>>>> e72dbb89da17a8a9f603cbb69aa138bf4c5f3aaf
+      - image: circleci/ruby:2.7.1-node # this is our primary docker image, where step commands run.
         auth:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD # context / project UI env-var reference
