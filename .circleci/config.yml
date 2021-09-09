@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> e120420675f2827ac9434ab9279b9d0f7ea3fcf3
-version: 2
+version: 2.1
 jobs:
   build:
     working_directory: ~/my-app
@@ -51,8 +47,4 @@ jobs:
           name: execute rspec
           command: bundle exec rspec
       - store_test_results:
-<<<<<<< HEAD
           path: /tmp/test-results
-=======
-          path: /tmp/test-resultsversion: 2.1 # Use 2.1 to enable using orbs and other features.
->>>>>>> e120420675f2827ac9434ab9279b9d0f7ea3fcf3
