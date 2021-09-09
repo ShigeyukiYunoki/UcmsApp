@@ -65,9 +65,20 @@ jobs:
           name: Database setup
           command: bundle exec rails db:schema:load --trace
       # Run rspec in parallel
+      - ruby/rspec-test
+      # rubocopを走らせる記述です。
       - run:
-          name: run rspec
-          command: bundle exec rspec
+          name: Rubocop
+          command: bundle exec rubocop
+
+      # rspecを走らせる記述です。
+      # run tests!
+      - run:
+          name: run tests
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
+              circleci tests split --split-by=timings)"
 
 # We use workflows to orchestrate the jobs that we declared above.
 workflows:
