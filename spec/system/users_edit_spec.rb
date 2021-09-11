@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'UsersEdit', type: :system, js: true do
+RSpec.describe 'UsersEdit', type: :system do
   # ログイン前にユーザー編集画面にアクセスするとログイン後にユーザー編集画面にアクセスする
   scenario 'successful edit with friendly forwarding' do
     user = create(:user)

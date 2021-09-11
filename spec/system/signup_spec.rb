@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Signup', type: :system, js: true do
+RSpec.describe 'Signup', type: :system do
   include ActiveJob::TestHelper
   # ユーザは新規登録する
   scenario 'user successfully signs up' do

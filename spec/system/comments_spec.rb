@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Comments', type: :system, js: true do
+RSpec.describe 'Comments', type: :system do
   # コメントが投稿され正しくカウントと表示をすること
   scenario 'create a new comment' do
     user = create(:user, :with_posts)

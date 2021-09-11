@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'PasswordReset', type: :system, js: true do
+RSpec.describe 'PasswordReset', type: :system do
   include ActiveJob::TestHelper
   # パスワードをリセットする
   scenario 'user resets the password' do

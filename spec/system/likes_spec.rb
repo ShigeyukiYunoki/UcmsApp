@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Like', type: :system, js: true do
+RSpec.describe 'Like', type: :system do
   # いいね！が機能し正しくカウントと表示をすること
   scenario 'like and unlike' do
     user = create(:user, :with_posts)

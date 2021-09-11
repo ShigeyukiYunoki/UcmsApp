@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'TopLayout', type: :system, js: true do
+RSpec.describe 'TopLayout', type: :system do
   # ログイン前後のtopページの変化
   scenario 'top layout changes if login' do
     user = create(:user, :with_posts)

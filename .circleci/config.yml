@@ -13,7 +13,7 @@ jobs:
           BUNDLER_VERSION: 2.1.4
           DATABASE_URL: postgres://postgres:password@localhost:5432/ucms_app_test
           RAILS_ENV: test
-      - image: circleci/postgres:alpine
+      - image: circleci/postgres:latest
         environment:
           #それぞれ設定
           POSTGRES_USER: postgres
