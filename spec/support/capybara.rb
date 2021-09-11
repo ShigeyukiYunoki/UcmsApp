@@ -28,8 +28,8 @@ RSpec.configure do |config|
     else
       driven_by :selenium_chrome_headless
       # headless chromeからはローカル環境ではなくwebコンテナ側のrailsアプリを表示してテストする必要があるため
-      Capybara.server_host = 'web'
-      Capybara.app_host='http://web'
+      # Capybara.server_host = 'web'
+      # Capybara.app_host='http://web'
     end
   end
 end
