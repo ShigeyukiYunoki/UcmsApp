@@ -30,7 +30,6 @@ RSpec.configure do |config|
       Capybara.server_host = 'web'
       Capybara.app_host='http://web'
     end
-
   end
 end
 
