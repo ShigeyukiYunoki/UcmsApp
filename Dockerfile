@@ -9,7 +9,7 @@ apt-get install -yq build-essential libpq-dev vim postgresql-client
 
 RUN apt-get install -y nodejs npm && npm install n -g && n 14.16.1
 
-RUN apt-get install sweetalert
+RUN npm install sweetalert
 # chromeの追加
 # RUN apt-get update && apt-get install -y unzip && \
 #     CHROME_DRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE` && \
