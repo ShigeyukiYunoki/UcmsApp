@@ -73,6 +73,7 @@ group :development, :test do
   gem 'database_cleaner'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'rubocop'
 end
 
 group :development do
