@@ -13,7 +13,7 @@ jobs:
           BUNDLER_VERSION: 2.1.4
           DATABASE_URL: postgres://postgres:password@localhost:5432/ucms_app_test
           RAILS_ENV: test
-      - image: circleci/postgres:11-alpine
+      - image: circleci/postgres:13-alpine
         environment:
           #それぞれ設定
           POSTGRES_USER: postgres
@@ -22,10 +22,12 @@ jobs:
           POSTGRES_DB: ucms_app_test
     steps:
       - checkout
+      # bundle キャッシュをリストアする。公式の設定通り。
       - restore_cache:
           keys:
-            - my-app-bundle-v1-{{ checksum "Gemfile.lock" }}
-            - my-app-bundle-v1-
+            - ucmsapp1-bundle-v1-{{ checksum "Gemfile.lock" }}
+            - ucmsapp1-bundle-v1-
+      # bundle install で依存関係をインストールする。
       - run:
           name: Bundler install
           command: |
@@ -34,8 +36,9 @@ jobs:
       - run:
           name: Bundle Install
           command: bundle check || bundle install
+      # bundle キャッシュを保存する
       - save_cache:
-          key: my-app-bundle-v1-{{ checksum "Gemfile.lock" }}
+          key: ucmsapp1-bundle-v1-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       - restore_cache:
@@ -52,6 +55,7 @@ jobs:
           name: Database setup
           command: bin/rails db:create db:schema:load --trace
       - run: bundle exec bin/webpack
+      # rspecを実行する
       - run:
           name: execute rspec
           command: bundle exec rspec
