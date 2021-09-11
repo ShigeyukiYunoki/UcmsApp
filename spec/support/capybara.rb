@@ -26,6 +26,8 @@ RSpec.configure do |config|
     else
       driven_by :selenium_chrome_headless
     end
+    Capybara.server_host = 'web'
+    Capybara.app_host='http://web'
   end
 end
 
