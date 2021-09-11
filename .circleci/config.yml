@@ -4,7 +4,7 @@ jobs:
     #自身のアプリ名にする
     working_directory: ~/ucmsapp1
     docker:
-      - image: circleci/ruby:2.7.1-node
+      - image: circleci/ruby:2.7.1-node-browsers
         environment:
           POSTGRES_USER: postgres
           PGHOST: 127.0.0.1
