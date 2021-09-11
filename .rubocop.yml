@@ -15,3 +15,4 @@ Style/FrozenStringLiteralComment:
 
 AllCops:
   TargetRubyVersion: 2.7.1
+  EnabledByDefault: false
