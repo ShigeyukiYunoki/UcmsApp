@@ -23,9 +23,14 @@ RSpec.configure do |config|
         url: ENV.fetch("SELENIUM_DRIVER_URL"),
         desired_capabilities: :chrome
       }
+      Capybara.server_host = 'web'
+      Capybara.app_host='http://web'
     else
       driven_by :selenium_chrome_headless
+      Capybara.server_host = 'web'
+      Capybara.app_host='http://web'
     end
+
   end
 end
 
