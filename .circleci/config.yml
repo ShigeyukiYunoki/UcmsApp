@@ -62,7 +62,13 @@ jobs:
         #run rubocop
       - run:
           name: Rubocop
+<<<<<<< HEAD
           command: bundle exec rubocop
+=======
+          command: |
+            bundle exec rubocop -a
+            bundle exec rubocop -A
+>>>>>>> d638b85e53312882cd08b8d51402873877b33e8b
       # rspecを実行する
       - run:
           name: execute rspec
