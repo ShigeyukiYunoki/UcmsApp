@@ -5,7 +5,7 @@ echo 'deb http://dl.yarnpkg.com/debian/ stable main' > /etc/apt/sources.list.d/y
 apt-get update && apt-get install -y yarn
 #
 RUN set -x && apt-get update -qq && \
-apt-get install -yq build-essential libpq-dev vim postgresql-client sweetalert
+apt-get install -yq build-essential libpq-dev vim postgresql-client
 
 RUN apt-get install -y nodejs npm && npm install n -g && n 14.16.1
 
