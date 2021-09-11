@@ -2,8 +2,8 @@ version: "3.9"
 services:
   db:
     image: postgres
-    environment:
-      POSTGRES_HOST_AUTH_METHOD: trust
+    # environment:
+    #   POSTGRES_HOST_AUTH_METHOD: trust
     volumes:
       - ./tmp/db:/var/lib/postgresql/data
     ports:
@@ -18,10 +18,11 @@ services:
       - "3000:3000"
     depends_on:
       - db
-      # - chrome
+      - chrome
     stdin_open: true
     tty: true
-    environment: #以下追記
+    # selenium_chrome を使うために以下の行を追加
+    environment:
       - "SELENIUM_DRIVER_URL=http://selenium_chrome:4444/wd/hub"
   selenium_chrome:
     image: selenium/standalone-chrome-debug
