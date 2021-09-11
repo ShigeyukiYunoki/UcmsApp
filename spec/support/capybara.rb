@@ -42,21 +42,3 @@ def full_title(page_title = '')
     "#{page_title}|#{base_title}"
   end
 end
-
-def sign_in_as(user)
-  visit login_path
-  fill_in 'Email', with: user.email
-  fill_in 'Password', with: user.password
-  find('#login').click
-  find('.swal-button--gotit').click
-end
-
-def create_post(post)
-  visit top_path
-  expect(current_path).to eq top_path
-  click_on '日記をかく'
-  fill_in 'タイトル', with: post.title
-  fill_in '投稿内容', with: post.content
-  attach_file 'post_image', "#{Rails.root}/spec/factories/kitten.jpg"
-  click_button '投稿'
-end
