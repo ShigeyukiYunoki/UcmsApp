@@ -20,13 +20,14 @@ RSpec.configure do |config|
     if ENV["SELENIUM_DRIVER_URL"].present?
       driven_by :selenium, using: :chrome, options: {
         browser: :remote,
+        #web コンテナ側からselenium_chromeコンテナのchromeを使用するために、
+        #optionsの中で、urlにSELENIUM_DRIVER_URL環境変数の値を設定
         url: ENV.fetch("SELENIUM_DRIVER_URL"),
         desired_capabilities: :chrome
       }
-      Capybara.server_host = 'web'
-      Capybara.app_host='http://web'
     else
       driven_by :selenium_chrome_headless
+      # headless chromeからはローカル環境ではなくwebコンテナ側のrailsアプリを表示してテストする必要があるため
       Capybara.server_host = 'web'
       Capybara.app_host='http://web'
     end

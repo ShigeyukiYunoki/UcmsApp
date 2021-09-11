@@ -68,12 +68,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'pry-rails'
   gem 'rspec-rails'
-  gem 'capybara', '>= 2.15'
-  gem 'selenium-webdriver'
   gem 'database_cleaner'
-  # Easy installation and use of web drivers to run system tests with browsers
-  gem 'webdrivers'
-  # gem 'rubocop'
 end
 
 group :development do
@@ -88,11 +83,12 @@ end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
-
+  gem 'capybara', '>= 2.15'
   gem 'launchy'
-
+  gem 'selenium-webdriver'
   gem 'show_me_the_cookies'
-
+  # Easy installation and use of web drivers to run system tests with browsers
+  gem 'webdrivers', require: !ENV['SELENIUM_DRIVER_URL']
 
   gem 'guard',                    '2.16.2'
   gem 'guard-minitest',           '2.4.6'
