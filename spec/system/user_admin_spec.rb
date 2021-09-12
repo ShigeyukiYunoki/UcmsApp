@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'UserAdmin', type: :system do
+RSpec.describe 'UserAdmin', type: :system, js: true do
   # 管理者にはindexページの各有効化済みのユーザー毎に削除linkが表示されユーザーを削除できる
   scenario 'index as admin including pagination and delete links' do
     admin = create(:user, admin: true)

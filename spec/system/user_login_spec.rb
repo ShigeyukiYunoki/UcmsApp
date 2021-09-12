@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "UserLogin", type: :system do
+RSpec.describe "UserLogin", type: :system, js: true do
   # ユーザーはログインする
   scenario 'login with valid info' do
     user = create(:user)

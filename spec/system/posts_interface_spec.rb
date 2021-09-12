@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'PostsInterfaces', type: :system do
+RSpec.describe 'PostsInterfaces', type: :system, js: true do
   # ユーザーは新たな投稿を作成する
   scenario 'user create a new post' do
     user = create(:user)

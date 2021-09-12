@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Follow', type: :system do
+RSpec.describe 'Follow', type: :system, js: true do
   # フォローが機能し正しくカウントと表示をすること
   scenario 'following and followed' do
     user = create(:user, :with_posts)

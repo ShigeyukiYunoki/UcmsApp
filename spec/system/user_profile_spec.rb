@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'UserProfile', type: :system do
+RSpec.describe 'UserProfile', type: :system, js: true do
   # ユーザーのプロフィールが正しく表示されるか
   scenario 'profile display' do
     user = create(:user, :with_posts)
