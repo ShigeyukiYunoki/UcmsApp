@@ -29,7 +29,8 @@
 
 
     <div class="d-flex justify-content-center">
-      <%= f.file_field :image, accept: "image/jpeg, image/gif, image/png", id:"post_image upfile", class:"my-5" %>
+      <%= f.label :image %>
+      <%= f.file_field :image, accept: "image/jpeg, image/gif, image/png", class:"my-5" %>
     </div>
 
     <%= f.submit yield(:button_text), class:"btn btn-lg btn-primary btn-block" %>
