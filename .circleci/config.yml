@@ -15,12 +15,12 @@ jobs:
         environment:
           POSTGRES_USER: postgres
           PGHOST: 127.0.0.1
-          # 下記があるとBundle Installが高速化
+          # 下記があるとBundle Installが高速化。キャッシュがあってもなくても。
           # ネットワークの接続またはGitリクエストの失敗時に、3回リトライ
-          # BUNDLE_RETRY: 3
-          # # BundlerによってGemがインストールされる場所を指定
-          # BUNDLE_PATH: vendor/bundle
-          # BUNDLER_VERSION: 2.1.4
+          BUNDLE_RETRY: 3
+          # BundlerによってGemがインストールされる場所を指定
+          BUNDLE_PATH: vendor/bundle
+          BUNDLER_VERSION: 2.1.4
           # 下記無いとPG::ConnectionBad: could not translate host name "db" to address: Name or service not known
           DATABASE_URL: postgres://postgres:password@localhost:5432/ucms_app_test
           RAILS_ENV: test
