@@ -89,7 +89,7 @@ group :test do
   gem 'selenium-webdriver'
   gem 'show_me_the_cookies'
   # Easy installation and use of web drivers to run system tests with browsers
-  gem 'webdrivers'
+  gem 'webdrivers' # require: !ENV['SELENIUM_DRIVER_URL'] 不要だった
 
   gem 'guard',                    '2.16.2'
   gem 'guard-minitest',           '2.4.6'
