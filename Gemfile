@@ -68,6 +68,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'pry-rails'
   gem 'rspec-rails'
+  gem 'rubocop-rails'
   gem 'database_cleaner'
 end
 
@@ -89,7 +90,6 @@ group :test do
   gem 'show_me_the_cookies'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
-  gem 'rubocop-rails'
 
   gem 'guard',                    '2.16.2'
   gem 'guard-minitest',           '2.4.6'
