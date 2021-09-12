@@ -11,7 +11,7 @@ AllCops:
     - "bin/*"
   DisplayCopNames: true
   TargetRubyVersion: 2.7.1
-  EnabledByDefault: false
+  # EnabledByDefault: false
 
 Rails:
   Enabled: true

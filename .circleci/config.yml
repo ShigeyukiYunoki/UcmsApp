@@ -3,7 +3,7 @@ version: 2.1
 # 1つ以上のjobを設定する。jobが1つだけの場合、job名は build。
 jobs:
   build:
-    #自身のアプリ名にする
+    # 自身のアプリ名にする
     working_directory: ~/ucmsapp1 # 実行ディレクトリを設定する。デフォルトは ~/project
     environment:
       - TZ: Asia/Tokyo
@@ -28,9 +28,9 @@ jobs:
           RAILS_ENV: test
       - image: circleci/postgres:latest
         environment:
-          #それぞれ設定
+          # それぞれ設定
           POSTGRES_USER: postgres
-          #下記を書けばパスワードなしでデータベースにログイン可
+          # 下記を書けばパスワードなしでデータベースにログイン可
           POSTGRES_HOST_AUTH_METHOD: trust
           POSTGRES_DB: ucms_app_test
       # 下記不要だった
@@ -86,8 +86,6 @@ jobs:
           command: bundle exec rspec
       - run:
           name: Rubocop
-          command: |
-            bundle exec rubocop -a
-            bundle exec rubocop -A
+          command: bundle exec rubocop -A
       - store_test_results:
           path: /tmp/test-results
