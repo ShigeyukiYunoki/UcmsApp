@@ -13,7 +13,7 @@ jobs:
           BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle
           BUNDLER_VERSION: 2.1.4
-          DATABASE_URL: postgres://postgres:password@localhost:5432/ucms_app_test
+          # DATABASE_URL: postgres://postgres:password@localhost:5432/ucms_app_test
           RAILS_ENV: test
       - image: circleci/postgres:latest
         environment:
@@ -52,10 +52,10 @@ jobs:
             - rails-demo-yarn-{{ checksum "yarn.lock" }}
             - rails-demo-yarn-
       - run:
-          name: Yarnをinstall
+          name: Yarn Install
           command: yarn install --cache-folder ~/.cache/yarn
       - run:
-          name: sweetalert
+          name: Sweetalert Install
           command: yarn add  sweetalert
       - run:
           name: Wait for DB
