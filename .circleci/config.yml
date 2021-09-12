@@ -51,7 +51,9 @@ jobs:
             gem install bundler -v 2.1.4
       - run:
           name: Bundle Install
-          command: bundle check || bundle install # 上記のBUNDLEはこれでもいいのかも --jobs=4 --retry=3 --path vendor/bundle
+          command:
+            bundle check || bundle install # --jobs=4 --retry=3 --path vendor/bundle
+            # 上記のBUNDLEはこれでもいいのかも
       # bundleキャッシュを保存
       - save_cache:
           key: ucmsapp1-bundle-v1-{{ checksum "Gemfile.lock" }}
@@ -80,6 +82,6 @@ jobs:
           command: bundle exec rspec
       - run:
           name: Rubocop
-          command: bundle exec rubocop
+          command: bundle exec rubocop -a
       - store_test_results:
           path: /tmp/test-results
