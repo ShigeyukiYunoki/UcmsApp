@@ -3,6 +3,8 @@ jobs:
   build:
     #自身のアプリ名にする
     working_directory: ~/ucmsapp1
+    environment:
+      - TZ: Asia/Tokyo
     docker:
       - image: circleci/ruby:2.7.1-node-browsers
         environment:
