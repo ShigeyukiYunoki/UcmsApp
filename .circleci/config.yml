@@ -17,10 +17,10 @@ jobs:
           PGHOST: 127.0.0.1
           # 下記があるとBundle Installが高速化
           # ネットワークの接続またはGitリクエストの失敗時に、3回リトライ
-          BUNDLE_RETRY: 3
-          # BundlerによってGemがインストールされる場所を指定
-          BUNDLE_PATH: vendor/bundle
-          BUNDLER_VERSION: 2.1.4
+          # BUNDLE_RETRY: 3
+          # # BundlerによってGemがインストールされる場所を指定
+          # BUNDLE_PATH: vendor/bundle
+          # BUNDLER_VERSION: 2.1.4
           # 下記無いとPG::ConnectionBad: could not translate host name "db" to address: Name or service not known
           DATABASE_URL: postgres://postgres:password@localhost:5432/ucms_app_test
           RAILS_ENV: test
@@ -31,10 +31,11 @@ jobs:
           #下記を書けばパスワードなしでデータベースにログイン可
           POSTGRES_HOST_AUTH_METHOD: trust
           POSTGRES_DB: ucms_app_test
-      # - image:
-      #     selenium/standalone-chrome-debug
-      # logging:
-      #   driver: none
+          # 下記不要だった
+          # - image:
+          #     selenium/standalone-chrome-debug
+          #       logging:
+          #         driver: none
     steps:
       - checkout
       # bundle キャッシュをリストアする。公式の設定通り。
