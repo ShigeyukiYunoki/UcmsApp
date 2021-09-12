@@ -30,7 +30,7 @@ jobs:
         environment:
           # それぞれ設定
           # POSTGRES_USER: <%= ENV['UCMS_APP_POSTGRES_USER'] %> なくて大丈夫だった
-          # POSTGRES_PASSWORD: <%= ENV['UCMS_APP_POSTGRES_PASSWORD'] %>
+          POSTGRES_PASSWORD: <%= ENV['UCMS_APP_POSTGRES_PASSWORD'] %>
           # 下記を書けばパスワードなしでデータベースにログイン可
           # POSTGRES_HOST_AUTH_METHOD: trust
           POSTGRES_DB: ucms_app_test
