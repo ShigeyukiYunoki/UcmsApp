@@ -1,17 +1,19 @@
+# CircleCIのバージョンを指定
 version: 2.1
+# 1つ以上のjobを設定する。jobが1つだけの場合、job名は build。
 jobs:
   build:
     #自身のアプリ名にする
-    working_directory: ~/ucmsapp1
+    working_directory: ~/ucmsapp1 # 実行ディレクトリを設定する。デフォルトは ~/project
     environment:
       - TZ: Asia/Tokyo
-    docker:
+    docker: # CI環境にDockerを利用する場合の設定
       # CircleCIは、次世代言語イメージに対していくつかのバリアントを用意しています。
       # これらのバリアントを使用するには、以下のサフィックスの 1つをイメージタグの末尾に追加します。
       # -node: 多言語対応の Node.js が含まれます。
       # -browsers: Chrome、Firefox、OpenJDK v11、および GeckoDriver が含まれます。
       # -node-browsers: -node バリアントと -browsers バリアントの組み合わせです。
-      - image: circleci/ruby:2.7.1-node-browsers
+      - image: circleci/ruby:2.7.1-node-browsers # ベースとなるDockerイメージを指定。複数指定することも可能
         environment:
           POSTGRES_USER: postgres
           PGHOST: 127.0.0.1
@@ -36,8 +38,10 @@ jobs:
       #     selenium/standalone-chrome-debug
       #       logging:
       #         driver: none
+
+    # CI環境上で動作させるコマンドや実行結果の保存、キャッシュ操作などを設定
     steps:
-      - checkout
+      - checkout # CI環境上の working_directory の値の場所にGitリポジトリをコピー
       # bundleキャッシュをリストア。公式の設定通り。
       - restore_cache:
           keys:
