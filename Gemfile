@@ -30,6 +30,8 @@ gem 'ransack'
 
 gem 'rakuten_web_service'
 
+gem 'dotenv-rails'
+
 # gem 'onesignal-ruby'
 
 # gem 'rack'
