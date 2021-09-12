@@ -15,7 +15,7 @@ jobs:
       # -node-browsers: -node バリアントと -browsers バリアントの組み合わせです。
       - image: circleci/ruby:2.7.1-node-browsers # ベースとなるDockerイメージを指定。複数指定することも可能
         environment:
-          POSTGRES_USER: <%= ENV['UCMS_APP_POSTGRES_USER'] %>
+          POSTGRES_USER: <%= ENV['CIRCLECI_POSTGRES_USER'] %>
           PGHOST: 127.0.0.1
           # 下記があるとBundle Installが高速化。キャッシュがあってもなくても。
           # ネットワークの接続またはGitリクエストの失敗時に、3回リトライ
@@ -29,7 +29,7 @@ jobs:
       - image: circleci/postgres:latest
         environment:
           # それぞれ設定
-          POSTGRES_USER: <%= ENV['UCMS_APP_POSTGRES_USER'] %>
+          POSTGRES_USER: <%= ENV['UCIRCLECI_POSTGRES_USER'] %>
           POSTGRES_PASSWORD: <%= ENV['UCMS_APP_POSTGRES_PASSWORD'] %>
           # 下記を書けばパスワードなしでデータベースにログイン可
           # POSTGRES_HOST_AUTH_METHOD: trust
