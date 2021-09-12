@@ -1,18 +1,42 @@
+AllCops:
+  Exclude:
+    - "tmp/**/*"
+    - "config/initializers/*"
+    - "vendor/**/*"
+    - "db/schema.rb"
+    - "node_modules/**/*"
+    - "db/migrate/*.rb"
+    - "bin/*"
+  DisplayCopNames: true
+  TargetRubyVersion: 2.7.1
+  EnabledByDefault: false
+
+Rails:
+  Enabled: true
+
+Style/AndOr:
+  EnforcedStyle: conditionals
+
 # 日本語でのコメントを許可
-AsciiComments:
+Style/AsciiComments:
   Enabled: false
 
 # クラスにコメントを残さない
-Documentation:
+Style/Documentation:
+  Enabled: false
+
+Style/NumericLiterals:
   Enabled: false
 
 # モジュール名::クラス名の定義を許可
-ClassAndModuleChildren:
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Bundler/OrderedGems:
+  Enabled: false
+
+Lint/ShadowedException:
   Enabled: false
 
 Style/FrozenStringLiteralComment:
   Enabled: false
-
-AllCops:
-  TargetRubyVersion: 2.7.1
-  EnabledByDefault: false
