@@ -34,7 +34,7 @@ jobs:
           # 下記を書けばパスワードなしでデータベースにログイン可
           # POSTGRES_HOST_AUTH_METHOD: trust
           POSTGRES_DB: ucms_app_test
-          POSTGRES_POST: localhost
+          POSTGRES_POST: db
       # 下記不要だった
       # - image:
       #     selenium/standalone-chrome-debug
