@@ -16,6 +16,7 @@ jobs:
       - image: circleci/ruby:2.7.1-node-browsers # ベースとなるDockerイメージを指定。複数指定することも可能
         environment:
           # POSTGRES_USER: <%= ENV['UCMS_APP_POSTGRES_USER'] %>
+          # POSTGRES_USER: postgresならば成功するが、なくてもいい
           PGHOST: 127.0.0.1
           # 下記があるとBundle Installが高速化。キャッシュがあってもなくても。
           # ネットワークの接続またはGitリクエストの失敗時に、3回リトライ
@@ -24,17 +25,16 @@ jobs:
           BUNDLE_PATH: vendor/bundle
           BUNDLER_VERSION: 2.1.4
           # 下記2行無いとPG::ConnectionBad: could not translate host name "db" to address: Name or service not known
-          DATABASE_URL: postgres://postgres:password@localhost:5432/ucms_app_test # <%= ENV['DATABASE_URL'] %>
+          DATABASE_URL: <%= ENV['DATABASE_URL'] %>
           RAILS_ENV: test
       - image: circleci/postgres:latest
         environment:
-          # それぞれ設定
           # POSTGRES_USER: <%= ENV['UCMS_APP_POSTGRES_USER'] %>
+          # POSTGRES_USER: postgresならば成功するが、なくてもいい
           POSTGRES_PASSWORD: <%= ENV['UCMS_APP_POSTGRES_PASSWORD'] %>
+          POSTGRES_DB: ucms_app_test
           # 下記を書けばパスワードなしでデータベースにログイン可
           # POSTGRES_HOST_AUTH_METHOD: trust
-          POSTGRES_DB: ucms_app_test
-          POSTGRES_POST: db
       # 下記不要だった
       # - image:
       #     selenium/standalone-chrome-debug
