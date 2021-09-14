@@ -25,7 +25,7 @@ jobs:
           BUNDLE_PATH: vendor/bundle
           BUNDLER_VERSION: 2.1.4
           # 下記2行無いとPG::ConnectionBad: could not translate host name "db" to address: Name or service not known
-          DATABASE_URL: <%= ENV['DATABASE_URL'] %>
+          DATABASE_URL: postgres://postgres:ucmsapppostgrespass@localhost:5432/ucms_app_test # <%= ENV['DATABASE_URL'] %>
           RAILS_ENV: test
       - image: circleci/postgres:latest
         environment:
