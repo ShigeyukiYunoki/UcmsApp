@@ -1,22 +1,56 @@
+# CircleCIのバージョンを指定
 version: 2.1
+# 1つ以上のjobを設定する。jobが1つだけの場合、job名は build。
 jobs:
   build:
-    working_directory: ~/my-app
-    docker:
-      - image: circleci/ruby:2.7.1-node
+    # 自身のアプリ名にする
+    working_directory: ~/ucmsapp1 # 実行ディレクトリを設定する。デフォルトは ~/project
+    environment:
+      - TZ: Asia/Tokyo
+    docker: # CI環境にDockerを利用する場合の設定
+      # CircleCIは、次世代言語イメージに対していくつかのバリアントを用意しています。
+      # これらのバリアントを使用するには、以下のサフィックスの 1つをイメージタグの末尾に追加します。
+      # -node: 多言語対応の Node.js が含まれます。
+      # -browsers: Chrome、Firefox、OpenJDK v11、および GeckoDriver が含まれます。
+      # -node-browsers: -node バリアントと -browsers バリアントの組み合わせです。
+      - image: circleci/ruby:2.7.1-node-browsers # ベースとなるDockerイメージを指定。複数指定することも可能
         environment:
+          # POSTGRES_USER: <%= ENV['UCMS_APP_POSTGRES_USER'] %>
+          # POSTGRES_USER: postgresならば成功するが、なくてもいい
+          PGHOST: 127.0.0.1
+          # 下記があるとBundle Installが高速化。キャッシュがあってもなくても。
+          # ネットワークの接続またはGitリクエストの失敗時に、3回リトライ
           BUNDLE_RETRY: 3
+          # BundlerによってGemがインストールされる場所を指定
           BUNDLE_PATH: vendor/bundle
           BUNDLER_VERSION: 2.1.4
-          DATABASE_URL: postgres://postgres:password@localhost:5432/myapp_test
+          # 下記2行無いとPG::ConnectionBad: could not translate host name "db" to address: Name or service not known
+          DATABASE_URL: postgres://postgres:password@localhost:5432/ucms_app_test
+          # <%= ENV['DATABASE_URL'] %> URI::InvalidURIError: bad URI(is not URI?): <%= ENV['DATABASE_URL'] %>
           RAILS_ENV: test
-      - image: circleci/postgres:11-alpine
+      - image: circleci/postgres:latest
+        environment:
+          # POSTGRES_USER: <%= ENV['UCMS_APP_POSTGRES_USER'] %>
+          # POSTGRES_USER: postgresならば成功するが、なくてもいい
+          POSTGRES_PASSWORD: <%= ENV['UCMS_APP_POSTGRES_PASSWORD'] %>
+          POSTGRES_DB: ucms_app_test
+          # 下記を書けばパスワードなしでデータベースにログイン可
+          # POSTGRES_HOST_AUTH_METHOD: trust
+      # 下記不要だった
+      # - image:
+      #     selenium/standalone-chrome-debug
+      #       logging:
+      #         driver: none
+
+    # CI環境上で動作させるコマンドや実行結果の保存、キャッシュ操作などを設定
     steps:
-      - checkout
+      - checkout # CI環境上の working_directory の値の場所にGitリポジトリをコピー
+      # bundleキャッシュをリストア。公式の設定通り。
       - restore_cache:
           keys:
-            - my-app-bundle-v1-{{ checksum "Gemfile.lock" }}
-            - my-app-bundle-v1-
+            - ucmsapp1-bundle-v1-{{ checksum "Gemfile.lock" }}
+            - ucmsapp1-bundle-v1-
+      # bundle installで依存関係をインストール
       - run:
           name: Bundler install
           command: |
@@ -24,9 +58,12 @@ jobs:
             gem install bundler -v 2.1.4
       - run:
           name: Bundle Install
-          command: bundle check || bundle install
+          command:
+            bundle check || bundle install # --jobs=4 --retry=3 --path vendor/bundle
+            # 上記のBUNDLEはこれでもいいのかも
+      # bundleキャッシュを保存
       - save_cache:
-          key: my-app-bundle-v1-{{ checksum "Gemfile.lock" }}
+          key: ucmsapp1-bundle-v1-{{ checksum "Gemfile.lock" }}
           paths:
             - vendor/bundle
       - restore_cache:
@@ -34,17 +71,24 @@ jobs:
             - rails-demo-yarn-{{ checksum "yarn.lock" }}
             - rails-demo-yarn-
       - run:
-          name: Yarnをinstall
+          name: Yarn Install
           command: yarn install --cache-folder ~/.cache/yarn
+      - run:
+          name: Sweetalert Install
+          command: yarn add  sweetalert
       - run:
           name: Wait for DB
           command: dockerize -wait tcp://127.0.0.1:5432 -timeout 1m
       - run:
           name: Database setup
-          command: bin/rails db:create db:schema:load --trace
+          command: bin/rails db:migrate db:schema:load --trace
       - run: bundle exec bin/webpack
+      # Rspecを実行
       - run:
           name: execute rspec
           command: bundle exec rspec
+      - run:
+          name: Rubocop
+          command: bundle exec rubocop -A
       - store_test_results:
           path: /tmp/test-results

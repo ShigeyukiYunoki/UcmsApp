@@ -16,9 +16,11 @@
 #
 default: &default
   adapter: postgresql
-  username: ucms_app
-  password:
-  host: db
+  username: <%= ENV['UCMS_APP_POSTGRES_USER'] %>
+  password: <%= ENV['UCMS_APP_POSTGRES_PASSWORD'] %>
+  host:
+    db # <%= ENV['UCMS_APP_POSTGRES_HOST'] %>
+    # 環境変数だとエラーが出る PG::ConnectionBad (FATAL:  role "postgres" does not exist):
   encoding: utf8
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
@@ -26,6 +28,7 @@ default: &default
 
 development:
   <<: *default
+  # host: localhost
   database: ucms_app_development
 
   # The specified database role being used to connect to postgres.
@@ -80,9 +83,9 @@ production:
   <<: *default
   # database: ucms_app_production  Herokuへのデプロイを考慮して削除
   # username: ucms_app default内に追記したので削除
-  # password: <%= ENV['UCMS_APP_DATABASE_PASSWORD'] %>
+  # password: <%= ENV['UCMS_APP_POSTGRES_PASSWORD'] %>
 
   database: ucms_app_production
-  username: postgres # RDS DBインスタンスのユーザー名
+  username: <%= ENV['RDS_DB_USER'] %> # RDS DBインスタンスのユーザー名
   password: <%= Rails.application.credentials.dig(:db, :password) %> # RDS DBインスタンスのパスワード
   host: <%= Rails.application.credentials.dig(:db, :hostname) %> # RDS DBインスタンスのエンドポイント

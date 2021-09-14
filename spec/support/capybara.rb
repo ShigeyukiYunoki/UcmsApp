@@ -17,14 +17,32 @@ RSpec.configure do |config|
   end
 
   config.before(:each, type: :system, js: true) do
-    if ENV["SELENIUM_DRIVER_URL"].present?
+    if ENV['SELENIUM_DRIVER_URL'].present?
       driven_by :selenium, using: :chrome, options: {
         browser: :remote,
-        url: ENV.fetch("SELENIUM_DRIVER_URL"),
+        # webコンテナ側からchromeコンテナのchromeを使用するために、
+        # optionsの中で、urlにSELENIUM_DRIVER_URL環境変数の値を設定
+        url: ENV.fetch('SELENIUM_DRIVER_URL'),
         desired_capabilities: :chrome
       }
     else
       driven_by :selenium_chrome_headless
+      # 3.1) Failure/Error: visit login_path
+      #
+      #     SocketError:
+      #       getaddrinfo: Name or service not known
+          # ./spec/support/login_support.rb:3:in `sign_in_as'
+          # ./spec/system/comments_spec.rb:11:in `block (3 levels) in <main>'
+          # ./spec/system/comments_spec.rb:10:in `block (2 levels) in <main>'
+
+     # 3.2) Failure/Error: server = TCPServer.new(host, 0)
+     #
+     #      SocketError:
+     #        getaddrinfo: Name or service not known
+     # 下記が存在すると上記のエラーがrspecで発生する
+      # headless chromeからはローカル環境ではなくwebコンテナ側のrailsアプリを表示してテストする必要があるため
+      # Capybara.server_host = 'web'
+      # Capybara.app_host='http://web'
     end
   end
 end

@@ -18,7 +18,7 @@ RSpec.describe 'PostsInterfaces', type: :system, js: true do
       expect do
         fill_in 'タイトル', with: 'title'
         fill_in '投稿内容', with: 'content'
-        attach_file 'post_image', "#{Rails.root}/spec/factories/kitten.jpg"
+        attach_file 'post[image]', "#{Rails.root}/spec/factories/kitten.jpg"
         click_button '投稿'
       end.to change(user.posts, :count).by(1)
 
@@ -43,7 +43,7 @@ RSpec.describe 'PostsInterfaces', type: :system, js: true do
       expect do
         fill_in 'タイトル', with: 'title'
         fill_in '投稿内容', with: 'content'
-        attach_file 'post_image', "#{Rails.root}/spec/factories/1292866.svg"
+        attach_file 'post[image]', "#{Rails.root}/spec/factories/1292866.svg"
         click_button '投稿'
       end.to change(user.posts, :count).by(0)
       expect(page).to have_content 'はjpeg,gif,pngのみ対応しています'
@@ -60,7 +60,7 @@ RSpec.describe 'PostsInterfaces', type: :system, js: true do
       page.accept_confirm('アップロード可能なファイルサイズは5MBまでです。より小さいサイズのファイルを選んでください。') do
         fill_in 'タイトル', with: 'title'
         fill_in '投稿内容', with: 'content'
-        attach_file 'post_image', "#{Rails.root}/spec/factories/1296_autumn_kouyou_momiji_sky_9948.jpg"
+        attach_file 'post[image]', "#{Rails.root}/spec/factories/1296_autumn_kouyou_momiji_sky_9948.jpg"
       end
       expect(page).to have_current_path new_post_path
     end
