@@ -19,8 +19,9 @@ default: &default
   username: <%= ENV['UCMS_APP_POSTGRES_USER'] %>
   password: <%= ENV['UCMS_APP_POSTGRES_PASSWORD'] %>
   host:
-    db # <%= ENV['UCMS_APP_POSTGRES_HOST'] %>
-    # 環境変数だとエラーが出る PG::ConnectionBad (FATAL:  role "postgres" does not exist):
+    <%= ENV['UCMS_APP_POSTGRES_HOST'] %>
+    # .envにこれいれちゃダメ。DATABASE_URL='postgres://postgres:password@localhost:5432/ucms_app_test'
+    # role postgresを探しにいってエラーになるPG::ConnectionBad (FATAL:  role "postgres" does not exist):
   encoding: utf8
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
