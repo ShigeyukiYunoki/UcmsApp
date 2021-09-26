@@ -1,0 +1,73 @@
+version: "3.9"
+volumes: # ホストOSで永続化
+  # postgres_data:
+  #   driver: "local"
+  public-data:
+  tmp-data:
+  log-data:
+services:
+  # db:
+  #   build:
+  #     context: .
+  #     dockerfile: ./docker/postgres/Dockerfile
+  #   container_name: "ucms_app_postgres"
+  #   environment:
+  #     - POSTGRES_USER=$UCMS_APP_POSTGRES_USER # <%= ENV['UCMS_APP_POSTGRES_USER'] %>
+  #     - POSTGRES_PASSWORD=$UCMS_APP_POSTGRES_PASSWORD # <%= ENV['UCMS_APP_POSTGRES_PASSWORD'] %>
+  #     # DBの指定がないとエラーPG::ConnectionBad (could not translate host name "db" to address: nodename nor servname provided, or not known):
+  #     - POSTGRES_DB=ucms_app_development
+  #
+  #     # 下記を書けばパスワードなしでデータベースにログイン可
+  #     # - POSTGRES_HOST_AUTH_METHOD=trust
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data # ホストOSで永続化
+  #     - ./postgres/initdb:/docker-entrypoint-initdb.d
+  #   ports:
+  #     - "5432:5432" # ホストからゲストへポートフォワード
+  web:
+    build:
+      context: .
+      dockerfile: ./docker/rails/Dockerfile
+    container_name: "ucms_app_rails"
+    # 一度サーバーが起動すると起動し続けるので、dockerが起動する度に一旦停止させる
+    # command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    command: bundle exec puma -C config/puma.rb -e production
+    volumes:
+      - .:/ucms_app:cached # ソースコード変更したらDocker側も即反映されるように
+      - /ucms_app/node_modules/
+      - public-data:/ucms_app/public
+      - tmp-data:/ucms_app/tmp
+      - log-data:/ucms_app/log
+    # ports:
+    #   - "3000:3000" # ホストからゲストへポートフォワード
+    # depends_on:
+    #   - db
+    #   - chrome
+    # dockerでbinding.pryを使うために下記2行追加
+    # ソースコードにbinding.pryを追加し、該当の箇所で止まったら
+    # $ docker attach [container name] するとpryにアタッチされる
+    # stdin_open: true
+    # tty: true
+    # selenium_chromeを使うために以下の行を追加
+    # environment:
+    #   - "SELENIUM_DRIVER_URL=http://selenium_chrome:4444/wd/hub"
+  nginx:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    container_name: "ucms_app_nginx"
+    volumes:
+      - public-data:/ucms_app/public
+      - tmp-data:/ucms_app/tmp
+    ports:
+      - 80:80
+    depends_on:
+      - web
+  # chrome: # Chromeでのテスト実行用コンテナ
+  #   image: selenium/standalone-chrome-debug # Chromeがインストールされたイメージ
+  #   container_name: "ucms_app_chrome"
+  #   ports:
+  #     - "4444:4444" # ホストからゲストへポートフォワード
+  #   #不要なログ出力を抑制するため
+  #   logging:
+  #     driver: none

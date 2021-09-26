@@ -86,7 +86,7 @@ production:
   # username: ucms_app default内に追記したので削除
   # password: <%= ENV['UCMS_APP_POSTGRES_PASSWORD'] %>
 
-  database: ucms_app_production
-  username: <%= ENV['RDS_DB_USER'] %> # RDS DBインスタンスのユーザー名
+  database: <%= Rails.application.credentials.dig(:db, :database) %>
+  username: <%= Rails.application.credentials.dig(:db, :username) %> # RDS DBインスタンスのユーザー名
   password: <%= Rails.application.credentials.dig(:db, :password) %> # RDS DBインスタンスのパスワード
   host: <%= Rails.application.credentials.dig(:db, :hostname) %> # RDS DBインスタンスのエンドポイント
