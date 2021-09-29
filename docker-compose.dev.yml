@@ -53,7 +53,7 @@ services:
   nginx:
     build:
       context: .
-      dockerfile: ./docker/nginx/Dockerfile
+      dockerfile: ./docker/nginx.dev/Dockerfile
     container_name: "ucms_app_nginx"
     volumes:
       - public-data:/ucms_app/public
