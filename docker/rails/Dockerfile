@@ -36,7 +36,7 @@ RUN bundle install
 
 # ホストのアプリケーションディレクトリ内をすべてコンテナにコピー
 COPY . $APP_ROOT
-
+RUN bundle exec rails webpacker:install
 RUN bundle exec rails webpacker:compile
 
 # Add a script to be executed every time the container starts.
