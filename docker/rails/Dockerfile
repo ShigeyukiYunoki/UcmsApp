@@ -22,10 +22,10 @@ ENV LC_ALL ja_JP.utf8
 ENV TZ Asia/Tokyo
 
 # ルート直下にucms_appという名前で作業ディレクトリを作成
-RUN mkdir /ucms_app
-# /ucms_appを環境変数ENV APP_ROOTに設定
-ENV APP_ROOT /ucms_app
-# dockerをどこで起動するか決める。$APP_ROOTで/ucms_appを反映
+RUN mkdir /UcmsApp1
+# /UcmsApp1を環境変数ENV APP_ROOTに設定
+ENV APP_ROOT /UcmsApp1
+# dockerをどこで起動するか決める。$APP_ROOTで/UcmsApp1を反映
 WORKDIR $APP_ROOT
 
 COPY ./Gemfile $APP_ROOT/Gemfile
@@ -36,7 +36,6 @@ RUN bundle install
 
 # ホストのアプリケーションディレクトリ内をすべてコンテナにコピー
 COPY . $APP_ROOT
-RUN bundle exec rails webpacker:install
 RUN bundle exec rails webpacker:compile
 
 # Add a script to be executed every time the container starts.
