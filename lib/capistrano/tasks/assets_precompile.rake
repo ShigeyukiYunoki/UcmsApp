@@ -21,7 +21,7 @@ namespace :deploy do
         #     execute :rm, old_manifest_path if test "[ -f #{old_manifest_path} ]"
         #     upload!('./public/assets/', "#{shared_path}/public/", recursive: true)
         #   end
-        # end
+        # end 
 
         # Install yarn
         within release_path do
