@@ -20,7 +20,8 @@ services:
       # 下記を書けばパスワードなしでデータベースにログイン可
       # - POSTGRES_HOST_AUTH_METHOD=trust
     volumes:
-      - postgres_data:/var/lib/postgresql/data # ホストOSで永続化 再度初期データを投入したい場合は左記をコメントアウトして再upする。
+      - ~/postgres_data:/var/lib/postgresql/data # ホストOSで永続化 再度初期データを投入したい場合は左記をコメントアウトして再upする。
+      # :の左側はホスト側で、右側はpostgres_dataをどこに取り込むかで、そこをdockerが参照する
       - ./docker/postgres/initdb:/docker-entrypoint-initdb.d
     ports:
       - "5432:5432" # ホストからゲストへポートフォワード

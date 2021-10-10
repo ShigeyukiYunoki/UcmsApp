@@ -10,15 +10,17 @@ set :deploy_to, "~/UcmsApp1"
 # どのリポジトリからアプリをpullするかを指定
 set :repo_url, "git@github.com:shige8/UcmsApp1.git"
 
-
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 set :rbenv_ruby, File.read('.ruby-version').strip
+# 下記があればブランチを指定できる。指定無ければ"master"に。bundle exec cap production deploy BRANCH=hoge
 set :branch, ENV['BRANCH'] || "master"
 
 # Nginxの設定ファイル名と置き場所を修正
 set :nginx_config_name, "#{fetch(:application)}.conf"
 set :nginx_sites_enabled_path, "/etc/nginx/conf.d"
+
+# set :use_sudo, true
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
@@ -28,12 +30,11 @@ set :nginx_sites_enabled_path, "/etc/nginx/conf.d"
 # set :format_options, command_output: true, log_file: "log/capistrano.log", color: :auto, truncate: :auto
 
 # Default value for :pty is false
-# set :pty, true
+set :pty, true
 
 # Default value for :linked_files is []
 append :linked_files, "config/master.key"
 
-# バージョンが変わっても共通で参照するディレクトリを指定
 # Default value for linked_dirs is []
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "node_modules", 'vendor/bundle', 'public/uploads'
 
