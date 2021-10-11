@@ -28,9 +28,9 @@
     <!-- <div class="form-group col-10 mt-5"> <p>投稿内容</p> <textarea class="form-control" placeholder="今日の調子は?" name="content" rows="8" cols="80"></textarea> </div> -->
 
 
-    <div class="d-flex justify-content-center">
-      <%= f.label :image %>
-      <%= f.file_field :image, accept: "image/jpeg, image/gif, image/png", class:"my-5" %>
+    <div class="d-flex justify-content-center my-5">
+      <%= f.label :image, "画像投稿", class:"mr-3" %>
+      <%= f.file_field :image, accept: "image/jpeg, image/gif, image/png" %>
     </div>
 
     <%= f.submit yield(:button_text), class:"btn btn-lg btn-primary btn-block" %>
