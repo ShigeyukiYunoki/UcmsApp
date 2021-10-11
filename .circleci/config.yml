@@ -87,8 +87,8 @@ jobs:
       - run:
           name: execute rspec
           command: bundle exec rspec
-      - run:
-          name: Rubocop
-          command: bundle exec rubocop -A
+      # - run:
+      #     name: Rubocop
+      #     command: bundle exec rubocop -A
       - store_test_results:
           path: /tmp/test-results
