@@ -52,5 +52,5 @@ set :rbenv_ruby, '2.7.1'
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 # どの公開鍵を利用してデプロイするか
-set :ssh_options, auth_methods: ['publickey'],
-                  keys: ['~/.ssh/myapp-key.pem']
+# set :ssh_options, auth_methods: ['publickey'],
+#                   keys: ['~/.ssh/myapp-key.pem']
