@@ -41,11 +41,11 @@ server '35.73.129.65', user: 'shige888', roles: %w{app db web}
 #
 # Global options
 # --------------
- set :ssh_options, {
-   keys: %w(~/.ssh/ucmsapp_key_rsa),
-   forward_agent: true,
-   auth_methods: %w(publickey)
- }
+ # set :ssh_options, {
+ #   keys: %w(~/.ssh/ucmsapp_key_rsa),
+ #   forward_agent: true,
+ #   auth_methods: %w(publickey)
+ # }
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------
