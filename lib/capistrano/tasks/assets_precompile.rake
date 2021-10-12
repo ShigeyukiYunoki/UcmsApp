@@ -17,7 +17,7 @@
 #         Upload to server
 #         within release_path do
 #           with rails_env: fetch(:rails_env) do
-#             old_manifest_path = "#{shared_path}/public/assets/manifest*"  
+#             old_manifest_path = "#{shared_path}/public/assets/manifest*"
 #             execute :rm, old_manifest_path if test "[ -f #{old_manifest_path} ]"
 #             upload!('./public/assets/', "#{shared_path}/public/", recursive: true)
 #           end
