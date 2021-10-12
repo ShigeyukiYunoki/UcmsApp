@@ -33,7 +33,7 @@ set :nginx_sites_enabled_path, "/etc/nginx/conf.d"
 set :pty, true
 
 # Default value for :linked_files is []
-# append :linked_files, "config/master.key"
+append :linked_files, "config/master.key"
 
 # Default value for linked_dirs is []
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "node_modules", 'vendor/bundle', 'public/uploads'
@@ -52,5 +52,5 @@ set :rbenv_ruby, '2.7.1'
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
 # どの公開鍵を利用してデプロイするか
-# set :ssh_options, auth_methods: ['publickey'],
-#                   keys: ['~/.ssh/myapp-key.pem']
+set :ssh_options, auth_methods: ['publickey'],
+                  keys: ['~/.ssh/myapp-key.pem']
