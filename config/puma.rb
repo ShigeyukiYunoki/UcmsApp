@@ -15,7 +15,7 @@ threads min_threads_count, max_threads_count
 # socketの設定
 # bind "unix://#{Rails.root}/tmp/sockets/puma.sock"
 app_dir = File.expand_path("../..", __FILE__)
-bind "unix://#{app_dir}/tmp/sockets/puma.sock"
+bind "unix://#{app_dir}/shared/tmp/sockets/puma.sock"
 pidfile "#{app_dir}/tmp/pids/puma.pid"
 state_path "#{app_dir}/tmp/pids/puma.state"
 stdout_redirect "#{app_dir}/log/puma.stdout.log", "#{app_dir}/log/puma.stderr.log", true
