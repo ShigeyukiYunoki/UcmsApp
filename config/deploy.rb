@@ -46,8 +46,13 @@ set :rbenv_ruby, '2.7.1'
 # Default value for local_user is ENV['USER']
 # set :local_user, -> { `git config user.name`.chomp }
 
+# プロセス番号を記載したファイルの場所
+set :puma_pid, -> { "#{shared_path}/tmp/pids/puma.pid" }
+
+# Unicornの設定ファイルの場所
+set :puma_config_path, -> { "#{current_path}/config/puma.rb" }
 # Default value for keep_releases is 5
-# set :keep_releases, 5
+set :keep_releases, 5
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure

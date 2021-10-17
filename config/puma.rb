@@ -14,10 +14,19 @@ threads min_threads_count, max_threads_count
 
 # socketの設定
 # bind "unix://#{Rails.root}/tmp/sockets/puma.sock"
-app_root = File.expand_path("../../../..", __FILE__)
-bind "unix://#{app_root}/tmp/sockets/puma.sock"
-stdout_redirect "#{app_root}/log/puma.stdout.log", "#{app_root}/log/puma.stderr.log", true
+app_root = File.expand_path("../../..", __FILE__)
+# bind "unix://#{app_root}/tmp/sockets/puma.sock"
+# stdout_redirect "#{app_root}/log/puma.stdout.log", "#{app_root}/log/puma.stderr.log", true
 
+worker_processes 1
+# currentを指定
+working_directory "#{app_path}/current"
+
+# それぞれ、sharedの中を参照するよう変更(#{app_path}/shared/)
+listen "#{app_path}/shared/tmp/sockets/puma.sock"
+pid "#{app_path}/shared/tmp/pids/puma.pid"
+stderr_path "#{app_path}/shared/log/puma.stderr.log"
+stdout_path "#{app_path}/shared/log/puma.stdout.log"
 # Specifies the `environment` that Puma will run in.
 #
 environment ENV.fetch('RAILS_ENV') { ENV['RACK_ENV'] || 'production' }
