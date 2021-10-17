@@ -32,7 +32,7 @@ set :branch, ENV['BRANCH'] || "master"
 # Default value for :pty is false
 set :pty, true
 # puma
-set :puma_init_active_record, true
+# set :puma_init_active_record, true
 # Default value for :linked_files is []
 append :linked_files, "config/master.key"
 

@@ -8,14 +8,6 @@
 # server "db.example.com", user: "deploy", roles: %w{db}
 server '35.73.129.65', user: 'shige888', roles: %w{app db web}
 
-# nginx
-set :nginx_config_name, fetch(:application).to_s
-
-# SSLを設定する場合
-set :nginx_server_name, "localhost #{fetch(:application)}.local"
-set :nginx_ssl_certificate, "/etc/letsencrypt/live/#{fetch(:nginx_config_name)}/fullchain.pem"
-set :nginx_ssl_certificate_key, "/etc/letsencrypt/live/#{fetch(:nginx_config_name)}/privkey.pem"
-set :nginx_use_ssl, true
 # role-based syntax
 # ==================
 
