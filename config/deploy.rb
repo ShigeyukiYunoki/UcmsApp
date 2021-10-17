@@ -17,8 +17,8 @@ set :rbenv_ruby, File.read('.ruby-version').strip
 set :branch, ENV['BRANCH'] || "master"
 
 # Nginxの設定ファイル名と置き場所を修正
-set :nginx_config_name, "#{fetch(:application)}.conf"
-set :nginx_sites_enabled_path, "/etc/nginx/conf.d"
+# set :nginx_config_name, "#{fetch(:application)}.conf"
+# set :nginx_sites_enabled_path, "/etc/nginx/conf.d"
 
 # set :use_sudo, true
 
@@ -31,7 +31,8 @@ set :nginx_sites_enabled_path, "/etc/nginx/conf.d"
 
 # Default value for :pty is false
 set :pty, true
-
+# puma
+set :puma_init_active_record, true
 # Default value for :linked_files is []
 append :linked_files, "config/master.key"
 
@@ -50,7 +51,7 @@ set :rbenv_ruby, '2.7.1'
 # set :puma_pid, -> { "#{shared_path}/tmp/pids/puma.pid" }
 
 # Pumaの設定ファイルの場所
-set :puma_config_path, -> { "#{current_path}/config/puma.rb" }
+# set :puma_config_path, -> { "#{current_path}/config/puma.rb" }
 # Default value for keep_releases is 5
 set :keep_releases, 5
 
