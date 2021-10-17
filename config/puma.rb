@@ -18,9 +18,9 @@ app_path = File.expand_path("../../..", __FILE__)
 # bind "unix://#{app_root}/tmp/sockets/puma.sock"
 # stdout_redirect "#{app_root}/log/puma.stdout.log", "#{app_root}/log/puma.stderr.log", true
 
-# worker_processes 1
+worker_processes 1
 # currentを指定
-working_directory "#{app_path}/current"
+worker_directory "#{app_path}/current"
 
 # それぞれ、sharedの中を参照するよう変更(#{app_path}/shared/)
 listen "#{app_path}/shared/tmp/sockets/puma.sock"
