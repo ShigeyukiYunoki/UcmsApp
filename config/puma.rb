@@ -13,7 +13,7 @@ threads min_threads_count, max_threads_count
 # port        ENV.fetch('PORT') { 3000 }
 
 # socketの設定
-bind "unix://#{Rails.root}/shared/tmp/sockets/puma.sock"
+bind "unix:/var/www/UcmsApp1/shared/tmp/sockets/puma.sock"
 # app_dir = File.expand_path("../..", __FILE__)
 # bind "unix://#{app_dir}/tmp/sockets/puma.sock"
 # pidfile "#{app_dir}/tmp/pids/puma.pid"
