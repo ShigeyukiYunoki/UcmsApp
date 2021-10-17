@@ -49,7 +49,7 @@ set :rbenv_ruby, '2.7.1'
 # プロセス番号を記載したファイルの場所
 set :puma_pid, -> { "#{shared_path}/tmp/pids/puma.pid" }
 
-# Unicornの設定ファイルの場所
+# Pumaの設定ファイルの場所
 set :puma_config_path, -> { "#{current_path}/config/puma.rb" }
 # Default value for keep_releases is 5
 set :keep_releases, 5
