@@ -32,7 +32,7 @@ services:
     # 一度サーバーが起動すると起動し続けるので、dockerが起動する度に一旦停止させる
     # command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     # command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -e production"
-    command: bundle exec puma -C UcmsApp1/shared/puma.rb
+    command: bundle exec puma -C config/puma.rb
     volumes:
       - .:/UcmsApp1:cached # ソースコード変更したらDocker側も即反映されるように
       - /UcmsApp1/node_modules/
@@ -49,7 +49,7 @@ services:
     # $ docker attach [container name] するとpryにアタッチされる
     # stdin_open: true
     # tty: true
-    # selenium_chromeを使うため追加
+    # selenium_chromeを使うために以下の行を追加
     # environment:
     #   - "SELENIUM_DRIVER_URL=http://selenium_chrome:4444/wd/hub"
   nginx:
