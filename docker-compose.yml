@@ -49,7 +49,7 @@ services:
     # $ docker attach [container name] するとpryにアタッチされる
     # stdin_open: true
     # tty: true
-    # selenium_chromeを使うために以下の行を追加
+    # selenium_chromeを使うため追加
     # environment:
     #   - "SELENIUM_DRIVER_URL=http://selenium_chrome:4444/wd/hub"
   nginx:
