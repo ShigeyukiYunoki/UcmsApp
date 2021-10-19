@@ -14,7 +14,7 @@ threads min_threads_count, max_threads_count
 
 # socketの設定
 # bind "unix://#{Rails.root}/tmp/sockets/puma.sock"
-app_dir = File.expand_path("../../../", __FILE__)
+app_dir = File.expand_path("../..", __FILE__)
 shared_dir = "#{app_dir}/shared"
 bind "unix://#{shared_dir}/tmp/sockets/puma.sock"
 pidfile "#{shared_dir}/tmp/pids/puma.pid"
