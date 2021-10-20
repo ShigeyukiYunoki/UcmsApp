@@ -51,11 +51,11 @@ set :rbenv_ruby, '2.7.1'
 # set :puma_pid, -> { "#{shared_path}/tmp/pids/puma.pid" }
 
 # Pumaの設定ファイルの場所
-set :puma_config, -> { "#{shared_path}/config/puma.rb" }
-set :puma_bind, -> { "unix://#{shared_path}/tmp/sockets/puma.sock" }
-set :puma_listen, -> { "#{shared_path}/tmp/sockets/puma.sock" }
-set :puma_state, -> { "#{shared_path}/tmp/pids/puma.state" }
-set :puma_pid, -> { "#{shared_path}/tmp/pids/puma.pid" }
+# set :puma_config, -> { "#{shared_path}/config/puma.rb" }
+# set :puma_bind, -> { "unix://#{shared_path}/tmp/sockets/puma.sock" }
+# set :puma_listen, -> { "#{shared_path}/tmp/sockets/puma.sock" }
+# set :puma_state, -> { "#{shared_path}/tmp/pids/puma.state" }
+# set :puma_pid, -> { "#{shared_path}/tmp/pids/puma.pid" }
 # Default value for keep_releases is 5
 set :keep_releases, 5
 
