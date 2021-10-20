@@ -16,11 +16,11 @@ threads min_threads_count, max_threads_count
 # bind "unix://#{Rails.root}/tmp/sockets/puma.sock"
 
 app_dir = File.expand_path("../..", __FILE__)
-# shared_dir = "#{app_dir}/shared"
-bind "unix://#{app_dir}/tmp/sockets/puma.sock"
-pidfile "#{app_dir}/tmp/pids/puma.pid"
-state_path "#{app_dir}/tmp/pids/puma.state"
-stdout_redirect "#{app_dir}/log/puma.stdout.log", "#{app_dir}/log/puma.stderr.log", true
+shared_dir = "#{app_dir}/shared"
+bind "unix://#{shared_dir}/tmp/sockets/puma.sock"
+pidfile "#{shared_dir}/tmp/pids/puma.pid"
+state_path "#{shared_dir}/tmp/pids/puma.state"
+stdout_redirect "#{shared_dir}/log/puma.stdout.log", "#{shared_dir}/log/puma.stderr.log", true
 
 # Specifies the `environment` that Puma will run in.
 #
