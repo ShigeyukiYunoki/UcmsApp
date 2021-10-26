@@ -5,7 +5,7 @@ FactoryBot.define do
     association :user, strategy: :create
 
     trait :skip_validate do
-      to_create { |instance| instance.save(validate: false)}
+      to_create { |instance| instance.save(validate: false) }
     end
   end
 end

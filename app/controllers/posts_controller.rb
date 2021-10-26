@@ -16,11 +16,11 @@ class PostsController < ApplicationController
     when '0'
       @allposts = @user.feed
       @posts = @user.feed.page(params[:page]).where('start_time::text LIKE?',
-                                                    "#{@year}-#{@month}-%").order(start_time: :asc).per(15)
+        "#{@year}-#{@month}-%").order(start_time: :asc).per(15)
     when '1'
       @allposts = @user.posts
       @posts = @user.posts.page(params[:page]).where('start_time::text LIKE?',
-                                                     "#{@year}-#{@month}-%").order(start_time: :asc).per(10)
+        "#{@year}-#{@month}-%").order(start_time: :asc).per(10)
       tookmedicines(@user)
     end
   end
@@ -54,7 +54,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
     flash[:success] = '削除しました'
-    redirect_to request.referrer || top_path
+    redirect_to request.referer || top_path
     # redirect_to "/posts/#{current_user.id}/index?start_date=#{@post.start_time.strftime("%Y-%m-%d")}",
     # flash: {success: "削除しました"}
   end
@@ -75,7 +75,9 @@ class PostsController < ApplicationController
 
   # def ensure_correct_user_for_new
   #   if current_user.id != params[:user_id].to_i
-  #     redirect_to "/posts/#{current_user.id}/index?start_date=#{Date.today.strftime("%Y-%m-%d")}",flash: {danger: "権限がありません"}
+  #     redirect_to "/posts/#{current_user.id}/index?
+  #     start_date=#{Date.today.strftime("%Y-%m-%d")}",
+  #     flash: {danger: "権限がありません"}
   #   end
   # end
 
@@ -93,11 +95,15 @@ class PostsController < ApplicationController
   def ensure_correct_user
     @post = current_user.posts.find_by(id: params[:id])
     redirect_to top_path if @post.nil?
-    # redirect_to "/posts/#{current_user.id}/index?start_date=#{@post.start_time.strftime("%Y-%m-%d")}",flash: {danger: "権限がありません"}
+    # redirect_to "/posts/#{current_user.id}/index?
+    # start_date=#{@post.start_time.strftime("%Y-%m-%d")}",
+    # flash: {danger: "権限がありません"}
   end
   # def ensure_correct_user
   #   @post = current_user.posts.find_by(id: params[:id])
   #     redirect_to root_path if @post.nil?
-  #     # redirect_to "/posts/#{current_user.id}/index?start_date=#{@post.start_time.strftime("%Y-%m-%d")}",flash: {danger: "権限がありません"}
+        # redirect_to "/posts/#{current_user.id}/index?
+        # start_date=#{@post.start_time.strftime("%Y-%m-%d")}",
+        # flash: {danger: "権限がありません"}
   # end
 end

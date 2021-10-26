@@ -8,7 +8,8 @@ class UsersProfileTest < ActionDispatch::IntegrationTest
   test 'profile display' do
     log_in_as(@user)
     # loginしていないとtestがerrorに
-    # FAIL["test_profile_display", #<Minitest::Reporters::Suite:0x00007fe9d85897f0 @name="UsersProfileTest">, 0.32026199996471405]
+    # FAIL["test_profile_display", #<Minitest::Reporters::Suite:0x00007fe9d85897f0
+    # @name="UsersProfileTest">]
     # test_profile_display#UsersProfileTest (0.32s)
     # expecting <"users/show"> but rendering with <[]>
     # test/integration/users_profile_test.rb:11:in `block in <class:UsersProfileTest>'

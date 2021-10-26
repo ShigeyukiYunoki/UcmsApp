@@ -12,6 +12,8 @@ class Medicine < ApplicationRecord
     @tn = Time.now&.strftime('%H:%M')
     # @g = Time.parse(@gtm)
     # @t = Time.parse(@tn)
-    errors.add(:gonna_take_medicine_at, 'は現在時刻より遅い時間を選択してください!') if @gtm.blank? || Time.parse(@gtm) < Time.parse(@tn)
+    return unless @gtm.blank? || Time.parse(@gtm) < Time.parse(@tn)
+
+    errors.add(:gonna_take_medicine_at,'は現在時刻より遅い時間を選択してください!')
   end
 end

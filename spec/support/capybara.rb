@@ -27,22 +27,22 @@ RSpec.configure do |config|
       }
     else
       driven_by :selenium_chrome_headless
-      # 3.1) Failure/Error: visit login_path
-      #
-      #     SocketError:
-      #       getaddrinfo: Name or service not known
-          # ./spec/support/login_support.rb:3:in `sign_in_as'
-          # ./spec/system/comments_spec.rb:11:in `block (3 levels) in <main>'
-          # ./spec/system/comments_spec.rb:10:in `block (2 levels) in <main>'
-
-     # 3.2) Failure/Error: server = TCPServer.new(host, 0)
-     #
-     #      SocketError:
-     #        getaddrinfo: Name or service not known
-     # 下記が存在すると上記のエラーがrspecで発生する
-      # headless chromeからはローカル環境ではなくwebコンテナ側のrailsアプリを表示してテストする必要があるため
-      # Capybara.server_host = 'web'
-      # Capybara.app_host='http://web'
+# 3.1) Failure/Error: visit login_path
+#
+#     SocketError:
+#       getaddrinfo: Name or service not known
+#     ./spec/support/login_support.rb:3:in `sign_in_as'
+#     ./spec/system/comments_spec.rb:11:in `block (3 levels) in <main>'
+#     ./spec/system/comments_spec.rb:10:in `block (2 levels) in <main>'
+#
+# 3.2) Failure/Error: server = TCPServer.new(host, 0)
+#
+#     SocketError:
+#       getaddrinfo: Name or service not known
+# 下記が存在すると上記のエラーがrspecで発生する
+# headless chromeからはローカル環境ではなくwebコンテナ側のrailsアプリを表示してテストする必要があるため
+# Capybara.server_host = 'web'
+# Capybara.app_host='http://web'
     end
   end
 end

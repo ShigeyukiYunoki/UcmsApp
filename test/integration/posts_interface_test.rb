@@ -9,7 +9,7 @@ class PostsInterfaceTest < ActionDispatch::IntegrationTest
     log_in_as(@user)
     get user_path(@user)
     assert_select 'ul.pagination', 2
-    get "/posts/#{@user.id}/index?start_date=#{Date.today.strftime('%Y-%m-%d')}"
+    get "/posts/#{@user.id}/index?start_date=#{Time.zone.today.strftime('%Y-%m-%d')}"
     get new_post_path(@user)
     assert_select 'input[type=file]'
 
@@ -20,7 +20,7 @@ class PostsInterfaceTest < ActionDispatch::IntegrationTest
 
     title = 'jsdifjs'
     content = 'jdoifjowpjfiowejfioe'
-    start_time = Date.today
+    start_time = Time.zone.today
     image = fixture_file_upload('test/fixtures/kitten.jpg', 'image/jpeg')
     assert_difference 'Post.count', 1 do
       post posts_path, params: { post:

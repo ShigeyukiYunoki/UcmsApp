@@ -5,7 +5,8 @@ module MedicinesHelper
     @now = Time.now.strftime('%H:%M')
     gon.now = @now
 
-    if logged_in?
+    return unless logged_in?
+
       @tookmedicinelast = current_user.medicines.where.not(took_medicine_at: nil).last
       if @tookmedicinelast
         @tooklastat = @tookmedicinelast.took_medicine_at
@@ -24,7 +25,6 @@ module MedicinesHelper
       #   @noid = @no.id
       #   gon.noid = @noid
       # end
-    end
   end
 
   def tookmedicines(user)
@@ -32,7 +32,7 @@ module MedicinesHelper
   end
 
   def took_medicine_days_straight(user)
-    if logged_in?
+    return unless logged_in?
       @days = 0
       # "took_medicine_at"を昇順で取得
       @tookmedicinedays = user.medicines.order(took_medicine_at: :asc).pluck('took_medicine_at')
@@ -65,8 +65,6 @@ module MedicinesHelper
       # if @tookmedicinedays.blank?
       #   @days = 0
       # end
-
-    end
   end
 
   # def took_medicine_days_straight

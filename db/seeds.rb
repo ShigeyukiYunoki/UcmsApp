@@ -7,19 +7,19 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # メインのサンプルユーザーを1人作成する
-User.create!(name: 'Example User',
-             email: 'example@rails.org',
-             seriousness: '軽症',
-             password: 'fooobbar',
-             password_confirmation: 'fooobbar',
+User.create!(name: '柚木繁之',
+             email: 'shigeuki@rails.org',
+             seriousness: '中等症',
+             password: 'password',
+             password_confirmation: 'password',
              admin: true,
              activated: true,
              activated_at: Time.zone.now)
 
 # 追加のユーザーをまとめて生成する
-99.times do |n|
+49.times do |n|
   name  = Faker::Name.name
-  email = "example-#{n + 1}@rail.org"
+  email = "#{Faker::Lorem.word}@rail.org"
   seriousness = '軽症'
   password = 'password'
   User.create!(name: name,
@@ -28,14 +28,14 @@ User.create!(name: 'Example User',
                password: password,
                password_confirmation: password,
                activated: true,
-               activated_at: Time.zone.now)
+               activated_at: 20191008)
 end
 
-users = User.order(:created_at).take(6)
-50.times do |n|
-  title = Faker::Book.title
-  content = Faker::Lorem.paragraph
-  start_time = Date.today + n - 1
+users = User.order(:created_at).take(50)
+30.times do |n|
+  title = Faker::Lorem.word
+  content = Faker::Lorem.sentence
+  start_time = Time.zone.today + n - 1
   # start_time = Faker::Date.between(from: 6.months.ago, to: 6.months.from_now)
   users.each do |user|
     user.posts.create!(title: title, content: content,

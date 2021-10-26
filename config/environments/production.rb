@@ -46,7 +46,8 @@ Rails.application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
   # config.ssl_options = { redirect: { exclude: -> request { request.path =~ /healthcheck/ } } }
-  # config.ssl_options = { redirect: { exclude: -> request { request.env['HTTP_USER_AGENT'].include?('ELB-HealthChecker') } } }
+  # config.ssl_options =
+  # { redirect: { exclude: -> request { request.env['HTTP_USER_AGENT'].include?('ELB-HealthChecker') } } }
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
@@ -93,7 +94,7 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
   if ENV['RAILS_LOG_TO_STDOUT'].present?
-    logger           = ActiveSupport::Logger.new(STDOUT)
+    logger           = ActiveSupport::Logger.new($stdout)
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
