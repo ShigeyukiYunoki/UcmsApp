@@ -16,6 +16,15 @@ AllCops:
 Rails:
   Enabled: true
 
+Rails/HelperInstanceVariable:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
+Rails/InverseOf:
+  Enabled: false
+
 Style/AndOr:
   EnforcedStyle: conditionals
 
@@ -42,3 +51,14 @@ Lint/ShadowedException:
 
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 20
+
+Metrics/AbcSize:
+  # The ABC size is a calculated magnitude, so this number can be a Fixnum or
+  # a Float.
+  Max: 20
