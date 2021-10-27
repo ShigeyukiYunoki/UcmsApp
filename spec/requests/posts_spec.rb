@@ -13,22 +13,22 @@ RSpec.describe 'Posts', type: :request do
       # 正常に200レスポンスを返すこと
       it 'responds successfully and returns a 200 response' do
         log_in_as @user
-        get "/posts/#{@user.id}/index?start_date=#{Date.today.strftime('%Y-%m-%d')}&post_index=1"
+        get "/posts/#{@user.id}/index?start_date=#{Time.zone.today.strftime('%Y-%m-%d')}&post_index=1"
         aggregate_failures do
           expect(response).to be_successful
           expect(response).to have_http_status '200'
         end
-        get "/posts/#{@other_user.id}/index?start_date=#{Date.today.strftime('%Y-%m-%d')}&post_index=1"
+        get "/posts/#{@other_user.id}/index?start_date=#{Time.zone.today.strftime('%Y-%m-%d')}&post_index=1"
         aggregate_failures do
           expect(response).to be_successful
           expect(response).to have_http_status '200'
         end
-        get "/posts/#{@user.id}/index?start_date=#{Date.today.strftime('%Y-%m-%d')}&post_index=0"
+        get "/posts/#{@user.id}/index?start_date=#{Time.zone.today.strftime('%Y-%m-%d')}&post_index=0"
         aggregate_failures do
           expect(response).to be_successful
           expect(response).to have_http_status '200'
         end
-        get "/posts/#{@other_user.id}/index?start_date=#{Date.today.strftime('%Y-%m-%d')}&post_index=0"
+        get "/posts/#{@other_user.id}/index?start_date=#{Time.zone.today.strftime('%Y-%m-%d')}&post_index=0"
         aggregate_failures do
           expect(response).to be_successful
           expect(response).to have_http_status '200'
@@ -39,12 +39,12 @@ RSpec.describe 'Posts', type: :request do
     context 'as a guest' do
       # 302レスポンスを返し、ログインページにリダイレクトすること
       it 'returns a 302 response and redirect to login_path' do
-        get "/posts/1/index?start_date=#{Date.today.strftime('%Y-%m-%d')}&post_index=1"
+        get "/posts/1/index?start_date=#{Time.zone.today.strftime('%Y-%m-%d')}&post_index=1"
         aggregate_failures do
           expect(response).to have_http_status '302'
           expect(response).to redirect_to login_path
         end
-        get "/posts/1/index?start_date=#{Date.today.strftime('%Y-%m-%d')}&post_index=0"
+        get "/posts/1/index?start_date=#{Time.zone.today.strftime('%Y-%m-%d')}&post_index=0"
         aggregate_failures do
           expect(response).to have_http_status '302'
           expect(response).to redirect_to login_path

@@ -5,7 +5,7 @@ module CreatePostSupport
     click_on '日記をかく'
     fill_in 'タイトル', with: post.title
     fill_in '投稿内容', with: post.content
-    attach_file 'post[image]', "#{Rails.root}/spec/factories/kitten.jpg"
+    attach_file 'post[image]', Rails.root.join('spec/factories/kitten.jpg')
     click_button '投稿'
   end
 end
