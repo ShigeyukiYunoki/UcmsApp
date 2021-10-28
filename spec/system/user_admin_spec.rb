@@ -40,7 +40,6 @@ RSpec.describe 'UserAdmin', type: :system, js: true do
     create(:user, activated: false, activated_at: nil)
     create(:user)
     sign_in_as(activated)
-    expect(page).to have_content 'Good job!'
     visit users_path
     expect(page).to_not have_content non_activated.name
     click_on 'ログアウト'

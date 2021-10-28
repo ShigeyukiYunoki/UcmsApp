@@ -10,6 +10,7 @@ RSpec.describe 'Comments', type: :system, js: true do
     aggregate_failures do
       sign_in_as(user)
       visit post_path(post)
+      expect(current_path).to eq post_path(post)
       expect do
         fill_in 'comment[content]', with: 'content'
         # find('#comment_post_id', visible: false).set(@post.id)

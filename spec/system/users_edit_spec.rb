@@ -4,8 +4,9 @@ RSpec.describe 'UsersEdit', type: :system, js: true do
   # ログイン前にユーザー編集画面にアクセスするとログイン後にユーザー編集画面にアクセスする
   scenario 'successful edit with friendly forwarding' do
     user = create(:user)
-    visit edit_user_path(user)
     sign_in_as(user)
+    visit edit_user_path(user)
+    expect(current_path).to eq edit_user_path(user)
     aggregate_failures do
       expect(current_path).to eq edit_user_path(user)
       # ユーザー情報が編集されて正しく表示されているか

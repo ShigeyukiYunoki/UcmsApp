@@ -10,9 +10,12 @@ RSpec.describe 'PostsInterfaces', type: :system, js: true do
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
     click_button 'ログイン'
-    expect(page).to have_current_path user_path(user)
+    expect(current_path).to eq user_path(user)
     find('.swal-button--gotit').click
+    expect(page).to have_content('Good job!')
+    click_on 'OK'
     visit top_path
+    expect(current_path).to eq top_path
     click_on '日記をかく'
     aggregate_failures do
       expect do
@@ -38,6 +41,7 @@ RSpec.describe 'PostsInterfaces', type: :system, js: true do
     user = create(:user)
     sign_in_as(user)
     visit top_path
+    # expect(current_path).to eq top_path
     click_on '日記をかく'
     aggregate_failures do
       expect do
@@ -55,6 +59,7 @@ RSpec.describe 'PostsInterfaces', type: :system, js: true do
     user = create(:user)
     sign_in_as(user)
     visit top_path
+    expect(current_path).to eq top_path
     click_on '日記をかく'
     aggregate_failures do
       page.accept_confirm('アップロード可能なファイルサイズは5MBまでです。より小さいサイズのファイルを選んでください。') do
@@ -74,11 +79,11 @@ RSpec.describe 'PostsInterfaces', type: :system, js: true do
     sign_in_as(user)
     create_post(post)
     expect(page).to have_content '投稿完了！'
+    expect(current_path).to eq top_path
     expect do
       page.accept_confirm do
         click_on '削除', match: :first
       end
-      expect(page).to have_current_path top_path
       expect(page).to have_content '削除しました'
     end.to change(user.posts, :count).by(-1)
   end
