@@ -93,7 +93,7 @@ jobs:
           path: /tmp/test-results
       - add_ssh_keys:
           fingerprints:
-            - "50:59:b8:2d:5d:bd:5a:27:43:17:68:c9:16:ab:35:f5"
+            - "18:e0:6f:02:6f:32:95:a2:04:1d:45:b3:f3:a9:e9:a1"
       - deploy:
           name: Capistrano deploy
           command: bundle exec cap production deploy
