@@ -36,7 +36,7 @@ server '35.73.129.65', user: 'shige888', roles: %w[web nginx]
 #
 # Global options
 set :ssh_options, {
-  keys: %w[~/.ssh/ucmsapp_key_rsa],
+  keys: %w[~/.ssh/id_rsa],
   forward_agent: true,
   auth_methods: %w[publickey]
 }
