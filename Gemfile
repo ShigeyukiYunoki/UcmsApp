@@ -76,10 +76,14 @@ group :development, :test do
 
   gem "capistrano", "~> 3.10", require: false
   gem "capistrano-rails", "~> 1.6", require: false
+  gem 'capistrano-rails-collection'
+  gem 'capistrano-rails-console'
+  gem 'capistrano-rake'
   gem 'capistrano-bundler'
   gem 'capistrano-rbenv', '~> 2.2'
   gem 'capistrano-rbenv-vars', '~> 0.1'
   gem 'capistrano3-puma'
+  gem 'capistrano-sidekiq', '1.0.2'
   gem 'ed25519'
   gem 'bcrypt_pbkdf'
 end
