@@ -36,6 +36,7 @@ server '35.73.129.65', user: 'shige888', roles: %w[web nginx]
 #
 # Global options
 set :ssh_options, {
+  # Docker上で認識され、CapistranoがサーバへSSHログイン可能になり、サーバへデプロイされる
   keys: %w[~/.ssh/id_rsa_18e06f026f3295a2041d45b3f3a9e9a1],
   forward_agent: true,
   auth_methods: %w[publickey]
