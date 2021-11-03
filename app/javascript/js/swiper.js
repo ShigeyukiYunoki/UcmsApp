@@ -2,7 +2,7 @@
 import Swiper from "swiper/bundle";
 
 // init Swiper:
-document.addEventListener("turbolinks:load", function () {
+window.addEventListener("turbolinks:load", function () {
   const mySwiper1 = new Swiper(".swiper1", {
     // Optional parameters
     loop: true,
