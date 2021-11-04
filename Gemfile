@@ -64,6 +64,8 @@ gem 'active_storage_validations'
 
 gem 'aws-sdk-s3', require: false
 
+gem 'aws-sdk-rails'
+
 group :development, :test do
   # Use pg as the database for Active Record
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
