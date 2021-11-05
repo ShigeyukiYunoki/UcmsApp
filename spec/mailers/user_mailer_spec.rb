@@ -11,7 +11,7 @@ RSpec.describe UserMailer, type: :mailer do
     end
 
     it 'sends from the support email address' do
-      expect(mail.from).to eq ['noreply@example.com']
+      expect(mail.from).to eq ['noreply@www.ucmsapp.com']
     end
 
     it 'sends with the correct subject' do
@@ -31,7 +31,7 @@ RSpec.describe UserMailer, type: :mailer do
     end
 
     it 'sends from the support email address' do
-      expect(mail.from).to eq ['noreply@example.com']
+      expect(mail.from).to eq ['noreply@www.ucmsapp.com']
     end
 
     it 'sends with the correct subject' do
