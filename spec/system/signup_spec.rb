@@ -21,7 +21,7 @@ RSpec.describe 'Signup', type: :system, js: true do
       # @user.activation_digest = User.digest(@user.activation_token)
       mail = ActionMailer::Base.deliveries.last
       expect(mail.to).to eq ['kou@example.com']
-      expect(mail.from).to eq ['noreply@example.com']
+      expect(mail.from).to eq ['noreply@www.ucmsapp.com']
       expect(mail.subject).to eq 'アカウントの有効化'
       expect(mail.html_part.body).to match 'Ucmsappにようこそ！下記のlinkをクリックしてアカウントを有効化してください。'
       expect(mail.html_part.body).to match 'Activate'
