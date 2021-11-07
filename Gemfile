@@ -96,6 +96,9 @@ group :development do
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  gem 'rails-erd'
+  # bundle exec erd --title=UcmsAppER図 --filename=UcmsAppER --attributes=content,primary_keys,foreign_keys --direct=true
 end
 
 group :test do

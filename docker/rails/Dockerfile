@@ -5,7 +5,7 @@ echo 'deb http://dl.yarnpkg.com/debian/ stable main' > /etc/apt/sources.list.d/y
 
 RUN set -x && apt-get update -qq && \
 apt-get install -yq build-essential libpq-dev vim \
-yarn postgresql-client locales locales-all \
+yarn postgresql-client locales locales-all graphviz \
 nodejs npm && npm install n -g && n 14.16.1
 # 単一のRUNコマンドにおいて2つのシェルコマンドをチェーンすることで、結果として得られるイメージでレイヤ数を減らす
 # いずれにしても必要以上にレイヤを使わないよう習慣付けるのは望ましい、
