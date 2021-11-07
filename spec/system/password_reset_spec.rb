@@ -22,7 +22,7 @@ RSpec.describe 'PasswordReset', type: :system, js: true do
       expect(current_path).to eq top_path
       mail = ActionMailer::Base.deliveries.last
       expect(mail.to).to eq [user.email]
-      expect(mail.from).to eq ['noreply@example.com']
+      expect(mail.from).to eq ['noreply@www.ucmsapp.com']
       expect(mail.subject).to eq 'パスワードの再設定'
       expect(mail.html_part.body).to match 'パスワードをリセットするには下記のlinkをクリックしてください。'
       expect(mail.html_part.body).to match 'Reset password'
