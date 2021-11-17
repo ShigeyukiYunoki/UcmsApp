@@ -36,7 +36,8 @@ RUN bundle install
 
 # ホストのアプリケーションディレクトリ内をすべてコンテナにコピー
 COPY . $APP_ROOT
-# RUN bundle exec rails webpacker:compile
+# RUN bundle exec rails webpacker:compile Procfile.devでrails sと同時に
+# webpacker:  ./bin/webpack-dev-serverが走るため不要
 # RUN bundle exec rails assets:precompile RAILS_ENV=production
 
 # Add a script to be executed every time the container starts.
