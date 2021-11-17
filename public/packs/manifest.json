@@ -1,0 +1,35 @@
+{
+  "application.js": "/packs/js/application-e45380062abc85d3c2d3.js",
+  "application.js.map": "/packs/js/application-e45380062abc85d3c2d3.js.map",
+  "entrypoints": {
+    "application": {
+      "js": [
+        "/packs/js/application-e45380062abc85d3c2d3.js"
+      ],
+      "js.map": [
+        "/packs/js/application-e45380062abc85d3c2d3.js.map"
+      ]
+    },
+    "today": {
+      "js": [
+        "/packs/js/today-e98b9ed5440331cd0f4d.js"
+      ],
+      "js.map": [
+        "/packs/js/today-e98b9ed5440331cd0f4d.js.map"
+      ]
+    }
+  },
+  "media/images/2030.png": "/packs/media/images/2030-8455de10de52c51e48a3b2f811bb1c64.png",
+  "media/images/anger.png": "/packs/media/images/anger-de9d5530ee95d6179701c8e0dc11e6b2.png",
+  "media/images/brainmaker.png": "/packs/media/images/brainmaker-24130f5fe093052817a6acc583af7b9a.png",
+  "media/images/common.29.png": "/packs/media/images/common.29-ed6885641cb9f26e0745a9a9deac0899.png",
+  "media/images/greatful.png": "/packs/media/images/greatful-e86335f2e5f2dfbebee0e85ec2c35784.png",
+  "media/images/hope.png": "/packs/media/images/hope-d617b9f44f3a0b7f1ea0ea5d2dcc7f34.png",
+  "media/images/logo.png": "/packs/media/images/logo-e7064b817068afaf9e9348d76b7daa8e.png",
+  "media/images/medicinealert.gif": "/packs/media/images/medicinealert-40ada97381d76a771b36c1a037d2c749.gif",
+  "media/images/selfcomp.png": "/packs/media/images/selfcomp-b447a69a839c1fcdbcec355d8cb1cda0.png",
+  "media/images/taberukototo.png": "/packs/media/images/taberukototo-dcb9de0c048375391b665131b6968a2f.png",
+  "media/images/tyoyo.png": "/packs/media/images/tyoyo-06f79a6a4913cb18f8482e5324b5beb9.png",
+  "today.js": "/packs/js/today-e98b9ed5440331cd0f4d.js",
+  "today.js.map": "/packs/js/today-e98b9ed5440331cd0f4d.js.map"
+}
