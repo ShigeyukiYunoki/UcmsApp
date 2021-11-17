@@ -9,7 +9,7 @@ RSpec.describe 'TopLayout', type: :system, js: true do
 
     visit top_path
     aggregate_failures do
-      expect(page).to have_link 'Ucmsappとは'
+      expect(page).to have_link 'UcmsAppとは'
       expect(page).to have_link 'ログイン'
       expect(page).to have_link '新規登録'
 
@@ -21,7 +21,7 @@ RSpec.describe 'TopLayout', type: :system, js: true do
       expect(page).to have_link user.name
       expect(page).to have_link user1.name
       expect(page).to have_link user2.name
-      expect(page).to have_link 'Ucmsappとは'
+      expect(page).to have_link 'UcmsAppとは'
       expect(page).to have_link 'ユーザー一覧'
       expect(page).to have_link 'ログアウト'
       # フォローしているユーザーのpostが表示されているか
