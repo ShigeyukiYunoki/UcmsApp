@@ -13,13 +13,14 @@
 
       <!-- <h1 class="py-5">たまには立ち止まりつつ前向きに生きて行きたい人が集まるSNS</h1> -->
 
-      <section class="row mb-md-5">
-        <div class="col-md-6 order-md-2">
+      <section class="mb-5">
+        <div>
           <h2>毎日の服薬を忘れず習慣化しましょう！</h2>
-          <h3>寛解を維持するには毎日の服薬が大切です。<br>忘れないようにアラートでサポートします！</h3>
+          <h3 class="py-4">寛解を維持するには毎日の服薬が大切です。<br>忘れないようにアラートでサポートします！</h3>
         </div>
-        <div class="col-md-6 order-md-1">
-          <%= image_pack_tag "medicinealert.gif", class:"img-fluid", alt:"alert gif" %>
+        <div>
+          <!-- <img src="medicinealert.gif" onclick="this.setAttribute('src', this.getAttribute('src').replace(/_play.gif$/g, '.gif'));" style="cursor: pointer;"> -->
+          <%= image_pack_tag "noloopmedicine_alert.gif", class:"img-fluid", alt:"alert gif", loop:"false" %>
         </div>
       </section>
 
