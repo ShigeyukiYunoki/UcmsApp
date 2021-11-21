@@ -12,6 +12,7 @@ end
 Capybara.javascript_driver = :selenium_chrome
 
 RSpec.configure do |config|
+  # 下記3行を無効にし、js:trueをspec側で無効にするとchromeが立ち上がる
   config.before(:each, type: :system) do
     driven_by :rack_test
   end

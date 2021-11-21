@@ -7,7 +7,6 @@ jobs:
     working_directory: ~/UcmsApp1 # 実行ディレクトリを設定する。デフォルトは ~/project
     environment:
       - TZ: Asia/Tokyo
-      - LANG: ja_JP.UTF-8
     docker: # CI環境にDockerを利用する場合の設定
       # CircleCIは、次世代言語イメージに対していくつかのバリアントを用意しています。
       # これらのバリアントを使用するには、以下のサフィックスの 1つをイメージタグの末尾に追加します。
