@@ -89,8 +89,13 @@ jobs:
       - run:
           name: Rubocop
           command: bundle exec rubocop -A
+      # テスト結果の保存(CircleCI上で見れる)
       - store_test_results:
           path: /tmp/test-results
+          destination: test-results
+      - store_artifacts:
+          path: tmp/screenshots
+          destination: test-screenshots
       - add_ssh_keys:
           fingerprints:
             - "18:e0:6f:02:6f:32:95:a2:04:1d:45:b3:f3:a9:e9:a1"
