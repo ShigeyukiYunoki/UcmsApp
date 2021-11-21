@@ -6,8 +6,11 @@
 
           <%= gravatar_for @user, 150 %>
           <h3 class="my-3"><%= @user.name %></h3>
-          <h2>連続服薬日数</h2>
+          <h2>現在の連続服薬日数</h2>
           <p class="display-3 text-primary mx-auto"><%= @days %></p>
+
+          <h2>最高連続服薬記録</h2>
+          <p class="display-3 text-primary mx-auto"><%= @max_days %></p>
 
         </section>
 
@@ -59,6 +62,19 @@
 <aside class="text-center">
   <%= gravatar_for @user, 150 %>
   <h3 class="my-3"><%= @user.name %></h3>
+
+  <h3>現在の連続服薬日数</h3>
+  <p class="display-3 text-primary"><%= @days %></p>
+
+  <h3>最高連続服薬記録</h3>
+  <p class="display-3 text-primary"><%= @max_days %></p>
+
+  <div class="mb-3">
+    <%= link_to "/posts/#{@user.id}/index?start_date=#{Date.today.strftime("%Y-%m-%d")}&post_index=1", data: {"turbolinks" => false}, class: "btn btn-success btn-block", method: :get do %>
+      <i class="far fa-calendar-alt fa-lg mr-xs-3"></i>
+      カレンダーで服薬記録をみる
+    <% end %>
+  </div>
 
   <h4><%= @user.email %></h4>
   <h4 class="my-3"><%= @user.seriousness %></h4>
