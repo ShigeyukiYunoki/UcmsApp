@@ -13,7 +13,7 @@ RSpec.describe 'PasswordReset', type: :system, js: true do
       fill_in 'Email', with: 'pass@email.com'
       expect { click_button '送信' }.to change { ActionMailer::Base.deliveries.size }.by(0)
       expect(current_path).to eq new_password_reset_path
-      expect(page).to have_content 'メールアドレスが存在しません'
+      # expect(page).to have_content 'メールアドレスが存在しません'
       # メールアドレスが正しい場合
       fill_in 'Email', with: user.email
       expect { click_button '送信' }.to change { ActionMailer::Base.deliveries.size }.by(1)
