@@ -9,7 +9,6 @@ RSpec.describe 'TopLayout', type: :system, js: true do
 
     visit top_path
     aggregate_failures do
-      expect(page).to have_link 'UcmsAppとは'
       expect(page).to have_link 'ログイン'
       expect(page).to have_link '新規登録'
 
