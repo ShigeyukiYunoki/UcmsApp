@@ -33,8 +33,8 @@
         <div class="row">
           <strong class="col-sm-6">
             <ul class="user-tabs">
-              <li class="active"><%= link_to "投稿 (#{@user.posts.count})", "/users/#{@user.id}", data: {"turbolinks" => false} %></li>
-              <li><%= link_to "いいね! (#{@user.liked_posts.count})", "/users/#{@user.id}/likes", data: {"turbolinks" => false} %></li>
+              <li class="active"><%= link_to "投稿 (#{@user.posts.count})", "/users/#{@user.id}", data: {"turbolinks" => false}, class: "none-deco" %></li>
+              <li><%= link_to "いいね! (#{@user.liked_posts.count})", "/users/#{@user.id}/likes", data: {"turbolinks" => false}, class: "none-deco" %></li>
             </ul>
           </strong>
           <div class="col-sm-6 m-auto">
