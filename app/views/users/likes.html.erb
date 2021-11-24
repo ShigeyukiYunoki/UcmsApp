@@ -8,7 +8,8 @@
           <h3 class="my-3"><%= @user.name %></h3>
           <h2>連続服薬日数</h2>
           <p class="display-3 text-primary mx-auto"><%= @days %></p>
-
+          <h2>最高連続服薬記録</h2>
+          <p class="display-3 text-primary mx-auto"><%= @max_days %></p>
         </section>
 
         <h4><%= @user.email %></h4>
@@ -31,14 +32,14 @@
       <div class="row">
         <strong class="col-sm-6">
           <ul class="user-tabs">
-            <li><%= link_to "投稿 (#{@user.posts.count})", @user , data: {"turbolinks" => false} %></li>
-            <li class="active"><%= link_to "いいね! (#{@user.liked_posts.count})", like_path(@user), data: {"turbolinks" => false} %></li>
+            <li><%= link_to "投稿 (#{@user.posts.count})", @user , data: {"turbolinks" => false}, class: "none-deco" %></li>
+            <li class="active"><%= link_to "いいね! (#{@user.liked_posts.count})", like_path(@user), data: {"turbolinks" => false}, class: "none-deco" %></li>
           </ul>
         </strong>
         <div class="col-sm-6 m-auto">
           <%= link_to "/posts/#{@user.id}/index?start_date=#{Date.today.strftime("%Y-%m-%d")}&post_index=1", data: {"turbolinks" => false}, class: "btn btn-success btn-block", method: :get do %>
             <i class="far fa-calendar-alt fa-lg mr-xs-3"></i>
-            カレンダーでみる
+            カレンダーで服薬記録をみる
           <% end %>
         </div>
       </div>

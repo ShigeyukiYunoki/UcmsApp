@@ -4,12 +4,9 @@
       <section class="mx-auto">
 
         <%= gravatar_for @user, 150 %>
-        <h3 class="my-3"><%= @user.name %></h3>
-
-        <span><%= link_to "プロフィール", @user, data: {"turbolinks" => false} %></span>
-        <span>
-          <b>投稿:</b>
-          <%= @user.posts.count %></span>
+        <h3 class="my-3">
+          <%= link_to @user.name, @user, data: {"turbolinks" => false}, class: "none-deco" %>
+        </h3>
 
       </section>
 
