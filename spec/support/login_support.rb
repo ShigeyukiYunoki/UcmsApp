@@ -6,7 +6,7 @@ module LoginSupport
     find('#login').click
     expect(current_path).to eq user_path(user)
     find('.swal-button--gotit').click
-    expect(page).to have_content('Good job!')
+    # expect(page).to have_content('Good job!')
     # click_on 'OK'
   end
 end
