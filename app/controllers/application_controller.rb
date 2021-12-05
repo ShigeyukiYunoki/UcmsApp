@@ -29,7 +29,9 @@ class ApplicationController < ActionController::Base
     request.body = params.as_json.to_json
     response = http.request(request)
     puts response.body
+  end
 
+  def notification_mail
     params = { 'app_id' => 'd56a3bea-3546-4901-b800-7f4f107b842b',
                'email_subject' => '服薬の時間ですよ！',
                'email_body' => "<html><head>UcmsApp</head>

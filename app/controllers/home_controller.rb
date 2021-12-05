@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   before_action :medicine
   before_action :notification
+  before_action :notification_mail
   before_action :afternotification, only: [:top]
 
   def top; end
