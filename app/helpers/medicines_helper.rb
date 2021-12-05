@@ -1,7 +1,7 @@
 module MedicinesHelper
   def took_medicine
     @current_user = current_user
-    gon.user = @currnet_user
+    gon.user = @current_user
     @now = Time.now.strftime('%H:%M')
     gon.now = @now
 

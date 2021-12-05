@@ -14,7 +14,7 @@
         <p class="display-3 text-primary"><%= @max_days %></p>
       </section>
 
-      <h4><%= current_user.email %></h4>
+      <!-- <h4><%= current_user.email %></h4> -->
       <h4 class="my-3"><%= current_user.seriousness %></h4>
 
       <%= link_to edit_user_path(current_user), data: {"turbolinks" => false}, class: "btn btn-outline-primary",method: :get do %>
