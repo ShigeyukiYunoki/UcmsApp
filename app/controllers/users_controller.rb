@@ -5,9 +5,9 @@ class UsersController < ApplicationController
   before_action :ensure_correct_user, only: %i[edit update]
   before_action :admin, only: :destroy
   before_action :medicine
-  before_action :notification
-  before_action :notification_mail
   before_action :set_q, only: %i[index search]
+  # before_action :notification
+  # before_action :notification_mail
 
   def index
     @users = User.where(activated: true).page(params[:page]).per(30).order(id: :asc)
@@ -128,7 +128,7 @@ class UsersController < ApplicationController
     @users = @user.followers.page(params[:page])
     render 'show_follow'
   end
-  
+
   # before_action
 
   def ensure_correct_user
