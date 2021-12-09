@@ -11,22 +11,10 @@ class ApplicationController < ActionController::Base
     # end
   end
 
-  def timer(arg, &_proc)
-    x = case arg
-    when Numeric then arg
-    when Time    then arg - Time.zone.now
-    when String  then Time.zone.parse(arg) - Time.zone.now
-    else raise   end
-
-    # sleep x if block_given?
-    yield
-  end
-
   def medicine_mail
-    if @gonnatake
-      timer(Time.parse(@gonnatake)) do
-        MedicineMailer.take_medicine(current_user).deliver_now
-      end
+    @current_user = current_user
+    if @gonnatake && Time.zone.now.strftime('%H:%M') == @gonnatake
+      MedicineMailer.take_medicine(@current_user).deliver_now
     end
   end
 
