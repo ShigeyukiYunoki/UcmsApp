@@ -3,18 +3,18 @@
 lock '3.16.0'
 
 # Capistranoのログの表示に利用
-set :application, "UcmsApp1"
+set :application, 'UcmsApp1'
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/var/www/UcmsApp1"
+set :deploy_to, '/var/www/UcmsApp1'
 
 # どのリポジトリからアプリをpullするかを指定
-set :repo_url, "git@github.com:shige8/UcmsApp1.git"
+set :repo_url, 'git@github.com:shige8/UcmsApp1.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 set :rbenv_ruby, File.read('.ruby-version').strip
 # 下記があればブランチを指定できる。指定無ければ"master"に。bundle exec cap production deploy BRANCH=hoge
-set :branch, ENV['BRANCH'] || "master"
+set :branch, ENV['BRANCH'] || 'master'
 
 # Nginxの設定ファイル名と置き場所を修正
 # set :nginx_config_name, "#{fetch(:application)}.conf"
@@ -37,7 +37,8 @@ set :pty, true
 # append :linked_files, "config/master.key"
 
 # Default value for linked_dirs is []
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "node_modules", 'vendor/bundle', 'public/uploads'
+append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system', 'node_modules', 'vendor/bundle',
+       'public/uploads'
 
 set :rbenv_type, :user
 set :rbenv_ruby, '2.7.1'
@@ -64,3 +65,7 @@ set :keep_releases, 5
 # どの公開鍵を利用してデプロイするか
 set :ssh_options, auth_methods: ['publickey'],
                   keys: ['~/.ssh/myapp-key.pem']
+
+# 本番環境にcronの値をセット
+set :whenever_command, 'bundle exec whenever'
+require 'whenever/capistrano'

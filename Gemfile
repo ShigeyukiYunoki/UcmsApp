@@ -33,6 +33,8 @@ gem 'rakuten_web_service'
 
 gem 'dotenv-rails'
 
+gem 'whenever'
+
 # gem 'onesignal-ruby'
 
 # gem 'rack'
