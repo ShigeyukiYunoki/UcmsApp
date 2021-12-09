@@ -23,7 +23,7 @@ RSpec.describe 'Signup', type: :system, js: true do
       expect(mail.to).to eq ['kou@example.com']
       expect(mail.from).to eq ['noreply@www.ucmsapp.com']
       expect(mail.subject).to eq 'アカウントの有効化'
-      expect(mail.html_part.body).to match 'Ucmsappにようこそ！下記のlinkをクリックしてアカウントを有効化してください。'
+      expect(mail.html_part.body).to match 'UcmsAppにようこそ！下記のLinkをクリックしてアカウントを有効化してください。'
       expect(mail.html_part.body).to match 'Activate'
       # expect(mail.html_part.body).to match user.activation_token
       # token = user.activation_token

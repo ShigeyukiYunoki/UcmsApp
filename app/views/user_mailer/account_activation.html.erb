@@ -3,7 +3,7 @@
 <h3>こんにちは<%= @user.name %>さん！</h3>
 
 <h2>
-  UcmsAppにようこそ！下記のlinkをクリックしてアカウントを有効化してください。
+  UcmsAppにようこそ！下記のLinkをクリックしてアカウントを有効化してください。
 </h2>
 
 <%= link_to "Activate", edit_account_activation_url(@user.activation_token, email: @user.email) %>

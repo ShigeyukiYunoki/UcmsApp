@@ -24,7 +24,7 @@ RSpec.describe 'PasswordReset', type: :system do
       expect(mail.to).to eq [user.email]
       expect(mail.from).to eq ['noreply@www.ucmsapp.com']
       expect(mail.subject).to eq 'パスワードの再設定'
-      expect(mail.html_part.body).to match 'パスワードをリセットするには下記のlinkをクリックしてください。'
+      expect(mail.html_part.body).to match 'パスワードをリセットするには下記のLinkをクリックしてください。'
       expect(mail.html_part.body).to match 'Reset password'
       # expect(mail.html_part.body).to match user.reset_token
       # def reset_url(mail)
