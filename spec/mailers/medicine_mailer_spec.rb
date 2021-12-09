@@ -11,10 +11,5 @@ RSpec.describe MedicineMailer, type: :mailer do
       expect(mail.to).to eq([user.email])
       expect(mail.from).to eq(["noreply@www.ucmsapp.com"])
     end
-
-    it "renders the body" do
-      expect(mail.body.encoded).to match("下記Linkをクリックして、服薬を記録しましょう！")
-    end
   end
-
 end
