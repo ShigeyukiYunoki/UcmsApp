@@ -67,5 +67,5 @@ set :ssh_options, auth_methods: ['publickey'],
                   keys: ['~/.ssh/myapp-key.pem']
 
 # 本番環境にcronの値をセット
-set :whenever_command, 'bundle exec whenever'
-require 'whenever/capistrano'
+# set :whenever_command, 'bundle exec whenever'
+# require 'whenever/capistrano'
