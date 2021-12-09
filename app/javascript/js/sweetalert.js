@@ -48,12 +48,6 @@ set_csrftoken();
 var date = new Date();
 var today = format(date, "yyyy年MM月dd日");
 
-// OneSignal.push(function () {
-//   OneSignal.getUserId().then(function (userId) {
-//     console.log("OneSignal User ID:", userId);
-//   });
-// });
-
 if (gon.user) {
   if (today === gon.medicine || gon.noexist !== null) {
     console.log(gon.medicine);
