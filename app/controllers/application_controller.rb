@@ -13,9 +13,9 @@ class ApplicationController < ActionController::Base
 
   def medicine_mail
     @current_user = current_user
-    if @gonnatake && Time.zone.now.strftime('%H:%M') == @gonnatake
-      MedicineMailer.take_medicine(@current_user).deliver_now
-    end
+    return unless @gonnatake && Time.zone.now.strftime('%H:%M') == @gonnatake
+
+    MedicineMailer.take_medicine(@current_user).deliver_now
   end
 
   # def notification
