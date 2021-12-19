@@ -48,6 +48,15 @@ set_csrftoken();
 var date = new Date();
 var today = format(date, "yyyy年MM月dd日");
 
+// dockerコンテナ内のprecompileで解決したため不要に
+// メールで服薬通知ができるようになったため、不要だがなぜかOneSignalのエラーがでて、
+// かつスマホだけjqueryが反応しなくなったため、入れておく
+// OneSignal.push(function () {
+//   OneSignal.getUserId().then(function (userId) {
+//     console.log("OneSignal User ID:", userId);
+//   });
+// });
+
 if (gon.user) {
   if (today === gon.medicine || gon.noexist !== null) {
     console.log(gon.medicine);

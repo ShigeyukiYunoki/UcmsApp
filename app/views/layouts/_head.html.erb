@@ -2,7 +2,10 @@
 <%= csp_meta_tag %>
 <%= include_gon(:init => true) %>
 
+<!-- // メールで服薬通知ができるようになったため、不要だがなぜかOneSignalのエラーがでて、
+// かつスマホだけjqueryが反応しなくなったため、入れておく。OneSignalで通知は切ってある -->
 <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<!-- ucms_app_railsコンテナ内でassets:precompileをすると下記がなくても大丈夫に！ -->
 <!-- <script>
   window.OneSignal = window.OneSignal || [];
   OneSignal.push(function() {
