@@ -59,10 +59,10 @@ OneSignal.push(function () {
 });
 
 if (gon.user) {
-  if (today === gon.medicine || gon.noexist !== null) {
+  if (today === gon.medicine || gon.medicine) {
     console.log(gon.medicine);
-  };
-  if (gon.gonnatake && gon.gft <= gon.njt || !gon.gonnatake) {
+  } else if (today !== gon.medicine) {
+    if (gon.gonnatake && gon.gft <= gon.njt || !gon.gonnatake) {
     document.addEventListener("turbolinks:load", () => {
       // $.delete("../../medicines")が効かないため、root_pathでgon.noexistを削除
       $.get("../../");
@@ -175,6 +175,7 @@ if (gon.user) {
         }
       });
     });
-  } 
+  }
+  }
   console.log(gon.gonnatake);
 }
