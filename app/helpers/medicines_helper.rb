@@ -21,12 +21,11 @@ module MedicinesHelper
     end
 
     @medicineslast = current_user.medicines.last
-    @gonnatake_just_time = @medicineslast.gonna_take_medicine_at
     gon.gft = time?(@gonnatake_just_time)
     if @medicineslast && current_user.medicines.where.not(gonna_take_medicine_at: nil).last
       @gonnatake = @medicineslast.gonna_take_medicine_at.strftime('%H:%M')
       gon.gonnatake = @gonnatake
-
+      @gonnatake_just_time = @medicineslast.gonna_take_medicine_at
     end
 
     @no = current_user.medicines.where(took_medicine_at: nil).last
