@@ -7,8 +7,8 @@ class UsersController < ApplicationController
   before_action :medicine
   before_action :set_q, only: %i[index search]
   # before_action :medicine_mail
-  # before_action :notification
-  before_action :notification_mail
+  before_action :notification
+  # before_action :notification_mail
 
   def index
     @users = User.where(activated: true).page(params[:page]).per(30).order(id: :asc)

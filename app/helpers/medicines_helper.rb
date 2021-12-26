@@ -1,9 +1,16 @@
 module MedicinesHelper
+  def time?(time)
+    time&.strftime('%H%M').to_i
+    # [*0..459, *2300..2359].include?(num)
+  end
+
   def took_medicine
     @current_user = current_user
     gon.user = @current_user
     @now = Time.now.strftime('%H:%M')
     gon.now = @now
+    @now_just_time = time?(Time.zone.now)
+    gon.njt = @now_just_time
 
     return unless logged_in?
 
@@ -14,17 +21,20 @@ module MedicinesHelper
     end
 
     @medicineslast = current_user.medicines.last
+    @gonnatake_just_time = @medicineslast.gonna_take_medicine_at
+    gon.gft = time?(@gonnatake_just_time)
     if @medicineslast && current_user.medicines.where.not(gonna_take_medicine_at: nil).last
       @gonnatake = @medicineslast.gonna_take_medicine_at.strftime('%H:%M')
       gon.gonnatake = @gonnatake
+
     end
 
     @no = current_user.medicines.where(took_medicine_at: nil).last
     gon.noexist = @no
-    # if @no
+    # return unless @no
+    #
     #   @noid = @no.id
     #   gon.noid = @noid
-    # end
   end
 
   def tookmedicines(user)

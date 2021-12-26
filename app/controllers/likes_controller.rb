@@ -1,8 +1,7 @@
 class LikesController < ApplicationController
   before_action :authenticate_user
   before_action :medicine
-  # before_action :medicine_mail
-  before_action :notification_mail
+  before_action :notification
 
   def create
     @like = Like.new(

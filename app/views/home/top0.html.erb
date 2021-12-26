@@ -6,7 +6,7 @@
 
         <%= gravatar_for current_user, 150 %>
         <h3 class="my-3"><%= link_to current_user.name, "/users/#{current_user.id}", data: {"turbolinks" => false}, class: "none-deco"%></h3>
-
+        <%= link_to '今日の服薬完了！', root_path, data: {"turbolinks" => false}, class: "btn btn-primary btn-block mb-3" %>
         <h2>現在の連続服薬日数</h2>
         <p class="display-3 text-primary"><%= @days %></p>
 

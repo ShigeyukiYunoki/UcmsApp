@@ -44,7 +44,7 @@
 # 機能一覧
 - ユーザー登録・ログイン機能
 - 服薬アラート機能(SweetAlert,gon)
-- 服薬メール通知機能
+- 服薬プッシュ通知機能(OneSignal)
 - 画像検索機能（rakuten_web_service）
 - フォロー機能（Ajax)
 - いいね！機能（Ajax)

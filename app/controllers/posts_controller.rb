@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   # before_action :ensure_correct_user_for_new, {only:[:new,:create]}
   before_action :medicine, only: %i[index new show edit]
   # before_action :medicine_mail
-  before_action :notification_mail
+  before_action :notification
 
   def index
     @user = User.find(params[:user_id])
