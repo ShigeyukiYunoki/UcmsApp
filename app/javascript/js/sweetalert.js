@@ -62,7 +62,7 @@ if (gon.user) {
   if (today === gon.medicine || gon.noexist !== null) {
     console.log(gon.medicine);
   };
-  if (gon.gonnatake && gon.gft <= gon.njt) {
+  if (gon.gonnatake && gon.gft <= gon.njt || !gon.gonnatake) {
     document.addEventListener("turbolinks:load", () => {
       // $.delete("../../medicines")が効かないため、root_pathでgon.noexistを削除
       $.get("../../");
