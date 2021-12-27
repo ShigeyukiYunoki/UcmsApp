@@ -130,6 +130,8 @@ class UsersController < ApplicationController
     render 'show_follow'
   end
 
+  def terms_of_service; end
+
   # before_action
 
   def ensure_correct_user

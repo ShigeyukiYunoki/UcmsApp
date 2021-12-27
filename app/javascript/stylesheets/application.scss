@@ -7,6 +7,10 @@ ul,
 li {
   list-style-type: none;
 }
+
+.term li {
+  list-style-type: decimal;
+}
 .none-deco:hover {
   text-decoration: none;
 }

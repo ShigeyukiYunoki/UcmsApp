@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'login', to: 'users#login_form'
   post 'login', to: 'users#login'
   delete 'logout', to: 'users#logout'
+  get 'terms_of_service', to: 'users#terms_of_service', as: :terms
   get 'users/:id/likes', to: 'users#likes', as: :like
   get 'posts/:user_id/index', to: 'posts#index'
   post 'likes/:post_id/create', to: 'likes#create'
