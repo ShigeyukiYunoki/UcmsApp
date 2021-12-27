@@ -61,7 +61,8 @@ OneSignal.push(function () {
 if (gon.user) {
   if (today === gon.medicine || gon.medicine) {
     console.log(gon.medicine);
-  } else if (today !== gon.medicine) {
+  }
+  if (today !== gon.medicine) {
     if (gon.gonnatake && gon.gft <= gon.njt || !gon.gonnatake) {
     document.addEventListener("turbolinks:load", () => {
       // $.delete("../../medicines")が効かないため、root_pathでgon.noexistを削除

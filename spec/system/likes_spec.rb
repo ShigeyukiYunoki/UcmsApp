@@ -18,6 +18,8 @@ RSpec.describe 'Like', type: :system, js: true do
         find('#like').click
         visit current_path
       end.to change(user.likes, :count).by(1)
+      # have_css '#unlike'がno matchになるため追加
+      expect(current_path).to eq post_path(user1.posts.first)
       expect(page).to have_css '#unlike'
 
       visit user_path(user)
@@ -34,6 +36,8 @@ RSpec.describe 'Like', type: :system, js: true do
         find('#unlike').click
         visit current_path
       end.to change(user.likes, :count).by(-1)
+      # have_css '#like'がno matchになるため追加
+      expect(current_path).to eq post_path(user1.posts.first)
       expect(page).to have_css '#like'
     end
   end
