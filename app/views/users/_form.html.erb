@@ -29,9 +29,11 @@
 
     <%= f.submit yield(:button_text), class:"btn btn-lg btn-primary btn-block my-4" %>
 
-    <%= f.label :terms_of_service, class:"checkbox mb-3" do %>
-      <%= f.check_box :terms_of_service, required: true %>
-      <span><%= link_to "利用規約等", terms_path, class:"none-deco" %>をご確認ください</span>
+    <% if controller.controller_name == 'users' && controller.action_name == 'new' %>
+      <%= f.label :terms_of_service, class:"checkbox mb-3" do %>
+        <%= f.check_box :terms_of_service, required: true %>
+        <span><%= link_to "利用規約等", terms_path, class:"none-deco" %>をご確認ください</span>
+      <% end %>
     <% end %>
   </div>
 <% end %>
