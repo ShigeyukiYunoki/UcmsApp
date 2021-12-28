@@ -12,6 +12,7 @@ RSpec.describe 'Signup', type: :system, js: true do
         select '軽症', from: '重症度'
         fill_in 'パスワード', with: 'password'
         fill_in 'パスワードの確認', with: 'password'
+        check '利用規約等をご確認ください'
         expect { click_button '新規登録' }.to change { ActionMailer::Base.deliveries.size }.by(1)
       end.to change(User, :count).by(1)
       expect(page).to have_content 'アカウント有効化メールを確認してください'
@@ -50,6 +51,7 @@ RSpec.describe 'Signup', type: :system, js: true do
         select '軽症', from: '重症度'
         fill_in 'パスワード', with: 'foo'
         fill_in 'パスワードの確認', with: 'bar'
+        check '利用規約等をご確認ください'
         click_button '新規登録'
       end.to change(User, :count).by(0)
 
