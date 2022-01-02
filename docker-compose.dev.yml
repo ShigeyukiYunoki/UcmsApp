@@ -33,11 +33,11 @@ services:
     # 一度サーバーが起動すると起動し続けるので、dockerが起動する度に一旦停止させる
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
-      - .:/UcmsApp1:cached # ソースコード変更したらDocker側も即反映されるように
-      - /UcmsApp1/node_modules/
-      - public-data:/UcmsApp1/public
-      - tmp-data:/UcmsApp1/tmp
-      - log-data:/UcmsApp1/log
+      - .:/UcmsApp:cached # ソースコード変更したらDocker側も即反映されるように
+      - /UcmsApp/node_modules/
+      - public-data:/UcmsApp/public
+      - tmp-data:/UcmsApp/tmp
+      - log-data:/UcmsApp/log
     ports:
       - "3000:3000" # ホストからゲストへポートフォワード
     depends_on:
@@ -57,8 +57,8 @@ services:
       dockerfile: ./docker/nginx.dev/Dockerfile
     container_name: "ucms_app_nginx"
     volumes:
-      - public-data:/UcmsApp1/public
-      - tmp-data:/UcmsApp1/tmp
+      - public-data:/UcmsApp/public
+      - tmp-data:/UcmsApp/tmp
     ports:
       - 80:80
     depends_on:

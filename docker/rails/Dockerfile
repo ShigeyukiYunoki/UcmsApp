@@ -4,7 +4,7 @@ RUN set -x && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - 
 echo 'deb http://dl.yarnpkg.com/debian/ stable main' > /etc/apt/sources.list.d/yarn.list
 
 RUN set -x && apt-get update -qq && \
-apt-get install -yq build-essential libpq-dev vim \
+apt-get install -yq build-essential libpq-dev vim cron \
 yarn postgresql-client locales locales-all graphviz \
 nodejs npm && npm install n -g && n 14.16.1
 # 単一のRUNコマンドにおいて2つのシェルコマンドをチェーンすることで、結果として得られるイメージでレイヤ数を減らす
@@ -13,7 +13,7 @@ nodejs npm && npm install n -g && n 14.16.1
 # ステップごとに中間ファイルを有するレイヤを保存するよりも、
 # 1ステップでした方がディスクスペースやダウンロード時間を大幅に節約できる
 
-RUN yarn add sweetalert && npm install swiper && \
+RUN yarn add sweetalert && npm install swiper && npm install push.js && npm install self-timer && \
 localedef -f UTF-8 -i ja_JP ja_JP.utf8
 
 ENV LANG ja_JP.UTF-8
@@ -21,11 +21,11 @@ ENV LANGUAGE ja_JP:ja
 ENV LC_ALL ja_JP.utf8
 ENV TZ Asia/Tokyo
 
-# ルート直下にUcmsApp1という名前で作業ディレクトリを作成
-RUN mkdir /UcmsApp1
-# /UcmsApp1を環境変数ENV APP_ROOTに設定
-ENV APP_ROOT /UcmsApp1
-# dockerをどこで起動するか決める。$APP_ROOTで/UcmsApp1を反映
+# ルート直下にUcmsAppという名前で作業ディレクトリを作成
+RUN mkdir /UcmsApp
+# /UcmsAppを環境変数ENV APP_ROOTに設定
+ENV APP_ROOT /UcmsApp
+# dockerをどこで起動するか決める。$APP_ROOTで/UcmsAppを反映
 WORKDIR $APP_ROOT
 
 COPY ./Gemfile $APP_ROOT/Gemfile
@@ -36,6 +36,8 @@ RUN bundle install
 
 # ホストのアプリケーションディレクトリ内をすべてコンテナにコピー
 COPY . $APP_ROOT
+# RUN bundle exec whenever --update-crontab
+# CMD ["cron", "-f"] # cronをフォアグラウンド実行
 # RUN bundle exec rails webpacker:compile Procfile.devでrails sと同時に
 # webpacker:  ./bin/webpack-dev-serverが走るため不要
 # RUN bundle exec rails assets:precompile RAILS_ENV=production
