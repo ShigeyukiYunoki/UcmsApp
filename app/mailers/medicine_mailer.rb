@@ -1,12 +1,17 @@
-class MedicineMailer < ApplicationMailer
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.medicine_mailer.take_medicine.subject
-  #
-  def take_medicine(user)
-    @user = user
-
-    mail to: user.email, subject: '服薬の時間です'
-  end
-end
+# class MedicineMailer < ApplicationMailer
+#   include UsersHelper
+#   include MedicinesHelper
+#
+#   def take_medicine(user)
+#     @user = user
+#
+#     mail to: user.email, subject: '服薬のお知らせ'
+#   end
+#
+#   def medicine_mail
+#     @current_user = current_user
+#     return unless @gonnatake && Time.zone.now.strftime('%H:%M') == @gonnatake
+#
+#     MedicineMailer.take_medicine(@current_user).deliver_now
+#   end
+# end

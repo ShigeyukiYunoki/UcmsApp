@@ -21,6 +21,7 @@ import "../stylesheets/application";
 import "../post/image_size";
 import "../js/swiper";
 import "../js/sweetalert";
+// import "../js/push";
 
 // import '../js/timepicker';
 // import '../js/afternotification';

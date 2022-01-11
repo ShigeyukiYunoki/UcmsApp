@@ -1,21 +1,21 @@
 {
-  "application.js": "/packs/js/application-2b79ad18651d6419f363.js",
-  "application.js.map": "/packs/js/application-2b79ad18651d6419f363.js.map",
+  "application.js": "/packs/js/application-9cd39011d01033c4aabe.js",
+  "application.js.map": "/packs/js/application-9cd39011d01033c4aabe.js.map",
   "entrypoints": {
     "application": {
       "js": [
-        "/packs/js/application-2b79ad18651d6419f363.js"
+        "/packs/js/application-9cd39011d01033c4aabe.js"
       ],
       "js.map": [
-        "/packs/js/application-2b79ad18651d6419f363.js.map"
+        "/packs/js/application-9cd39011d01033c4aabe.js.map"
       ]
     },
     "today": {
       "js": [
-        "/packs/js/today-72c3a212771300f3a059.js"
+        "/packs/js/today-eff1dca8020c6423d0c9.js"
       ],
       "js.map": [
-        "/packs/js/today-72c3a212771300f3a059.js.map"
+        "/packs/js/today-eff1dca8020c6423d0c9.js.map"
       ]
     }
   },
@@ -32,6 +32,6 @@
   "media/images/selfcomp.png": "/packs/media/images/selfcomp-b447a69a839c1fcdbcec355d8cb1cda0.png",
   "media/images/taberukototo.png": "/packs/media/images/taberukototo-dcb9de0c048375391b665131b6968a2f.png",
   "media/images/tyoyo.png": "/packs/media/images/tyoyo-06f79a6a4913cb18f8482e5324b5beb9.png",
-  "today.js": "/packs/js/today-72c3a212771300f3a059.js",
-  "today.js.map": "/packs/js/today-72c3a212771300f3a059.js.map"
+  "today.js": "/packs/js/today-eff1dca8020c6423d0c9.js",
+  "today.js.map": "/packs/js/today-eff1dca8020c6423d0c9.js.map"
 }

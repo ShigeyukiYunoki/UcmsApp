@@ -14,11 +14,15 @@
 # end
 #
 
-require File.expand_path(File.dirname(__FILE__) + "/environment")
-set :output, 'log/cron.log'
-
-every 1.minute do
-  runner 'medicine_mail'
-end
+# 絶対パスから相対パス指定
+# env :PATH, ENV['PATH']
+# # ログファイルの出力先
+# set :output, 'log/cron.log'
+# # ジョブの実行環境の指定
+# set :environment, :production
+#
+# every 1.minute do
+#   runner 'MedicineMailer.medicine_mail'
+# end
 
 # Learn more: http://github.com/javan/whenever

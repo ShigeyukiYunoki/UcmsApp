@@ -3,12 +3,12 @@
 lock '3.16.0'
 
 # Capistranoのログの表示に利用
-set :application, 'UcmsApp1'
+set :application, 'UcmsApp'
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/var/www/UcmsApp1'
 
 # どのリポジトリからアプリをpullするかを指定
-set :repo_url, 'git@github.com:shige8/UcmsApp1.git'
+set :repo_url, 'git@github.com:shige8/UcmsApp.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp

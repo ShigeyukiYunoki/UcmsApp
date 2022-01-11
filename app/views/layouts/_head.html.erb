@@ -8,12 +8,15 @@
   <!-- ucms_app_railsコンテナ内でassets:precompileをすると下記がなくても大丈夫に！ -->
   <!-- プッシュ通知復活させて毎日21時にプッシュ通知にする -->
   <script>
-    window.OneSignal = window.OneSignal || [];
-    OneSignal.push(function() {
-      OneSignal.init({
-        appId: "4f54e151-0b2c-4499-86ef-7419053c0aa1",
+    // self.addEventListener("turbolinks:load", () => {
+      window.OneSignal = window.OneSignal || [];
+      OneSignal.push(function() {
+        OneSignal.init({
+          appId: "20dfde0b-7c73-490a-b362-46b2a3ecc703",
+        });
       });
-    });
+    // });
+
   </script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
