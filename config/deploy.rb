@@ -5,7 +5,7 @@ lock '3.16.0'
 # Capistranoのログの表示に利用
 set :application, 'UcmsApp'
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, '/var/www/UcmsApp1'
+set :deploy_to, '/var/www/UcmsApp'
 
 # どのリポジトリからアプリをpullするかを指定
 set :repo_url, 'git@github.com:shige8/UcmsApp.git'
@@ -34,7 +34,7 @@ set :pty, true
 # puma
 # set :puma_init_active_record, true
 # Default value for :linked_files is []
-# append :linked_files, "config/master.key"
+append :linked_files, 'config/master.key', '.env', 'public/OneSignalSDKWorker.js', 'public/OneSignalSDKUpdaterWorker.js'
 
 # Default value for linked_dirs is []
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system', 'node_modules', 'vendor/bundle',
