@@ -4,7 +4,7 @@ version: 2.1
 jobs:
   build:
     # 自身のアプリ名にする
-    working_directory: ~/UcmsApp1 # 実行ディレクトリを設定する。デフォルトは ~/project
+    working_directory: ~/UcmsApp # 実行ディレクトリを設定する。デフォルトは ~/project
     environment:
       - TZ: Asia/Tokyo
     docker: # CI環境にDockerを利用する場合の設定
