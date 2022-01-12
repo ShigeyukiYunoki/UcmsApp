@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   def notification
     # プッシュ通知復活させて毎日21時にプッシュ通知にする
-    params = { 'app_id' => 'd56a3bea-3546-4901-b800-7f4f107b842b',
+    params = { 'app_id' => '20dfde0b-7c73-490a-b362-46b2a3ecc703',
                'contents' => { 'en' => '今日の服薬は終わりましたか？服薬を記録して一緒に習慣化しましょう！' },
                'included_segments' => ['Subscribed Users'],
                'delayed_option' => 'timezone',
