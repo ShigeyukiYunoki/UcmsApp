@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
 
     request = Net::HTTP::Post.new(uri.path,
                                   'Content-Type' => 'application/json;charset=utf-8',
-                                  'Authorization' => 'Basic Y2IwNjBlNGMtOWY1ZC00MzE1LWI1MTMtYmQwMzJkNDgzMjY0')
+                                  'Authorization' => 'ZGQ3NDQxNGQtZjJhMC00YmU5LWEyN2YtZmVkMThiNjg2MzBi')
     # Net::OpenTimeout (execution expired):app/controllers/application_controller.rb:30:in `notification'
     request.body = params.as_json.to_json
     response = http.request(request)
