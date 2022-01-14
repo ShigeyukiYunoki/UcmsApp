@@ -59,7 +59,7 @@ services:
       dockerfile: ./docker/nginx/Dockerfile
     container_name: "ucms_app_nginx"
     volumes:
-      - /UcmsApp/public
+      # - /UcmsApp/public
       - public-data:/UcmsApp/public
       - tmp-data:/UcmsApp/tmp
     ports:
