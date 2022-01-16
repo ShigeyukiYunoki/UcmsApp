@@ -34,7 +34,8 @@ set :pty, true
 # puma
 # set :puma_init_active_record, true
 # Default value for :linked_files is []
-append :linked_files, 'config/master.key'
+# shared_pathにconfig/master.keyが必要
+# append :linked_files, 'config/master.key'
 
 # Default value for linked_dirs is []
 append :linked_dirs, 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system', 'node_modules', 'vendor/bundle',
