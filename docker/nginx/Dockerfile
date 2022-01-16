@@ -1,5 +1,7 @@
 FROM nginx:latest
 
+# public/OneSignalSDKWorker.jsがuploadされないためnginxコンテナUcmsApp/publicに
+# 後で加えるために必要となる
 RUN set -x && apt-get update -qq && \
 apt-get install -yq  vim
 
