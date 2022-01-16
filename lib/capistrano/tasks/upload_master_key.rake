@@ -1,13 +1,13 @@
-# task :upload do
-#   on roles(:web) do |_host|
-#     execute "mkdir -p #{shared_path}/config" if test "[ ! -d #{shared_path}/config ]"
-#     upload!('config/master.key', "#{shared_path}/config/master.key")
-#   end
+task :upload do
+  on roles(:web) do |_host|
+    execute "mkdir -p #{current_path}/config" if test "[ ! -d #{current_path}/config ]"
+    upload!('config/master.key', "#{current_path}/config/master.key")
+  end
 #   on roles(:web) do |_host|
 #     execute "mkdir -p #{shared_path}/" if test "[ ! -d #{shared_path}/ ]"
 #     upload!('.env', "#{shared_path}/.env")
 #   end
-# end
+end
 
 # namespace :deploy do
 #   namespace :check do
