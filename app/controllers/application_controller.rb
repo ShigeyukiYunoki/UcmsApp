@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   def notification
     # プッシュ通知復活させて毎日21時にプッシュ通知にする
-    params = { 'app_id' => '20dfde0b-7c73-490a-b362-46b2a3ecc703',
+    params = { 'app_id' => ENV['ONE_SIGNAL_APP_ID'] ,
                'contents' => { 'en' => '今日の服薬は終わりましたか？服薬を記録して一緒に習慣化しましょう！' },
                'included_segments' => ['Subscribed Users'],
                'delayed_option' => 'timezone',
@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
 
     request = Net::HTTP::Post.new(uri.path,
                                   'Content-Type' => 'application/json;charset=utf-8',
-                                  'Authorization' => 'ZGQ3NDQxNGQtZjJhMC00YmU5LWEyN2YtZmVkMThiNjg2MzBi')
+                                  'Authorization' => ENV['ONE_SIGNAL_AUTH_REST_KEY'] )
     # Net::OpenTimeout (execution expired):app/controllers/application_controller.rb:30:in `notification'
     request.body = params.as_json.to_json
     response = http.request(request)
@@ -52,7 +52,7 @@ class ApplicationController < ActionController::Base
   #
   #   request = Net::HTTP::Post.new(uri.path,
   #                                 'Content-Type' => 'application/json;charset=utf-8',
-  #                                 'Authorization' => 'Basic Y2IwNjBlNGMtOWY1ZC00MzE1LWI1MTMtYmQwMzJkNDgzMjY0')
+  #                                 'Authorization' => '')
   #   request.body = params.as_json.to_json
   #   response = http.request(request)
   #   puts response.body
