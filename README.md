@@ -61,3 +61,8 @@ GitHubへのpush時に、CircleCIでRspecとRubocopが走ります。<br>
 
 # ER図
 ![UcmsAppER](https://user-images.githubusercontent.com/42525646/140727138-a4220d8e-ef0e-4220-bf45-53bd565008dc.png)
+
+# 今後やりたいこと
+- React・Next.jsでのフロントエンド実装
+- ReactNativeでのネイティブアプリ化
+- Terraformでのインフラのコード化
