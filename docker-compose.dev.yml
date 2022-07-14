@@ -9,16 +9,15 @@ services:
   db:
     build:
       context: .
-      dockerfile: ./docker/postgres/Dockerfile
+      dockerfile: ./Dockerfile.postgres
     container_name: "ucms_app_postgres"
     environment:
-      - POSTGRES_USER=$UCMS_APP_POSTGRES_USER # <%= ENV['UCMS_APP_POSTGRES_USER'] %>
-      - POSTGRES_PASSWORD=$UCMS_APP_POSTGRES_PASSWORD # <%= ENV['UCMS_APP_POSTGRES_PASSWORD'] %>
-      # DBの指定がないとエラーPG::ConnectionBad (could not translate host name "db" to address: nodename nor servname provided, or not known):
-      - POSTGRES_DB=ucms_app_development
-
+      # - POSTGRES_USER=$UCMS_APP_POSTGRES_USER # <%= ENV['UCMS_APP_POSTGRES_USER'] %>
+      # - POSTGRES_PASSWORD=$UCMS_APP_POSTGRES_PASSWORD # <%= ENV['UCMS_APP_POSTGRES_PASSWORD'] %>
+      # # DBの指定がないとエラーPG::ConnectionBad (could not translate host name "db" to address: nodename nor servname provided, or not known):
+      # - POSTGRES_DB=ucms_app_development
       # 下記を書けばパスワードなしでデータベースにログイン可
-      # - POSTGRES_HOST_AUTH_METHOD=trust
+      - POSTGRES_HOST_AUTH_METHOD=trust
     volumes:
       - ~/postgres_data:/var/lib/postgresql/data # ホストOSで永続化 再度初期データを投入したい場合は左記をコメントアウトして再upする。
       # :の左側はホスト側で、右側はpostgres_dataをどこに取り込むかで、そこをdockerが参照する
@@ -28,7 +27,7 @@ services:
   web:
     build:
       context: .
-      dockerfile: ./docker/rails/Dockerfile
+      dockerfile: ./Dockerfile.rails
     container_name: "ucms_app_rails"
     # 一度サーバーが起動すると起動し続けるので、dockerが起動する度に一旦停止させる
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
@@ -42,32 +41,32 @@ services:
       - "3000:3000" # ホストからゲストへポートフォワード
     depends_on:
       - db
-      - chrome
+      # - chrome
     # dockerでbinding.pryを使うために下記2行追加
     # ソースコードにbinding.pryを追加し、該当の箇所で止まったら
     # $ docker attach [container name] するとpryにアタッチされる
     stdin_open: true
     tty: true
-    # selenium_chromeを使うために以下の行を追加
-    environment:
-      - "SELENIUM_DRIVER_URL=http://selenium_chrome:4444/wd/hub"
-  nginx:
-    build:
-      context: .
-      dockerfile: ./docker/nginx.dev/Dockerfile
-    container_name: "ucms_app_nginx"
-    volumes:
-      - public-data:/UcmsApp/public
-      - tmp-data:/UcmsApp/tmp
-    ports:
-      - 80:80
-    depends_on:
-      - web
-  chrome: # Chromeでのテスト実行用コンテナ
-    image: selenium/standalone-chrome-debug # Chromeがインストールされたイメージ
-    container_name: "ucms_app_chrome"
-    ports:
-      - "4444:4444" # ホストからゲストへポートフォワード
-    #不要なログ出力を抑制するため
-    logging:
-      driver: none
+  #   # selenium_chromeを使うために以下の行を追加
+  #   environment:
+  #     - "SELENIUM_DRIVER_URL=http://selenium_chrome:4444/wd/hub"
+  # nginx:
+  #   build:
+  #     context: .
+  #     dockerfile: ./docker/nginx.dev/Dockerfile
+  #   container_name: "ucms_app_nginx"
+  #   volumes:
+  #     - public-data:/UcmsApp/public
+  #     - tmp-data:/UcmsApp/tmp
+  #   ports:
+  #     - 80:80
+  #   depends_on:
+  #     - web
+  # chrome: # Chromeでのテスト実行用コンテナ
+  #   image: selenium/standalone-chrome-debug # Chromeがインストールされたイメージ
+  #   container_name: "ucms_app_chrome"
+  #   ports:
+  #     - "4444:4444" # ホストからゲストへポートフォワード
+  #   #不要なログ出力を抑制するため
+  #   logging:
+  #     driver: none
