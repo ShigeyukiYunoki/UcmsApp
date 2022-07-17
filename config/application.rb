@@ -25,6 +25,7 @@ module UcmsApp
 
     # デフォルトの言語を日本語化
     config.i18n.default_locale = :ja
+    config.autoloader = :classic
 
     config.generators do |g|
       g.test_framework :rspec,
