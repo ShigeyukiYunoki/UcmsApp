@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'noreply@ucms-app0.herokuapp.com'
+  default from: 'noreply@www.ucmsapp.com'
   layout 'mailer'
 end
