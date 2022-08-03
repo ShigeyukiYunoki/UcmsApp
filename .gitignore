@@ -40,4 +40,12 @@
 yarn-debug.log*
 .yarn-integrity
 
-/.env
+.env
+
+# IDE
+.idea
+
+# Terraform
+.terraform
+*.tfstate
+*.tfstate.backup
