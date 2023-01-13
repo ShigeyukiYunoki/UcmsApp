@@ -9,7 +9,9 @@
 
 レスポンシブ対応なので、スマホでも見られます。
 
-## https://www.ucmsapp.com
+~~https://www.ucmsapp.com~~
+
+## https://ucmsapp.fly.dev  AWS無料期間終了のため、fly.ioに移行しました
 
 <img width="1256" alt="スクリーンショット 2021-11-07 17 11 20" src="https://user-images.githubusercontent.com/42525646/140637463-6039ecd2-efea-4f18-9b64-837c066630b7.png">
 
@@ -20,15 +22,15 @@
 - PostgreSQL 12
 - Nginx 1.21.3
 - Puma 4.3.8
-- AWS
+- AWS  AWS無料期間終了のため、fly.ioに移行しました
   - VPC
   - EC2
   - RDS
-  - S3
   - Route53
   - ALB
   - Certificate Manager
-  - Amazon Simple Email Service
+  - S3  fly.ioと接続できず、投稿画像表示できない状態です
+  - Amazon Simple Email Service  fly.ioと接続できず、メール受信できない状態です
 - Rspec
 - Rubocop
 - Git/GitHub
@@ -63,6 +65,6 @@ GitHubへのpush時に、CircleCIでRspecとRubocopが走ります。<br>
 ![UcmsAppER](https://user-images.githubusercontent.com/42525646/140727138-a4220d8e-ef0e-4220-bf45-53bd565008dc.png)
 
 # 今後やりたいこと
-- React・Next.jsでのフロントエンド実装
-- ReactNativeでのネイティブアプリ化
+- ReactNativeでのネイティブアプリ化 → AppStoreにて公開中です！https://apple.co/3DyEoEO
 - Terraformでのインフラのコード化
+- React・Next.jsでのフロントエンド実装
