@@ -1,5 +1,38 @@
 # UcmsApp
 
+> 旧 Rails 版の UcmsApp です。
+>
+> このリポジトリは、潰瘍性大腸炎患者向け相互支援・服薬管理アプリの初期実装として残します。
+> 今後の開発は Next.js 版への移行を前提に進め、最終的には `UcmsAppNext` を主リポジトリにする方針です。
+
+## 現在の位置づけ
+
+- Rails 6 / Ruby 2.7 系で作られた既存版
+- 以前は Fly.io にデプロイしていたが、利用状況が少ないため停止・解除を検討
+- GitHub 上では archive する候補
+- 既存実装の参照元、移行元、履歴として保持
+
+## 移行方針
+
+関連リポジトリは以下の役割で整理します。
+
+- `UcmsApp`: 旧 Rails 版。履歴として保持
+- `UcmsAppBack`: このリポジトリをコピーした Rails API-only 実験版
+- `UcmsAppFront`: Rails API を叩く Next.js frontend-only 実験版
+- `UcmsAppNext`: 最終形として作る Next.js full-stack 版
+
+GitHub archive は削除ではなく read-only 化です。archive 後は code、issues、pull requests、releases、branches などが読み取り専用になりますが、必要になれば unarchive して再編集できます。
+
+## デプロイ検討メモ
+
+- Rails 版を継続運用するなら Fly.io は現実的
+- Next.js 版は Vercel が最も素直
+- Cloudflare Workers / Pages も選択肢には入るが、今回の移行初期ではやや過剰
+- Vercel Postgres は現在は新規の独立サービスというより、Vercel Marketplace 経由で Neon などを接続する形
+- 最終形の `UcmsAppNext` は Vercel + Neon Postgres を第一候補にする
+
+---
+
 潰瘍性大腸炎患者のための相互支援SNSです。
 9割の患者さんが軽症・中等症を占める指定難病の潰瘍性大腸炎。
 <br>炎症を抑え、寛解状態を維持するには、毎日の服薬が欠かせません。
